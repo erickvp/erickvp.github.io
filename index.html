@@ -344,21 +344,109 @@
       width: 100%;
       aspect-ratio: 16/9;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px 20px;
       position: relative;
       overflow: hidden;
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+      transition: all .3s;
     }
-    .case-cover .icon-wrap {
-      width: 64px;
-      height: 64px;
-      background: rgba(255, 255, 255, .08);
-      border-radius: 50%;
+    html.light .case-cover {
+      background: rgba(241, 245, 249, 0.92);
+      border-bottom-color: rgba(203, 213, 225, 0.85);
+    }
+    .case-card:hover .case-cover {
+      background: rgba(15, 23, 42, 0.95);
+    }
+    html.light .case-card:hover .case-cover {
+      background: rgba(226, 232, 240, 0.92);
+    }
+    .case-cover-top {
       display: flex;
       align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(4px);
+      justify-content: space-between;
+      width: 100%;
       z-index: 1;
+    }
+    .case-cover-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .case-cover-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.35);
+    }
+    .case-cover-badge {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(20, 184, 166, 0.12);
+      border: 1px solid rgba(20, 184, 166, 0.25);
+      color: var(--c-accent2);
+    }
+    html.light .case-cover-badge {
+      color: #0f766e;
+      background: rgba(20, 184, 166, 0.1);
+    }
+    .case-cover-center {
+      margin: auto 0;
+      z-index: 1;
+    }
+    .case-cover-kicker {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      margin-bottom: 4px;
+      font-family: 'Plus Jakarta Sans', monospace;
+    }
+    .case-cover-preview-title {
+      font-size: .88rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--c-text-strong);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .case-cover-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .7rem;
+      color: var(--c-text-muted);
+      z-index: 1;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.2);
+    }
+    .case-cover-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+    #modal-header-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--c-border);
+      background: rgba(15, 23, 42, 0.6);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    html.light #modal-header-banner {
+      background: rgba(241, 245, 249, 0.9);
+      border-bottom-color: rgba(203, 213, 225, 0.85);
     }
     .tag-pill {
       display: inline-block;
@@ -859,40 +947,96 @@
       </div>
     </div>
     <div id="cases-track" class="cases-track reveal">
+      <!-- Case 1 -->
       <article class="case-card" id="case-card-1" tabindex="0" role="button" data-case="1">
-        <div class="case-cover" style="background:linear-gradient(135deg,#0a2020,#0f1a2e,#1a0f2e)">
-          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="opacity:.25"><defs><radialGradient id="rg1" cx="30%" cy="50%"><stop offset="0%" stop-color="#14b8a6" stop-opacity=".5"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><rect width="400" height="225" fill="url(#rg1)"/><circle cx="80" cy="112" r="30" fill="none" stroke="#14b8a6" stroke-width="1" opacity=".7"/><circle cx="80" cy="112" r="48" fill="none" stroke="#14b8a6" stroke-width=".5" opacity=".3" stroke-dasharray="4 4"/><line x1="110" y1="112" x2="180" y2="78" stroke="#14b8a6" stroke-width="1" opacity=".5"/><line x1="110" y1="112" x2="180" y2="146" stroke="#6366f1" stroke-width="1" opacity=".5"/><rect x="175" y="62" width="54" height="32" rx="5" fill="none" stroke="#6366f1" stroke-width="1" opacity=".6"/><rect x="175" y="131" width="54" height="32" rx="5" fill="none" stroke="#14b8a6" stroke-width="1" opacity=".6"/></svg>
-          <div class="icon-wrap"><span style="font-size:26px">🏥</span></div>
+        <div class="case-cover">
+          <div class="case-cover-grid"></div>
+          <div class="case-cover-top">
+            <div class="case-cover-dots"><span></span><span></span><span></span></div>
+            <span class="case-cover-badge" data-i18n="case1_badge">STORYLINE 360</span>
+          </div>
+          <div class="case-cover-center">
+            <div class="case-cover-kicker">CASE STUDY // 01</div>
+            <div class="case-cover-preview-title" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</div>
+          </div>
+          <div class="case-cover-footer">
+            <span data-i18n="case1_spec">Branching Logic · Modular Layers · Scoring Variables</span>
+          </div>
         </div>
         <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3"><span class="tag-pill tag-teal">Storyline 360</span><span class="tag-pill tag-indigo" data-i18n="tag_variables">Variables &amp; Logic</span><span class="tag-pill tag-amber">BPO Scale</span></div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case1_title">Clinical Compliance Triage Simulator</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case1_desc">Branching scenario simulator for clinical compliance triage using variables and conditional logic adapted to the learner journey.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent2)"><span data-i18n="case_view_details">View details</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="tag-pill tag-teal">Storyline 360</span>
+            <span class="tag-pill tag-indigo" data-i18n="tag_branching">Conditional Branching</span>
+            <span class="tag-pill tag-amber" data-i18n="tag_scoring">Scoring Integrity</span>
+          </div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case1_desc">Branching scenario simulator engineered in Storyline 360 with a modular layer architecture, conditional logic, and boolean/numeric variable tracking to ensure zero slide bloat and auditable scoring.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent2)">
+            <span data-i18n="case_view_details">View details</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
         </div>
       </article>
+
+      <!-- Case 2 -->
       <article class="case-card" id="case-card-2" tabindex="0" role="button" data-case="2">
-        <div class="case-cover" style="background:linear-gradient(135deg,#0a1a12,#0a1120,#150d28)">
-          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="opacity:.25"><defs><radialGradient id="rg2" cx="70%" cy="40%"><stop offset="0%" stop-color="#10b981" stop-opacity=".5"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><rect width="400" height="225" fill="url(#rg2)"/><circle cx="200" cy="112" r="52" fill="none" stroke="#10b981" stroke-width=".8" opacity=".3" stroke-dasharray="5 5"/><circle cx="200" cy="112" r="26" fill="none" stroke="#34d399" stroke-width="1.2" opacity=".5"/><circle cx="200" cy="112" r="9" fill="#10b981" opacity=".7"/></svg>
-          <div class="icon-wrap"><span style="font-size:26px">🤖</span></div>
+        <div class="case-cover">
+          <div class="case-cover-grid"></div>
+          <div class="case-cover-top">
+            <div class="case-cover-dots"><span></span><span></span><span></span></div>
+            <span class="case-cover-badge" data-i18n="case2_badge">GENAI PIPELINE</span>
+          </div>
+          <div class="case-cover-center">
+            <div class="case-cover-kicker">CASE STUDY // 02</div>
+            <div class="case-cover-preview-title" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</div>
+          </div>
+          <div class="case-cover-footer">
+            <span data-i18n="case2_spec">LLM Parsing · 1.5K+ Moderators · Bi-weekly Sprints</span>
+          </div>
         </div>
         <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3"><span class="tag-pill tag-emerald">GenAI Workflows</span><span class="tag-pill tag-purple">LLM Parsing</span><span class="tag-pill tag-indigo">TikTok LATAM</span></div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case2_title">Agile Continuing Education Ecosystem with GenAI</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case2_desc">Generative AI workflows for automated parsing of corporate policies and continuous curriculum updates for 1,500+ moderators.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#34d399"><span data-i18n="case_view_details">View details</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="tag-pill tag-emerald">GenAI Pipelines</span>
+            <span class="tag-pill tag-purple">LLM Parsing</span>
+            <span class="tag-pill tag-indigo" data-i18n="tag_sprints">Bi-weekly Sprints</span>
+          </div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case2_desc">Continuous learning pipeline integrating LLMs for automated semantic parsing of complex regulatory policies, enabling rapid knowledge delivery for 1,500+ moderators across bi-weekly agile sprints.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#34d399">
+            <span data-i18n="case_view_details">View details</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
         </div>
       </article>
+
+      <!-- Case 3 -->
       <article class="case-card" id="case-card-3" tabindex="0" role="button" data-case="3">
-        <div class="case-cover" style="background:linear-gradient(135deg,#16160a,#0f172a,#0a1f18)">
-          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="opacity:.25"><defs><radialGradient id="rg3" cx="50%" cy="50%"><stop offset="0%" stop-color="#6366f1" stop-opacity=".4"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><rect width="400" height="225" fill="url(#rg3)"/><rect x="38" y="48" width="124" height="136" rx="9" fill="none" stroke="#6366f1" stroke-width="1" opacity=".5"/><path d="M162 112 L238 112" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="5 3" opacity=".55"/><circle cx="200" cy="112" r="5" fill="#14b8a6" opacity=".9"/><rect x="238" y="58" width="128" height="108" rx="9" fill="none" stroke="#14b8a6" stroke-width="1" opacity=".5"/></svg>
-          <div class="icon-wrap"><span style="font-size:26px">🚀</span></div>
+        <div class="case-cover">
+          <div class="case-cover-grid"></div>
+          <div class="case-cover-top">
+            <div class="case-cover-dots"><span></span><span></span><span></span></div>
+            <span class="case-cover-badge" data-i18n="case3_badge">LMS &amp; GOVERNANCE</span>
+          </div>
+          <div class="case-cover-center">
+            <div class="case-cover-kicker">CASE STUDY // 03</div>
+            <div class="case-cover-preview-title" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</div>
+          </div>
+          <div class="case-cover-footer">
+            <span data-i18n="case3_spec">Beedoo LMS · Governance · Kirkpatrick L2</span>
+          </div>
         </div>
         <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3"><span class="tag-pill tag-indigo">LMS Deployment</span><span class="tag-pill tag-teal">Beedoo</span><span class="tag-pill tag-amber">Kirkpatrick L2</span></div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case3_title">LMS Infrastructure Modernization &amp; Rollout (99/Beedoo)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case3_desc">End-to-end LMS Beedoo deployment at 99, establishing a Kirkpatrick Level 2 measurement framework for commercial sales teams.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#818cf8"><span data-i18n="case_view_details">View details</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="tag-pill tag-indigo">LMS Deployment</span>
+            <span class="tag-pill tag-teal" data-i18n="tag_governance">Platform Governance</span>
+            <span class="tag-pill tag-amber">Kirkpatrick L2</span>
+          </div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case3_desc">End-to-end LMS Beedoo implementation at 99, featuring catalog governance, full transition from in-person to digital training, and a Kirkpatrick Level 2 evaluation framework tied to commercial KPIs.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#818cf8">
+            <span data-i18n="case_view_details">View details</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
         </div>
       </article>
     </div>
@@ -904,21 +1048,33 @@
 <div id="case-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div id="modal-backdrop"></div>
   <div id="modal-content" class="p-0">
-    <div id="modal-cover" class="w-full h-28 rounded-t-xl flex items-center justify-center text-5xl relative">
-      <span id="modal-icon">🏥</span>
-      <button id="modal-close-btn" class="absolute top-4 right-4 p-2 rounded-lg transition-colors" style="color:var(--c-text-muted);background:rgba(255,255,255,.05)" aria-label="Close">
+    <div id="modal-header-banner">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full" style="background: var(--c-accent)"></span>
+        <span id="modal-category" class="text-xs font-bold uppercase tracking-wider" style="color: var(--c-accent2); font-family: 'Plus Jakarta Sans', sans-serif">CASE STUDY // 01</span>
+      </div>
+      <button id="modal-close-btn" class="p-2 rounded-lg transition-colors" style="color:var(--c-text-muted);background:rgba(255,255,255,.05)" aria-label="Close">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
     <div class="p-7">
       <div id="modal-tags" class="flex flex-wrap gap-2 mb-4"></div>
       <h2 id="modal-title" class="font-bold text-xl mb-6 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif"></h2>
-      <div class="space-y-5">
-        <div><div class="modal-section-label" data-i18n="modal_lbl_challenge">🎯 Business Challenge</div><p id="modal-challenge" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
+      <div class="space-y-6">
+        <div>
+          <div class="modal-section-label" data-i18n="modal_lbl_problem">Operational Problem / Business Risk</div>
+          <p id="modal-challenge" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
+        </div>
         <div class="divider"></div>
-        <div><div class="modal-section-label" data-i18n="modal_lbl_strategy">📚 Pedagogical Strategy</div><p id="modal-strategy" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
+        <div>
+          <div class="modal-section-label" data-i18n="modal_lbl_approach">Pedagogical &amp; Andragogical Approach</div>
+          <p id="modal-strategy" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
+        </div>
         <div class="divider"></div>
-        <div><div class="modal-section-label" data-i18n="modal_lbl_solution">⚙️ Technical Solution &amp; Tools</div><p id="modal-solution" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
+        <div>
+          <div class="modal-section-label" data-i18n="modal_lbl_architecture">Technical Architecture &amp; Tools</div>
+          <p id="modal-solution" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
+        </div>
       </div>
       <div class="flex flex-wrap gap-3 mt-8 pt-6" style="border-top:1px solid var(--c-border)">
         <a id="modal-demo-btn" href="#" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-5">
@@ -1407,19 +1563,31 @@
 
       cases_eyebrow: 'Project Portfolio',
       cases_title: 'Impactful <span>Case Studies</span>',
-      tag_variables: 'Variables & Logic',
-      case1_title: 'Clinical Compliance Triage Simulator',
-      case1_desc: 'Branching scenario simulator for clinical compliance triage using variables and conditional logic adapted to the learner journey.',
-      case2_title: 'Agile Continuing Education Ecosystem with GenAI',
-      case2_desc: 'Generative AI workflows for automated parsing of corporate policies and continuous curriculum updates for 1,500+ moderators.',
-      case3_title: 'LMS Infrastructure Modernization & Rollout (99/Beedoo)',
-      case3_desc: 'End-to-end LMS Beedoo deployment at 99, establishing a Kirkpatrick Level 2 measurement framework for commercial sales teams.',
+      case1_badge: 'STORYLINE 360',
+      case1_title: 'Clinical Compliance Triage Simulator (Storyline 360)',
+      case1_spec: 'Branching Logic · Modular Layers · Scoring Variables',
+      case1_desc: 'Branching scenario simulator engineered in Storyline 360 featuring a modular layer architecture, conditional logic, and boolean/numeric variable tracking to eliminate slide bloat and ensure auditable scoring integrity.',
+      tag_branching: 'Conditional Branching',
+      tag_scoring: 'Scoring Integrity',
+
+      case2_badge: 'GENAI PIPELINE',
+      case2_title: 'Automation & Continuing Education with GenAI (TikTok LATAM)',
+      case2_spec: 'LLM Parsing · 1.5K+ Moderators · Bi-weekly Sprints',
+      case2_desc: 'Continuous learning pipeline integrating LLMs for automated semantic parsing of complex regulatory policies, enabling rapid knowledge delivery for 1,500+ moderators across bi-weekly agile sprints.',
+      tag_sprints: 'Bi-weekly Sprints',
+
+      case3_badge: 'LMS & GOVERNANCE',
+      case3_title: 'End-to-End LMS Rollout & Sales Enablement (99/Beedoo)',
+      case3_spec: 'Beedoo LMS · Governance · Kirkpatrick L2',
+      case3_desc: 'End-to-end LMS Beedoo implementation at 99, featuring catalog governance, full transition from in-person to digital training, and a Kirkpatrick Level 2 evaluation framework tied to commercial KPIs.',
+      tag_governance: 'Platform Governance',
+
       case_view_details: 'View details',
       cases_scroll_hint: '← Swipe to explore cases →',
 
-      modal_lbl_challenge: '🎯 Business Challenge',
-      modal_lbl_strategy: '📚 Pedagogical Strategy',
-      modal_lbl_solution: '⚙️ Technical Solution & Tools',
+      modal_lbl_problem: 'Operational Problem / Business Risk',
+      modal_lbl_approach: 'Pedagogical & Andragogical Approach',
+      modal_lbl_architecture: 'Technical Architecture & Tools',
       modal_btn_demo: 'Launch Interactive Demo',
       modal_btn_behance: 'View on Behance',
 
@@ -1547,20 +1715,32 @@
 
       cases_eyebrow: 'Portfólio de Projetos',
       cases_title: 'Cases de <span>Impacto</span>',
-      tag_variables: 'Variáveis & Condicionais',
-      case1_title: 'Simulador de Triagem de Conformidade Clínica',
-      case1_desc: 'Simulador ramificado para triagem de conformidade clínica com lógica de variáveis e estados adaptados à jornada do aprendiz.',
-      case2_title: 'Ecossistema Ágil de Educação Continuada com GenAI',
-      case2_desc: 'Fluxos de IA Generativa para parsing automatizado de políticas corporativas e atualização contínua de currículo para 1.500+ moderadores.',
-      case3_title: 'Modernização de Infraestrutura e Implementação de LMS (99/Beedoo)',
-      case3_desc: 'Implantação end-to-end do LMS Beedoo na 99, estruturando framework de métricas Kirkpatrick Nível 2 para capacitação comercial.',
+      case1_badge: 'STORYLINE 360',
+      case1_title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360)',
+      case1_spec: 'Ramificação Condicional · Camadas Modulares · Variáveis de Score',
+      case1_desc: 'Simulador de cenários ramificados desenvolvido no Storyline 360 com arquitetura modular de camadas, lógica condicional e rastreamento por variáveis booleanas e numéricas para evitar inchaço de slides e garantir integridade de pontuação auditável.',
+      tag_branching: 'Ramificação Condicional',
+      tag_scoring: 'Integridade de Score',
+
+      case2_badge: 'GENAI PIPELINE',
+      case2_title: 'Automação e Educação Contínua com GenAI (TikTok LATAM)',
+      case2_spec: 'Pipeline com LLMs · 1.500+ Moderadores · Sprints Quinzenais',
+      case2_desc: 'Pipeline de educação contínua com integração de LLMs para parsing semântico automatizado de diretrizes regulatórias e criação ágil de conhecimento para mais de 1.500 moderadores em sprints quinzenais.',
+      tag_sprints: 'Sprints Quinzenais',
+
+      case3_badge: 'LMS & GOVERNANÇA',
+      case3_title: 'Implementação End-to-End de LMS e Capacitação Comercial (99/Beedoo)',
+      case3_spec: 'LMS Beedoo · Governança · Transição Digital · Kirkpatrick L2',
+      case3_desc: 'Implementação end-to-end do LMS Beedoo na 99, contemplando governança de plataforma, arquitetura de catálogo, transição de treinamento presencial para digital e avaliação Kirkpatrick Nível 2 conectada a indicadores comerciais.',
+      tag_governance: 'Governança de Plataforma',
+
       case_view_details: 'Ver detalhes',
       cases_scroll_hint: '← Deslize para explorar os cases →',
 
-      modal_lbl_challenge: '🎯 Desafio de Negócio',
-      modal_lbl_strategy: '📚 Estratégia Pedagógica',
-      modal_lbl_solution: '⚙️ Solução Técnica & Ferramentas',
-      modal_btn_demo: 'Acessar Demonstração Interativa',
+      modal_lbl_problem: 'Problema Operacional / Risco de Negócio',
+      modal_lbl_approach: 'Abordagem Pedagógica & Andragógica',
+      modal_lbl_architecture: 'Arquitetura Técnica & Ferramentas',
+      modal_btn_demo: 'Acessar Demonstração',
       modal_btn_behance: 'Ver no Behance',
 
       exp_eyebrow: 'Trajetória Profissional',
@@ -1655,90 +1835,96 @@
   const casesData = {
     en: {
       1: {
-        icon: '🏥',
-        bg: 'linear-gradient(135deg,#0a2020,#0f1a2e,#1a0f2e)',
+        category: 'CASE STUDY // 01 · TECHNICAL & INTERACTIVE',
+        demoUrl: 'https://www.behance.net/erickvp',
+        behanceUrl: 'https://www.behance.net/erickvp',
         tags: [
           { l: 'Storyline 360', c: 'tag-teal' },
-          { l: 'Variables & Logic', c: 'tag-indigo' },
-          { l: 'BPO Scale', c: 'tag-amber' },
-          { l: 'Branching Simulation', c: 'tag-emerald' }
+          { l: 'Conditional Branching', c: 'tag-indigo' },
+          { l: 'Modular Layers', c: 'tag-purple' },
+          { l: 'Scoring Variables', c: 'tag-amber' }
         ],
-        title: 'Clinical Compliance Triage Simulator (Storyline 360 & Variables)',
-        challenge: 'A healthcare BPO operation faced elevated error rates in clinical call triage, generating significant regulatory compliance risks (HIPAA) and degrading service SLAs. Traditional training, centered on static SOP documents, failed to build the real-time clinical judgment required for high-stakes decisions under time pressure.',
-        strategy: 'Scenario-Based Learning featuring a multi-path branching decision architecture, rooted in Malcolm Knowles\' principles of adult learning (andragogy). The design prioritized authentic, immediate operational consequences for every learner decision, reinforcing clinical critical thinking rather than passive memorization.',
-        solution: 'Built in Articulate Storyline 360 utilizing advanced variables, conditional logic, and state transitions. The simulator delivers 12 unique clinical pathways with 3+ decision branches per case, instrumented for learner tracking via xAPI/LRS. Features scored telemetry, contextual feedback, and a real-time compliance gap report for managers.'
+        title: 'Clinical Compliance Triage Simulator (Storyline 360)',
+        problem: 'In clinical BPO operations handling high-risk healthcare triage, protocol non-compliance introduced severe regulatory risk (HIPAA) and compromised patient safety. The legacy onboarding process relied on static SOP PDFs and passive slide lectures, which failed to train agents in dynamic decision-making, escalation pathways, and high-stress clinical judgment.',
+        approach: 'Engineered a Scenario-Based Learning framework rooted in Knowles\' andragogical principles (relevance, active autonomy, and immediate consequences). Learners navigate complex diagnostic interviews where clinical decisions branch dynamically. Diagnostic errors produce realistic complications and corrective feedback loops rather than arbitrary failure screens.',
+        architecture: 'Authored in Articulate Storyline 360 using an advanced modular layer architecture that consolidated multiple scenarios into unified slide masters, cutting total slide count by over 65% and eliminating slide bloat. Scored via 14 numeric and boolean variables tracking diagnostic accuracy, decision speed, and protocol adherence. Fully instrumented for SCORM 2004 4th Edition and xAPI statement tracking for auditable LMS reporting.'
       },
       2: {
-        icon: '🤖',
-        bg: 'linear-gradient(135deg,#0a1a12,#0a1120,#150d28)',
+        category: 'CASE STUDY // 02 · AI & GLOBAL SCALE',
+        demoUrl: 'https://www.behance.net/erickvp',
+        behanceUrl: 'https://www.behance.net/erickvp',
         tags: [
-          { l: 'GenAI Workflows', c: 'tag-emerald' },
-          { l: 'LLM Parsing', c: 'tag-purple' },
-          { l: 'TikTok LATAM', c: 'tag-indigo' },
-          { l: 'Prompt Engineering', c: 'tag-teal' }
+          { l: 'GenAI Pipelines', c: 'tag-emerald' },
+          { l: 'LLM Semantic Parsing', c: 'tag-purple' },
+          { l: 'Prompt Engineering', c: 'tag-teal' },
+          { l: '1,500+ Moderators', c: 'tag-indigo' }
         ],
-        title: 'Agile Continuing Education Ecosystem with GenAI (TikTok)',
-        challenge: 'At TikTok Trust & Safety LATAM, curricula needed to update in under 48 hours following revisions to dense, hundred-page global policy documents. These needed to be translated into bite-sized micromodules for 1,500+ moderators across multiple languages. Manual instructional production could not match this velocity or scale.',
-        strategy: 'A continuous learning pipeline structured around bi-weekly agile sprints, incorporating Generative AI as an instructional co-pilot. The methodology married structured prompt engineering with expert human oversight (ISD as subject-matter curator), preserving strict regulatory accuracy while maximizing speed.',
-        solution: 'Engineered an LLM pipeline (GPT-4/Claude) using structured prompt templates for: (1) semantic parsing and policy decomposition; (2) extraction of core learning objectives; (3) rapid storyboarding for Rise 360 micromodules; (4) automated scenario question banks. Delivered a ~70% reduction in production turnaround with simultaneous multi-language support (PT, EN, ES).'
+        title: 'Automation & Continuing Education with GenAI (TikTok LATAM)',
+        problem: 'TikTok\'s LATAM Trust & Safety team faced continuous, rapid shifts in global regulatory policies and platform community guidelines. Converting dense legal documents of 50+ pages into instructional assets manually required weeks, creating operational lag and leaving 1,500+ moderators vulnerable to policy drift and inconsistent enforcement.',
+        approach: 'Established an agile continuing education pipeline operating in bi-weekly instructional sprints. Instead of monolithic compliance courses, content was deconstructed into targeted 5-to-7-minute microlearning modules paired with Situational Judgment Tests (SJTs) based on current real-world content moderation edge cases.',
+        architecture: 'Engineered an AI-assisted pipeline combining LLMs (GPT-4/Claude) with structured few-shot prompt templates to: (1) semantically parse policy diffs; (2) extract critical operational shifts; (3) auto-generate modular storyboards for Articulate Rise 360; (4) craft calibrated scenario question banks. Reduced instructional production turnaround from 3 weeks to 4 days (~70% reduction) with trilingual parity across PT, EN, and ES.'
       },
       3: {
-        icon: '🚀',
-        bg: 'linear-gradient(135deg,#16160a,#0f172a,#0a1f18)',
+        category: 'CASE STUDY // 03 · INFRASTRUCTURE & BUSINESS',
+        demoUrl: 'https://www.behance.net/erickvp',
+        behanceUrl: 'https://www.behance.net/erickvp',
         tags: [
-          { l: 'LMS Deployment', c: 'tag-indigo' },
-          { l: 'Beedoo', c: 'tag-teal' },
-          { l: 'Kirkpatrick L2', c: 'tag-amber' },
-          { l: 'Sales Enablement', c: 'tag-emerald' }
+          { l: 'LMS Rollout (Beedoo)', c: 'tag-indigo' },
+          { l: 'Platform Governance', c: 'tag-teal' },
+          { l: 'Digital Transition', c: 'tag-purple' },
+          { l: 'Kirkpatrick Level 2', c: 'tag-amber' }
         ],
-        title: 'LMS Infrastructure Modernization & Rollout (99/Beedoo)',
-        challenge: '99 lacked a unified L&D infrastructure for its commercial sales team — training sessions were fragmented with no traceability of business impact. The organization needed a complete corporate LMS deployment from ground zero, content migration, structured learning paths, and robust evaluation mechanisms aligned with commercial KPIs.',
-        strategy: 'A phased rollout model (MVP → Scaled Expansion) leveraging ADDIE as project management framework alongside Change Management principles (PROSCI/ADKAR) to foster high adoption among field reps and leadership. Structured a Kirkpatrick Level 2 assessment model tied directly to sales pipeline velocity metrics.',
-        solution: 'Full-cycle rollout of LMS Beedoo: tenant provisioning, taxonomy and track structuring, HRIS integration, and legacy content migration. Authored custom interactive modules in Storyline 360 and Rise 360. Deployed Kirkpatrick L2 pre/post dashboards pinpointing knowledge gaps by sales segment and correlating scores with conversion metrics.'
+        title: 'End-to-End LMS Rollout & Sales Enablement (99/Beedoo)',
+        problem: '99 operated without a centralized enterprise training platform for its commercial sales teams. Onboarding and enablement sessions were fragmented across ad-hoc in-person meetings, sales playbooks were poorly standardized, and the business had zero auditable data on training completion or impact on revenue generation.',
+        approach: 'Engineered a full transition from in-person delivery to structured asynchronous digital journeys paired with applied role-play sessions. Structured the curriculum around Donald Kirkpatrick\'s evaluation model, establishing a rigorous Level 2 (Knowledge Acquisition) baseline to verify sales competencies prior to field prospect interactions.',
+        architecture: 'End-to-end rollout and governance of LMS Beedoo: tenant provisioning, role-based catalog taxonomy, automated sales onboarding tracks, and HRIS user synchronization. Authored modular interactive content in Articulate Rise 360 and Storyline 360. Deployed Kirkpatrick L2 assessment analytics dashboards correlating module completion and retention scores with field sales velocity.'
       }
     },
     pt: {
       1: {
-        icon: '🏥',
-        bg: 'linear-gradient(135deg,#0a2020,#0f1a2e,#1a0f2e)',
+        category: 'CASE STUDY // 01 · TÉCNICO & INTERATIVO',
+        demoUrl: 'https://www.behance.net/erickvp',
+        behanceUrl: 'https://www.behance.net/erickvp',
         tags: [
           { l: 'Storyline 360', c: 'tag-teal' },
-          { l: 'Variáveis & Condicionais', c: 'tag-indigo' },
-          { l: 'BPO Scale', c: 'tag-amber' },
-          { l: 'Simulação Ramificada', c: 'tag-emerald' }
+          { l: 'Ramificação Condicional', c: 'tag-indigo' },
+          { l: 'Camadas Modulares', c: 'tag-purple' },
+          { l: 'Integridade de Score', c: 'tag-amber' }
         ],
-        title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360 & Variáveis)',
-        challenge: 'Uma operação de BPO de saúde enfrentava altas taxas de erro na triagem de chamadas clínicas, com riscos de conformidade regulatória (HIPAA) e impacto direto no SLA de atendimento. O treinamento tradicional, baseado em leitura de procedimentos estáticos, não desenvolvia o julgamento clínico necessário para decisões complexas em tempo real sob pressão.',
-        strategy: 'Aprendizagem baseada em cenários (Scenario-Based Learning) com arquitetura de decisão ramificada, fundamentada nos princípios de andragogia de Malcolm Knowles. A estratégia priorizou a criação de consequências realistas e imediatas para cada decisão do aprendiz, reforçando o raciocínio clínico em vez de memorização mecânica.',
-        solution: 'Desenvolvido em Articulate Storyline 360 com uso avançado de variáveis, condicionais e estados de objetos. O simulador apresenta 12 cenários clínicos únicos com mais de 3 ramificações por decisão, rastreando o desempenho do aprendiz via xAPI/LRS. Inclui sistema de pontuação, feedback contextualizado e relatório de lacunas de conformidade para o gestor.'
+        title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360)',
+        problem: 'Em operações de BPO de saúde com rigor regulatório HIPAA, desvios nos protocolos de triagem clínica geravam multas severas, perda de conformidade e risco direto à segurança dos pacientes. O treinamento anterior dependia de PDFs estáticos e apresentações lineares, incapazes de preparar os analistas para a tomada de decisão sob pressão em chamadas críticas ao vivo.',
+        approach: 'Desenho instrucional baseado em Aprendizagem Baseada em Cenários (Scenario-Based Learning) e andragogia de Knowles: relevância situacional imediata, autonomia decisória e feedback corretivo orientado por consequências reais. O aprendiz assume o papel de analista de triagem e cada escolha clínica desencadeia ramificações autênticas no estado de saúde do paciente.',
+        architecture: 'Desenvolvido em Articulate Storyline 360 com arquitetura modular de camadas (slide layers) que condensou múltiplos fluxos em mestres integrados, reduzindo o volume de slides em mais de 65% e eliminando inchaço no projeto. Integridade de pontuação garantida por 14 variáveis booleanas e numéricas que auditam precisão diagnóstica, tempo de decisão e conformidade de protocolo. Telemetria via SCORM 2004 4th Ed e xAPI para LMS/LRS.'
       },
       2: {
-        icon: '🤖',
-        bg: 'linear-gradient(135deg,#0a1a12,#0a1120,#150d28)',
+        category: 'CASE STUDY // 02 · IA & ESCALA GLOBAL',
+        demoUrl: 'https://www.behance.net/erickvp',
+        behanceUrl: 'https://www.behance.net/erickvp',
         tags: [
-          { l: 'GenAI Workflows', c: 'tag-emerald' },
-          { l: 'LLM Parsing', c: 'tag-purple' },
-          { l: 'TikTok LATAM', c: 'tag-indigo' },
-          { l: 'Prompt Engineering', c: 'tag-teal' }
+          { l: 'Pipelines de GenAI', c: 'tag-emerald' },
+          { l: 'Parsing Semântico com LLM', c: 'tag-purple' },
+          { l: 'Engenharia de Prompt', c: 'tag-teal' },
+          { l: '1.500+ Moderadores', c: 'tag-indigo' }
         ],
-        title: 'Ecossistema Ágil de Educação Continuada com GenAI (TikTok)',
-        challenge: 'No TikTok Trust & Safety LATAM, o currículo precisava se atualizar em menos de 48h sempre que políticas corporativas globais eram revisadas — documentos técnicos densos de centenas de páginas que deveriam ser transformados em micromódulos consumíveis por 1.500+ moderadores em múltiplos idiomas. O processo manual era inviável em escala e velocidade.',
-        strategy: 'Pipeline de educação contínua baseado em ciclos ágeis bi-semanais (sprints de conteúdo), integrando IA Generativa como copiloto de produção instrucional. A estratégia combinou engenharia de prompt avançada com revisão humana especializada (ISD como curador), garantindo precisão regulatória sem abrir mão da agilidade.',
-        solution: 'Pipeline construído com LLMs (GPT-4/Claude) via prompt engineering estruturado para: (1) parsing e segmentação semântica de políticas; (2) extração de pontos de aprendizagem críticos; (3) geração de roteiros para micromodules em Rise 360; (4) criação de question banks. Redução de ~70% no tempo de produção e cobertura simultânea em PT, EN e ES.'
+        title: 'Automação e Educação Contínua com GenAI (TikTok LATAM)',
+        problem: 'Na operação de Trust & Safety LATAM do TikTok, atualizações de diretrizes globais e políticas de moderação aconteciam em ritmo acelerado, gerando documentos regulatórios de dezenas de páginas. O processo tradicional de design instrucional levava semanas para converter essas regras em treinamento, expondo mais de 1.500 moderadores a desvios de interpretação e inconsistência operacional.',
+        approach: 'Implantação de um ecossistema ágil de microlearning contínuo com sprints quinzenais de capacitação. Em vez de longos cursos anuais, o conteúdo foi fragmentado em micromódulos de 5 a 7 minutos com testes de julgamento situacional (SJTs) focados nos casos de borda e discrepâncias detectadas nas auditorias de qualidade.',
+        architecture: 'Pipeline automatizado com LLMs (GPT-4/Claude) e engenharia de prompt estruturada com ancoragem semântica para: (1) parsing semântico automatizado das diretrizes; (2) síntese de pontos críticos de aprendizagem; (3) geração de roteiros padronizados para o Articulate Rise 360; (4) criação de bancos de questões calibrados com distratores realistas. Redução de 70% no ciclo de entrega (de 3 semanas para 4 dias) com cobertura simultânea em PT, ES e EN.'
       },
       3: {
-        icon: '🚀',
-        bg: 'linear-gradient(135deg,#16160a,#0f172a,#0a1f18)',
+        category: 'CASE STUDY // 03 · INFRAESTRUTURA & NEGÓCIO',
+        demoUrl: 'https://www.behance.net/erickvp',
+        behanceUrl: 'https://www.behance.net/erickvp',
         tags: [
-          { l: 'LMS Deployment', c: 'tag-indigo' },
-          { l: 'Beedoo', c: 'tag-teal' },
-          { l: 'Kirkpatrick L2', c: 'tag-amber' },
-          { l: 'Cap. Comercial', c: 'tag-emerald' }
+          { l: 'Implantação de LMS (Beedoo)', c: 'tag-indigo' },
+          { l: 'Governança de Plataforma', c: 'tag-teal' },
+          { l: 'Transição Digital', c: 'tag-purple' },
+          { l: 'Kirkpatrick Nível 2', c: 'tag-amber' }
         ],
-        title: 'Modernização de Infraestrutura e Implementação de LMS (99/Beedoo)',
-        challenge: 'A 99 não possuía infraestrutura centralizada de T&D para sua força comercial — os treinamentos ocorriam de forma desorganizada e sem rastreabilidade de impacto. Era necessário implantar um LMS corporativo do zero, migrar conteúdos dispersos, estruturar trilhas de aprendizagem e criar mecanismos de avaliação alinhados ao negócio.',
-        strategy: 'Modelo de implementação em fases (MVP → Expansão), utilizando ADDIE como framework de projeto e metodologia de Gestão de Mudança (PROSCI/ADKAR) para garantir adoção do LMS pelas equipes de campo e liderança. Framework de avaliação baseado em Kirkpatrick Nível 2 conectado a indicadores de performance comercial.',
-        solution: 'Implantação completa do LMS Beedoo: configuração de ambiente, estruturação de categorias e trilhas, integração com sistemas de RH e migração de conteúdos legados. Desenvolvimento de módulos em Storyline 360 e Rise 360. Dashboard de métricas Kirkpatrick L2 com pré/pós-avaliação, mapeando lacunas por segmento e correlacionando com KPIs comerciais.'
+        title: 'Implementação End-to-End de LMS e Capacitação Comercial (99/Beedoo)',
+        problem: 'A 99 não contava com uma plataforma centralizada de treinamento para sua força comercial. A capacitação ocorria em encontros presenciais dispersos com alto custo de logística, discursos de vendas inconsistentes e total ausência de métricas auditáveis sobre retenção de conhecimento ou impacto na receita.',
+        approach: 'Transição do modelo presencial para jornadas digitais autoinstrucionais assíncronas no LMS, complementadas por dinâmicas práticas de role-playing e certificações. Implementação da metodologia de avaliação Kirkpatrick em 4 níveis, com foco prioritário no Nível 2 (avaliação pré e pós-teste de retenção e domínio técnico antes do contato com o cliente).',
+        architecture: 'Implementação e governança completa do LMS Beedoo: provisionamento do ambiente, arquitetura de catálogo, taxonomia por função comercial, trilhas automatizadas de onboarding e sincronização com sistemas de RH. Desenvolvimento de módulos em Storyline 360 e Rise 360. Painéis de métricas Kirkpatrick L2 mapeando retenção e correlacionando o aprendizado com o time-to-productivity dos consultores.'
       }
     }
   };
@@ -1803,13 +1989,37 @@
     const dataset = casesData[currentLang] || casesData.en;
     const d = dataset[id];
     if (!d) return;
-    document.getElementById('modal-cover').style.background = d.bg;
-    document.getElementById('modal-icon').textContent = d.icon;
-    document.getElementById('modal-title').textContent = d.title;
-    document.getElementById('modal-challenge').textContent = d.challenge;
-    document.getElementById('modal-strategy').textContent = d.strategy;
-    document.getElementById('modal-solution').textContent = d.solution;
-    document.getElementById('modal-tags').innerHTML = d.tags.map(t => `<span class="tag-pill ${t.c}">${t.l}</span>`).join('');
+
+    const catEl = document.getElementById('modal-category');
+    if (catEl) catEl.textContent = d.category || `CASE STUDY // 0${id}`;
+
+    const titleEl = document.getElementById('modal-title');
+    if (titleEl) titleEl.textContent = d.title;
+
+    const challengeEl = document.getElementById('modal-challenge');
+    if (challengeEl) challengeEl.textContent = d.problem || d.challenge || '';
+
+    const strategyEl = document.getElementById('modal-strategy');
+    if (strategyEl) strategyEl.textContent = d.approach || d.strategy || '';
+
+    const solutionEl = document.getElementById('modal-solution');
+    if (solutionEl) solutionEl.textContent = d.architecture || d.solution || '';
+
+    const tagsEl = document.getElementById('modal-tags');
+    if (tagsEl && d.tags) {
+      tagsEl.innerHTML = d.tags.map(t => `<span class="tag-pill ${t.c}">${t.l}</span>`).join('');
+    }
+
+    const demoBtn = document.getElementById('modal-demo-btn');
+    if (demoBtn) {
+      demoBtn.href = d.demoUrl || 'https://www.behance.net/erickvp';
+    }
+
+    const behanceBtn = document.getElementById('modal-behance-btn');
+    if (behanceBtn) {
+      behanceBtn.href = d.behanceUrl || 'https://www.behance.net/erickvp';
+    }
+
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     closeBtn.focus();
