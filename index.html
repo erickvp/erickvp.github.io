@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Erick Vasconcelos — Senior Instructional Designer &amp; LXD</title>
-  <meta name="description" content="Portfólio profissional de Erick Vasconcelos, Senior Instructional Designer com mais de 9 anos de experiência em big techs, IA Generativa e ecossistemas de aprendizagem escaláveis." />
+  <meta name="description" content="Professional portfolio of Erick Vasconcelos, Senior Instructional Designer &amp; LXD with 9+ years of experience in big techs, Generative AI, and scalable learning ecosystems." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -110,6 +110,53 @@
     html.dark .theme-icon-moon { display: none; }
     html.light .theme-icon-sun { display: none; }
     html.light .theme-icon-moon { display: block; }
+
+    /* Language toggle */
+    .lang-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      height: 38px;
+      padding: 0 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-muted);
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      transition: all .25s ease;
+      user-select: none;
+    }
+    .lang-toggle-btn:hover {
+      background: rgba(20, 184, 166, 0.12);
+      border-color: rgba(20, 184, 166, 0.4);
+      color: var(--c-text-strong);
+      transform: translateY(-1px);
+    }
+    html.light .lang-toggle-btn {
+      background: rgba(15, 23, 42, 0.05);
+      border-color: rgba(203, 213, 225, 0.9);
+      color: #475569;
+    }
+    .lang-toggle-btn .lang-pill {
+      transition: color .2s ease;
+      color: var(--c-text-muted);
+    }
+    .lang-toggle-btn .lang-pill.active {
+      color: var(--c-accent2);
+      font-weight: 800;
+    }
+    html.light .lang-toggle-btn .lang-pill.active {
+      color: #0f766e;
+    }
+    .lang-toggle-btn .lang-divider {
+      opacity: .35;
+      font-size: .65rem;
+    }
 
     /* Hero */
     .hero-bg {
@@ -637,19 +684,26 @@
       <span style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" class="text-sm font-semibold hidden sm:block">Erick Vasconcelos</span>
     </a>
     <div class="hidden md:flex items-center gap-7">
-      <a href="#sobre" class="nav-link">Sobre</a>
-      <a href="#cases" class="nav-link">Cases</a>
-      <a href="#experiencia" class="nav-link">Experiência</a>
-      <a href="#stack" class="nav-link">Stack &amp; IA</a>
-      <a href="#contato" class="nav-link">Contato</a>
+      <a href="#sobre" class="nav-link" data-i18n="nav_about">About</a>
+      <a href="#cases" class="nav-link" data-i18n="nav_cases">Cases</a>
+      <a href="#experiencia" class="nav-link" data-i18n="nav_experience">Experience</a>
+      <a href="#stack" class="nav-link" data-i18n="nav_stack">Stack &amp; AI</a>
+      <a href="#contato" class="nav-link" data-i18n="nav_contact">Contact</a>
     </div>
     <div class="flex items-center gap-3">
+      <!-- Language Toggle -->
+      <button id="lang-toggle" class="lang-toggle-btn" aria-label="Switch language / Alternar idioma" title="Switch language (EN / PT)">
+        <span class="lang-pill active" id="lang-en-badge">EN</span>
+        <span class="lang-divider">|</span>
+        <span class="lang-pill" id="lang-pt-badge">PT</span>
+      </button>
+
       <!-- Dark/Light Mode Toggle -->
       <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar modo claro e escuro" title="Alternar entre modo claro e escuro">
         <!-- Sun icon (shown in dark mode to switch to light) -->
         <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="12" x2="12" y2="3"></line>
           <line x1="12" y1="21" x2="12" y2="23"></line>
           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
           <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
@@ -666,7 +720,7 @@
 
       <a href="Erick_Vasconcelos_CV.pdf" download class="btn-pdf" id="nav-cv-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span class="hidden sm:inline">Baixar CV</span>
+        <span class="hidden sm:inline" data-i18n="nav_cv">Download CV</span>
       </a>
       <button id="hamburger-btn" class="md:hidden p-2" style="color:var(--c-text-muted)" aria-label="Abrir menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -675,11 +729,11 @@
   </nav>
   <div id="mobile-menu" class="md:hidden border-t" style="border-color:var(--c-border);background:var(--c-nav-bg);backdrop-filter:blur(16px)">
     <div class="px-5 py-4 flex flex-col gap-1">
-      <a href="#sobre" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)">Sobre</a>
-      <a href="#cases" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)">Cases</a>
-      <a href="#experiencia" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)">Experiência</a>
-      <a href="#stack" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)">Stack &amp; IA</a>
-      <a href="#contato" class="nav-link mobile-nav-item py-3">Contato</a>
+      <a href="#sobre" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_about">About</a>
+      <a href="#cases" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_cases">Cases</a>
+      <a href="#experiencia" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_experience">Experience</a>
+      <a href="#stack" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_stack">Stack &amp; AI</a>
+      <a href="#contato" class="nav-link mobile-nav-item py-3" data-i18n="nav_contact">Contact</a>
     </div>
   </div>
 </header>
@@ -690,43 +744,43 @@
   <div class="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full pointer-events-none" style="background:rgba(99,102,241,.06);filter:blur(80px)"></div>
   <div class="max-w-7xl mx-auto px-5 py-20 lg:py-28 relative z-10 w-full">
     <div class="max-w-4xl">
-      <div class="badge-pill mb-8" style="animation:fadeIn .6s ease-out .1s both">
-        <span class="dot"></span> Disponível para Oportunidades Sênior
+      <div class="badge-pill mb-8" style="animation:fadeIn .6s ease-out .1s both" data-i18n-html="hero_badge">
+        <span class="dot"></span> Available for Senior Opportunities
       </div>
-      <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif;animation:fadeUp .7s ease-out .2s both">
-        Design que<br/>
-        <span style="background:linear-gradient(90deg,#2dd4bf,#34d399,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transforma</span><br/>
-        aprendizagem.
+      <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif;animation:fadeUp .7s ease-out .2s both" data-i18n-html="hero_title">
+        Design that<br/>
+        <span style="background:linear-gradient(90deg,#2dd4bf,#34d399,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transforms</span><br/>
+        learning.
       </h1>
-      <p style="color:var(--c-text);animation:fadeUp .7s ease-out .35s both" class="text-lg lg:text-xl max-w-2xl leading-relaxed mb-4">
-        Senior Instructional Designer &amp; LXD com <strong style="color:var(--c-text-strong);font-weight:600">9+ anos</strong> em big techs. Ex-TikTok, ex-99. Especialista em transformar processos técnicos complexos em experiências de aprendizagem simples, escaláveis e movidas por <span style="color:var(--c-accent2);font-weight:600">IA Generativa</span>.
+      <p style="color:var(--c-text);animation:fadeUp .7s ease-out .35s both" class="text-lg lg:text-xl max-w-2xl leading-relaxed mb-4" data-i18n-html="hero_desc">
+        Senior Instructional Designer &amp; LXD with <strong style="color:var(--c-text-strong);font-weight:600">9+ years</strong> in big techs. Ex-TikTok, ex-99. Specialist in transforming complex technical processes into simple, scalable learning experiences powered by <span style="color:var(--c-accent2);font-weight:600">Generative AI</span>.
       </p>
       <div class="flex flex-wrap gap-2 mb-10" style="animation:fadeUp .7s ease-out .45s both">
         <span class="tag-pill tag-teal">Ex-TikTok</span>
         <span class="tag-pill tag-indigo">Ex-99</span>
-        <span class="tag-pill tag-emerald">Mestre UFPE</span>
+        <span class="tag-pill tag-emerald" data-i18n="hero_tag_master">Master's UFPE</span>
         <span class="tag-pill tag-purple">GenAI Workflows</span>
       </div>
       <div class="flex flex-wrap gap-4" style="animation:fadeUp .7s ease-out .55s both">
-        <a href="#cases" class="btn-primary" id="hero-explore-btn">
+        <a href="#cases" class="btn-primary" id="hero-explore-btn" data-i18n-html="hero_btn_explore">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          Explorar Projetos
+          Explore Projects
         </a>
-        <a href="https://www.linkedin.com/in/erick-vasconcelos" target="_blank" rel="noopener" class="btn-outline" id="hero-linkedin-btn">
+        <a href="https://www.linkedin.com/in/erick-vasconcelos" target="_blank" rel="noopener" class="btn-outline" id="hero-linkedin-btn" data-i18n-html="hero_btn_linkedin">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          Conectar no LinkedIn
+          Connect on LinkedIn
         </a>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-10" style="border-top:1px solid var(--c-border);animation:fadeUp .7s ease-out .65s both">
-        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:var(--c-accent2);font-family:'Plus Jakarta Sans',sans-serif">9+</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)">Anos de Experiência</div></div>
-        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:#818cf8;font-family:'Plus Jakarta Sans',sans-serif">1.5K+</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)">Profissionais Capacitados</div></div>
-        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:#34d399;font-family:'Plus Jakarta Sans',sans-serif">4</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)">Big Techs &amp; Consultorias</div></div>
-        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:#c084fc;font-family:'Plus Jakarta Sans',sans-serif">Global</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)">Operações LATAM &amp; EUA</div></div>
+        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:var(--c-accent2);font-family:'Plus Jakarta Sans',sans-serif">9+</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)" data-i18n="stat_years">Years of Experience</div></div>
+        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:#818cf8;font-family:'Plus Jakarta Sans',sans-serif">1.5K+</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)" data-i18n="stat_trained">Professionals Trained</div></div>
+        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:#34d399;font-family:'Plus Jakarta Sans',sans-serif">4</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)" data-i18n="stat_bigtech">Big Techs &amp; Consultancies</div></div>
+        <div class="stat-card"><div class="text-2xl font-extrabold mb-1" style="color:#c084fc;font-family:'Plus Jakarta Sans',sans-serif">Global</div><div class="text-xs font-medium uppercase tracking-wide" style="color:var(--c-text-muted)" data-i18n="stat_global">LATAM &amp; US Operations</div></div>
       </div>
     </div>
   </div>
-  <a href="#sobre" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-colors" style="color:var(--c-text-muted)" aria-label="Rolar para baixo">
-    <span class="text-xs font-medium tracking-widest uppercase">Scroll</span>
+  <a href="#sobre" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-colors" style="color:var(--c-text-muted)" aria-label="Scroll down">
+    <span class="text-xs font-medium tracking-widest uppercase" data-i18n="scroll">Scroll</span>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="animate-bounce"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
   </a>
 </section>
@@ -737,11 +791,11 @@
 <section id="sobre" class="py-24 lg:py-32 max-w-7xl mx-auto px-5">
   <div class="grid lg:grid-cols-2 gap-16 items-center">
     <div class="reveal">
-      <div class="section-eyebrow">Sobre Mim</div>
-      <h2 class="section-title mb-6">Design Instrucional<br/>orientado a <span>resultados</span></h2>
-      <p style="color:var(--c-text)" class="leading-relaxed mb-5">Minha trajetória une jornalismo, comunicação e tecnologia para criar experiências de aprendizagem que realmente funcionam em escala. Na <strong style="color:var(--c-text-strong)">TikTok</strong>, liderei o pod de T&amp;D LATAM para mais de <strong style="color:var(--c-text-strong)">1.500 moderadores</strong> em operações globais, integrando fluxos de GenAI para parsing automatizado de políticas corporativas.</p>
-      <p style="color:var(--c-text)" class="leading-relaxed mb-5">Sou <strong style="color:var(--c-text-strong)">Mestre em Comunicação pela UFPE</strong> e Jornalista de formação — habilidades que me permitem traduzir conteúdo técnico denso em narrativas claras, engajantes e pedagogicamente sólidas, fundamentadas em andragogia, design de currículo e modelos como <strong style="color:var(--c-text-strong)">ADDIE e Kirkpatrick</strong>.</p>
-      <p style="color:var(--c-text)" class="leading-relaxed mb-8">Hoje, meu diferencial é a integração de pipelines de <strong style="color:var(--c-accent2)">IA Generativa</strong> — LLMs, engenharia de prompt e IDEs modernas — para acelerar roteirização, prototipagem e personalização de conteúdo em escala global.</p>
+      <div class="section-eyebrow" data-i18n="about_eyebrow">About Me</div>
+      <h2 class="section-title mb-6" data-i18n-html="about_title">Instructional Design<br/>driven by <span>results</span></h2>
+      <p style="color:var(--c-text)" class="leading-relaxed mb-5" data-i18n-html="about_p1">My journey bridges journalism, communication, and technology to build learning experiences that truly perform at scale. At <strong style="color:var(--c-text-strong)">TikTok</strong>, I led the LATAM L&amp;D pod for over <strong style="color:var(--c-text-strong)">1,500 moderators</strong> across global operations, integrating GenAI workflows for automated policy parsing.</p>
+      <p style="color:var(--c-text)" class="leading-relaxed mb-5" data-i18n-html="about_p2">I hold a <strong style="color:var(--c-text-strong)">Master's in Communication from UFPE</strong> and a Bachelor's in Journalism — a foundation that enables me to translate dense technical content into clear, engaging, and pedagogically sound narratives grounded in adult learning theory (andragogy), curriculum design, and frameworks such as <strong style="color:var(--c-text-strong)">ADDIE and Kirkpatrick</strong>.</p>
+      <p style="color:var(--c-text)" class="leading-relaxed mb-8" data-i18n-html="about_p3">Today, my differentiator is orchestrating <strong style="color:var(--c-accent2)">Generative AI</strong> pipelines — LLMs, prompt engineering, and modern development environments — to accelerate storyboarding, prototyping, and content personalization across global workflows.</p>
       <div class="flex flex-wrap gap-3">
         <a href="mailto:erickvascp@gmail.com" class="social-link" id="about-email-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -757,28 +811,28 @@
             <div class="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg" style="background:linear-gradient(135deg,#14b8a6,#6366f1);font-family:'Plus Jakarta Sans',sans-serif">EV</div>
             <div>
               <div class="font-bold text-lg" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Erick Vasconcelos</div>
-              <div class="text-sm font-semibold" style="color:var(--c-accent)">Senior ISD &amp; LXD</div>
+              <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="about_card_role">Senior ISD &amp; LXD</div>
             </div>
           </div>
           <div class="space-y-3 mb-6">
-            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--c-accent2)"></div><span style="color:var(--c-text)">AI Workflows &amp; Prompt Engineering</span></div>
-            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#818cf8"></div><span style="color:var(--c-text)">Currículos Corporativos em Escala Global</span></div>
-            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#34d399"></div><span style="color:var(--c-text)">Andragogia &amp; UX de Aprendizagem</span></div>
-            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#c084fc"></div><span style="color:var(--c-text)">Jornalismo &amp; Storytelling Técnico</span></div>
+            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--c-accent2)"></div><span style="color:var(--c-text)" data-i18n="about_card_item1">AI Workflows &amp; Prompt Engineering</span></div>
+            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#818cf8"></div><span style="color:var(--c-text)" data-i18n="about_card_item2">Corporate Curricula at Global Scale</span></div>
+            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#34d399"></div><span style="color:var(--c-text)" data-i18n="about_card_item3">Andragogy &amp; Learning UX</span></div>
+            <div class="flex items-center gap-3 text-sm"><div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#c084fc"></div><span style="color:var(--c-text)" data-i18n="about_card_item4">Journalism &amp; Technical Storytelling</span></div>
           </div>
           <div class="pt-4" style="border-top:1px solid var(--c-border)">
             <div class="text-xs mb-3 uppercase tracking-wide font-semibold flex items-center justify-between" style="color:var(--c-text-muted)">
-              <span>Formação Acadêmica</span>
+              <span data-i18n="about_edu_title">Academic Education</span>
               <img src="assets/logos/logo-ufpe.png" alt="UFPE" class="w-4 h-4 object-contain inline-block opacity-75" loading="lazy">
             </div>
             <div class="space-y-2">
               <div>
-                <div class="text-sm font-semibold leading-tight" style="color:var(--c-text-strong)">Mestrado em Comunicação</div>
-                <div class="text-xs" style="color:var(--c-accent)">Universidade Federal de Pernambuco · UFPE</div>
+                <div class="text-sm font-semibold leading-tight" style="color:var(--c-text-strong)" data-i18n="about_edu_msc">Master's Degree in Communication</div>
+                <div class="text-xs" style="color:var(--c-accent)" data-i18n="about_edu_school1">Federal University of Pernambuco · UFPE</div>
               </div>
               <div>
-                <div class="text-sm font-semibold leading-tight" style="color:var(--c-text-strong)">Bacharelado em Jornalismo</div>
-                <div class="text-xs" style="color:var(--c-accent)">Universidade Federal de Pernambuco · UFPE</div>
+                <div class="text-sm font-semibold leading-tight" style="color:var(--c-text-strong)" data-i18n="about_edu_ba">Bachelor's Degree in Journalism</div>
+                <div class="text-xs" style="color:var(--c-accent)" data-i18n="about_edu_school2">Federal University of Pernambuco · UFPE</div>
               </div>
             </div>
           </div>
@@ -795,12 +849,12 @@
 <section id="cases" class="py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-5">
     <div class="reveal mb-3">
-      <div class="section-eyebrow">Portfólio de Projetos</div>
+      <div class="section-eyebrow" data-i18n="cases_eyebrow">Project Portfolio</div>
       <div class="flex flex-wrap items-end justify-between gap-6">
-        <h2 class="section-title">Cases de <span>Impacto</span></h2>
+        <h2 class="section-title" data-i18n-html="cases_title">Impactful <span>Case Studies</span></h2>
         <div class="flex gap-2">
-          <button id="scroll-left-btn" class="scroll-btn" aria-label="Rolar esquerda"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <button id="scroll-right-btn" class="scroll-btn" aria-label="Rolar direita"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+          <button id="scroll-left-btn" class="scroll-btn" aria-label="Scroll left"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+          <button id="scroll-right-btn" class="scroll-btn" aria-label="Scroll right"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
     </div>
@@ -811,10 +865,10 @@
           <div class="icon-wrap"><span style="font-size:26px">🏥</span></div>
         </div>
         <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3"><span class="tag-pill tag-teal">Storyline 360</span><span class="tag-pill tag-indigo">Variáveis</span><span class="tag-pill tag-amber">BPO Scale</span></div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Simulador de Triagem de Conformidade Clínica</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed">Simulador ramificado para triagem de conformidade clínica com lógica de variáveis e estados adaptados à jornada do aprendiz.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent2)"><span>Ver detalhes</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+          <div class="flex flex-wrap gap-2 mb-3"><span class="tag-pill tag-teal">Storyline 360</span><span class="tag-pill tag-indigo" data-i18n="tag_variables">Variables &amp; Logic</span><span class="tag-pill tag-amber">BPO Scale</span></div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case1_title">Clinical Compliance Triage Simulator</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case1_desc">Branching scenario simulator for clinical compliance triage using variables and conditional logic adapted to the learner journey.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent2)"><span data-i18n="case_view_details">View details</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
         </div>
       </article>
       <article class="case-card" id="case-card-2" tabindex="0" role="button" data-case="2">
@@ -824,9 +878,9 @@
         </div>
         <div class="p-5">
           <div class="flex flex-wrap gap-2 mb-3"><span class="tag-pill tag-emerald">GenAI Workflows</span><span class="tag-pill tag-purple">LLM Parsing</span><span class="tag-pill tag-indigo">TikTok LATAM</span></div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Ecossistema Ágil de Educação Continuada com GenAI</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed">Fluxos de IA Generativa para parsing automatizado de políticas corporativas e atualização contínua de currículo para 1.500+ moderadores.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#34d399"><span>Ver detalhes</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case2_title">Agile Continuing Education Ecosystem with GenAI</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case2_desc">Generative AI workflows for automated parsing of corporate policies and continuous curriculum updates for 1,500+ moderators.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#34d399"><span data-i18n="case_view_details">View details</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
         </div>
       </article>
       <article class="case-card" id="case-card-3" tabindex="0" role="button" data-case="3">
@@ -836,13 +890,13 @@
         </div>
         <div class="p-5">
           <div class="flex flex-wrap gap-2 mb-3"><span class="tag-pill tag-indigo">LMS Deployment</span><span class="tag-pill tag-teal">Beedoo</span><span class="tag-pill tag-amber">Kirkpatrick L2</span></div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Modernização de Infraestrutura e Implementação de LMS (99/Beedoo)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed">Implantação end-to-end do LMS Beedoo na 99, estruturando framework de métricas Kirkpatrick Nível 2 para capacitação comercial.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#818cf8"><span>Ver detalhes</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case3_title">LMS Infrastructure Modernization &amp; Rollout (99/Beedoo)</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case3_desc">End-to-end LMS Beedoo deployment at 99, establishing a Kirkpatrick Level 2 measurement framework for commercial sales teams.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:#818cf8"><span data-i18n="case_view_details">View details</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
         </div>
       </article>
     </div>
-    <p class="text-sm text-center mt-1 reveal" style="color:var(--c-text-muted)">← Deslize para explorar os cases →</p>
+    <p class="text-sm text-center mt-1 reveal" style="color:var(--c-text-muted)" data-i18n="cases_scroll_hint">← Swipe to explore cases →</p>
   </div>
 </section>
 
@@ -852,7 +906,7 @@
   <div id="modal-content" class="p-0">
     <div id="modal-cover" class="w-full h-28 rounded-t-xl flex items-center justify-center text-5xl relative">
       <span id="modal-icon">🏥</span>
-      <button id="modal-close-btn" class="absolute top-4 right-4 p-2 rounded-lg transition-colors" style="color:var(--c-text-muted);background:rgba(255,255,255,.05)" aria-label="Fechar">
+      <button id="modal-close-btn" class="absolute top-4 right-4 p-2 rounded-lg transition-colors" style="color:var(--c-text-muted);background:rgba(255,255,255,.05)" aria-label="Close">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
@@ -860,18 +914,18 @@
       <div id="modal-tags" class="flex flex-wrap gap-2 mb-4"></div>
       <h2 id="modal-title" class="font-bold text-xl mb-6 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif"></h2>
       <div class="space-y-5">
-        <div><div class="modal-section-label">🎯 Desafio de Negócio</div><p id="modal-challenge" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
+        <div><div class="modal-section-label" data-i18n="modal_lbl_challenge">🎯 Business Challenge</div><p id="modal-challenge" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
         <div class="divider"></div>
-        <div><div class="modal-section-label">📚 Estratégia Pedagógica</div><p id="modal-strategy" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
+        <div><div class="modal-section-label" data-i18n="modal_lbl_strategy">📚 Pedagogical Strategy</div><p id="modal-strategy" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
         <div class="divider"></div>
-        <div><div class="modal-section-label">⚙️ Solução Técnica &amp; Ferramentas</div><p id="modal-solution" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
+        <div><div class="modal-section-label" data-i18n="modal_lbl_solution">⚙️ Technical Solution &amp; Tools</div><p id="modal-solution" class="text-sm leading-relaxed" style="color:var(--c-text)"></p></div>
       </div>
       <div class="flex flex-wrap gap-3 mt-8 pt-6" style="border-top:1px solid var(--c-border)">
         <a id="modal-demo-btn" href="#" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-5">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          Acessar Demonstração Interativa
+          <span data-i18n="modal_btn_demo">Launch Interactive Demo</span>
         </a>
-        <a id="modal-behance-btn" href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="btn-outline text-sm py-3 px-5">Ver no Behance</a>
+        <a id="modal-behance-btn" href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="btn-outline text-sm py-3 px-5" data-i18n="modal_btn_behance">View on Behance</a>
       </div>
     </div>
   </div>
@@ -883,9 +937,9 @@
 <section id="experiencia" class="py-24 lg:py-32">
   <div class="max-w-4xl mx-auto px-5">
     <div class="reveal mb-12">
-      <div class="section-eyebrow">Trajetória Profissional</div>
-      <h2 class="section-title">Experiência <span>Profissional</span></h2>
-      <p style="color:var(--c-text-muted)" class="mt-4 text-base">Clique em qualquer cargo para expandir o detalhamento completo de entregas e impacto.</p>
+      <div class="section-eyebrow" data-i18n="exp_eyebrow">Career Trajectory</div>
+      <h2 class="section-title" data-i18n-html="exp_title">Professional <span>Experience</span></h2>
+      <p style="color:var(--c-text-muted)" class="mt-4 text-base" data-i18n="exp_subtitle">Click on any role to expand full details of deliveries and business impact.</p>
     </div>
 
     <div class="space-y-8">
@@ -900,24 +954,24 @@
                   <img src="assets/logos/logo-99.png" alt="Logo 99" width="48" height="48" loading="lazy">
                 </div>
                 <div>
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Senior Training Specialist</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)">99 · São Paulo, Brasil</div>
+                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_99_role">Senior Training Specialist</div>
+                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_99_loc">99 · São Paulo, Brazil</div>
                 </div>
-                <span class="exp-date-badge">Nov 2025 – Jun 2026</span>
+                <span class="exp-date-badge" data-i18n="exp_99_date">Nov 2025 – Jun 2026</span>
               </div>
               <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
-                <li>• Implantação end-to-end do <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> para toda a força comercial.</li>
-                <li>• Estruturação de framework de métricas <strong style="color:var(--c-text-strong)">Kirkpatrick Nível 2</strong> para avaliação de transferência.</li>
+                <li data-i18n-html="exp_99_b1">• End-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the entire commercial sales force.</li>
+                <li data-i18n-html="exp_99_b2">• Structured a <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> metrics framework to evaluate learning transfer.</li>
               </ul>
             </div>
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-99">
             <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
-              <p>Na 99, assumi a responsabilidade pela modernização completa da infraestrutura de treinamento, liderando a implantação do <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> do zero — desde a negociação de escopo com stakeholders até a curadoria do catálogo e configuração de trilhas de aprendizagem.</p>
-              <p>Desenvolvi e conduzi o programa de <strong style="color:var(--c-text-strong)">capacitação comercial</strong>, desenhando módulos alinhados ao playbook de vendas e onboarding de parceiros motoristas. Estruturei o framework de avaliação baseado em <strong style="color:var(--c-text-strong)">Kirkpatrick Nível 2</strong> para mensurar transferência e impacto no pipeline comercial.</p>
+              <p data-i18n-html="exp_99_p1">At 99, I led the complete modernization of the training infrastructure, managing the end-to-end deployment of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> from scratch — from stakeholder scope alignment to catalog curation and custom learning path architecture.</p>
+              <p data-i18n-html="exp_99_p2">Developed and delivered the <strong style="color:var(--c-text-strong)">commercial sales enablement</strong> program, designing modules aligned with sales playbooks and driver-partner onboarding. Designed an assessment framework based on <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> to measure skill transfer and impact on the commercial pipeline.</p>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="tag-pill tag-teal">LMS Beedoo</span><span class="tag-pill tag-indigo">Kirkpatrick L2</span><span class="tag-pill tag-amber">Cap. Comercial</span><span class="tag-pill tag-emerald">Gestão de Currículo</span>
+                <span class="tag-pill tag-teal">LMS Beedoo</span><span class="tag-pill tag-indigo">Kirkpatrick L2</span><span class="tag-pill tag-amber" data-i18n="exp_99_tag3">Sales Enablement</span><span class="tag-pill tag-emerald" data-i18n="exp_99_tag4">Curriculum Management</span>
               </div>
             </div>
           </div>
@@ -934,23 +988,23 @@
                   <img src="assets/logos/logo-tiktok.png" alt="Logo TikTok" width="48" height="48" loading="lazy">
                 </div>
                 <div>
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Senior Instructional Designer</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)">TikTok · LATAM (Remoto)</div>
+                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_tiktok_role">Senior Instructional Designer</div>
+                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_tiktok_loc">TikTok · LATAM (Remote)</div>
                 </div>
-                <span class="exp-date-badge">Abr 2022 – Ago 2025</span>
+                <span class="exp-date-badge" data-i18n="exp_tiktok_date">Apr 2022 – Aug 2025</span>
               </div>
               <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
-                <li>• Liderança do <strong style="color:var(--c-text-strong)">pod T&amp;D LATAM</strong> para 1.500+ moderadores em Trust &amp; Safety global.</li>
-                <li>• Fluxos de <strong style="color:var(--c-text-strong)">IA Generativa</strong> para parsing automatizado de políticas corporativas complexas.</li>
+                <li data-i18n-html="exp_tiktok_b1">• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.</li>
+                <li data-i18n-html="exp_tiktok_b2">• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.</li>
               </ul>
             </div>
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-tiktok">
             <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
-              <p>Principal ISD da equipe de Trust &amp; Safety LATAM do TikTok, responsável por <strong style="color:var(--c-text-strong)">arquitetar e executar o currículo</strong> de formação para mais de 1.500 moderadores distribuídos em múltiplos países e fusos.</p>
-              <p>Desenvolvi <strong style="color:var(--c-text-strong)">pipelines de IA Generativa</strong> com LLMs para automatizar o parsing semântico e adaptação pedagógica de diretrizes corporativas globais densas, reduzindo em ~70% o tempo de produção de conteúdo atualizado.</p>
-              <p>Implantei cadência ágil bi-semanal (sprints de conteúdo instrucional) e workshops práticos com lideranças técnicas, garantindo alinhamento imediato às mudanças regulatórias.</p>
+              <p data-i18n-html="exp_tiktok_p1">Principal ISD for TikTok's LATAM Trust &amp; Safety team, responsible for <strong style="color:var(--c-text-strong)">architecting and delivering curricula</strong> for 1,500+ moderators across multiple countries and time zones.</p>
+              <p data-i18n-html="exp_tiktok_p2">Engineered <strong style="color:var(--c-text-strong)">Generative AI pipelines</strong> using LLMs to automate semantic parsing and pedagogical translation of dense global regulatory guidelines, accelerating content production time by ~70%.</p>
+              <p data-i18n-html="exp_tiktok_p3">Established bi-weekly agile cadences (instructional content sprints) and hands-on workshops with technical leaders, ensuring real-time alignment with rapid policy revisions.</p>
               <div class="flex flex-wrap gap-2 pt-2">
                 <span class="tag-pill tag-emerald">GenAI Workflows</span><span class="tag-pill tag-purple">Prompt Engineering</span><span class="tag-pill tag-teal">Storyline 360</span><span class="tag-pill tag-indigo">LATAM Pod Lead</span><span class="tag-pill tag-amber">Trust &amp; Safety</span>
               </div>
@@ -969,22 +1023,22 @@
                   <img src="assets/logos/logo-avenuecode.png" alt="Logo Avenue Code" width="48" height="48" loading="lazy">
                 </div>
                 <div>
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Senior Instructional Designer</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)">Avenue Code · São Paulo (Híbrido)</div>
+                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ac_role">Senior Instructional Designer</div>
+                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ac_loc">Avenue Code · São Paulo (Hybrid)</div>
                 </div>
-                <span class="exp-date-badge">Mar 2021 – Mar 2022</span>
+                <span class="exp-date-badge" data-i18n="exp_ac_date">Mar 2021 – Mar 2022</span>
               </div>
               <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
-                <li>• Consultoria em <strong style="color:var(--c-text-strong)">transformação digital</strong> e upskilling em metodologias ágeis para grandes contas.</li>
-                <li>• Projeto de destaque: programa corporativo de capacitação Scrum para a <strong style="color:var(--c-text-strong)">Braskem</strong>.</li>
+                <li data-i18n-html="exp_ac_b1">• Strategic learning consultancy in <strong style="color:var(--c-text-strong)">digital transformation</strong> and agile upskilling for enterprise clients.</li>
+                <li data-i18n-html="exp_ac_b2">• Key project: enterprise Scrum upskilling curriculum for <strong style="color:var(--c-text-strong)">Braskem</strong>.</li>
               </ul>
             </div>
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-avenuecode">
             <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
-              <p>Atuei como ISD sênior em projetos de consultoria de aprendizagem para transformação digital, trabalhando diretamente com grandes corporações no redesign de competências técnicas e culturais.</p>
-              <p>Projeto de maior impacto: <strong style="color:var(--c-text-strong)">programa de upskilling em Scrum e metodologias ágeis para a Braskem</strong>, onde projetei a trilha do zero em Articulate Rise 360 com avaliações práticas baseadas em casos reais do negócio.</p>
+              <p data-i18n-html="exp_ac_p1">Served as Senior ISD on enterprise digital transformation learning initiatives, collaborating directly with large multinational accounts to redesign cultural and technical competencies.</p>
+              <p data-i18n-html="exp_ac_p2">Key highlight: <strong style="color:var(--c-text-strong)">enterprise Scrum and agile upskilling program for Braskem</strong>, designing interactive paths in Articulate Rise 360 integrated with scenario assessments based on live business challenges.</p>
               <div class="flex flex-wrap gap-2 pt-2">
                 <span class="tag-pill tag-teal">Rise 360</span><span class="tag-pill tag-indigo">Agile / Scrum</span><span class="tag-pill tag-purple">Design Thinking</span><span class="tag-pill tag-emerald">UX Learning</span>
               </div>
@@ -1003,24 +1057,24 @@
                   <img src="assets/logos/logo-ttec.png" alt="Logo TTEC" width="48" height="48" loading="lazy">
                 </div>
                 <div>
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Instructional Designer &amp; KMS Specialist</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)">TTEC · Remoto (EUA/Global)</div>
+                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ttec_role">Instructional Designer &amp; KMS Specialist</div>
+                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ttec_loc">TTEC · Remote (US/Global)</div>
                 </div>
-                <span class="exp-date-badge">Jul 2019 – Mar 2021</span>
+                <span class="exp-date-badge" data-i18n="exp_ttec_date">Jul 2019 – Mar 2021</span>
               </div>
               <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
-                <li>• Gestão de conhecimento para operações globais: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.</li>
-                <li>• Arquitetura de KMS bilíngue para ambientes de alta regulação (HIPAA) e escala internacional.</li>
+                <li data-i18n-html="exp_ttec_b1">• Knowledge management across global enterprise accounts: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.</li>
+                <li data-i18n-html="exp_ttec_b2">• Bilingual KMS architecture for highly regulated environments (HIPAA) at international scale.</li>
               </ul>
             </div>
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-ttec">
             <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
-              <p>ISD e especialista em KMS para operações de BPO de alta complexidade, sendo responsável por contas estratégicas dos setores financeiro e de saúde.</p>
-              <p>Para a <strong style="color:var(--c-text-strong)">Mastercard</strong>: estruturação de procedimentos técnicos, scripts de atendimento e trilhas de capacitação para equipes bilíngues. Para a <strong style="color:var(--c-text-strong)">Kaiser Permanente</strong>: base de conhecimento de saúde com rigor regulatório HIPAA, simulações clínicas e módulos interativos de conformidade.</p>
+              <p data-i18n-html="exp_ttec_p1">ISD and Knowledge Management Specialist for mission-critical BPO operations, leading strategic accounts across financial and healthcare verticals.</p>
+              <p data-i18n-html="exp_ttec_p2">For <strong style="color:var(--c-text-strong)">Mastercard</strong>: structured standard operating procedures, call scripts, and bilingual training tracks. For <strong style="color:var(--c-text-strong)">Kaiser Permanente</strong>: established a HIPAA-compliant clinical knowledge base with branching simulations and interactive compliance modules.</p>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="tag-pill tag-teal">KMS</span><span class="tag-pill tag-indigo">Documentação Técnica</span><span class="tag-pill tag-amber">BPO Operations</span><span class="tag-pill tag-purple">Bilíngue EN/PT</span>
+                <span class="tag-pill tag-teal">KMS</span><span class="tag-pill tag-indigo" data-i18n="exp_ttec_tag2">Technical Documentation</span><span class="tag-pill tag-amber">BPO Operations</span><span class="tag-pill tag-purple" data-i18n="exp_ttec_tag4">Bilingual EN/PT</span>
               </div>
             </div>
           </div>
@@ -1032,8 +1086,8 @@
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-other" aria-expanded="false" aria-controls="exp-detail-other">
             <div class="flex-1">
-              <div class="font-bold text-sm mb-1" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Outras Experiências Profissionais</div>
-              <p style="color:var(--c-text-muted)" class="text-xs">ReFrame Learning · BTG Agência · UFPE (Estágio de Docência)</p>
+              <div class="font-bold text-sm mb-1" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_other_title">Additional Professional Experience</div>
+              <p style="color:var(--c-text-muted)" class="text-xs" data-i18n="exp_other_sub">ReFrame Learning · BTG Agência · UFPE (Teaching Practicum)</p>
             </div>
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
@@ -1049,11 +1103,11 @@
                 </div>
                 <div class="flex-1">
                   <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)">ReFrame Learning · Instructional Designer</div>
+                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_ref_role">ReFrame Learning · Instructional Designer</div>
                     <span class="exp-date-badge">2018 – 2019</span>
                   </div>
-                  <div class="text-xs mb-1.5" style="color:var(--c-accent)">Startup EdTech · Remoto</div>
-                  <p class="leading-relaxed" style="color:var(--c-text)">Design instrucional para plataformas corporativas, com foco em microlearning, trilhas interativas gamificadas e arquitetura de módulos autoinstrucionais.</p>
+                  <div class="text-xs mb-1.5" style="color:var(--c-accent)" data-i18n="exp_ref_sub">EdTech Startup · Remote</div>
+                  <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_ref_desc">Instructional design for corporate learning platforms, focusing on microlearning, gamified interactive journeys, and self-paced modular architectures.</p>
                 </div>
               </div>
 
@@ -1068,11 +1122,11 @@
                 </div>
                 <div class="flex-1">
                   <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)">BTG Agência · Analista de Social Media &amp; Redator Publicitário</div>
+                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_btg_role">BTG Agência · Social Media Analyst &amp; Copywriter</div>
                     <span class="exp-date-badge">2016 – 2018</span>
                   </div>
-                  <div class="text-xs mb-1.5" style="color:var(--c-accent)">Comunicação, Conteúdo &amp; Mídia Digital</div>
-                  <p class="leading-relaxed" style="color:var(--c-text)">Desenvolvimento de narrativas publicitárias, redação criativa para campanhas de marcas corporativas, planejamento de conteúdo estratégico para mídias digitais e análise de engajamento.</p>
+                  <div class="text-xs mb-1.5" style="color:var(--c-accent)" data-i18n="exp_btg_sub">Communication, Content &amp; Digital Media</div>
+                  <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_btg_desc">Development of advertising narratives, creative copywriting for corporate brands, strategic digital content planning, and audience engagement analysis.</p>
                 </div>
               </div>
 
@@ -1083,11 +1137,11 @@
                 </div>
                 <div class="flex-1">
                   <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)">UFPE · Estágio de Docência no Ensino Superior</div>
+                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_ufpe_role">UFPE · Higher Education Teaching Practicum</div>
                     <span class="exp-date-badge">Recife, PE</span>
                   </div>
-                  <div class="text-xs mb-1.5" style="color:var(--c-accent)">Programa de Pós-Graduação em Comunicação (PPGCOM/UFPE)</div>
-                  <p class="leading-relaxed" style="color:var(--c-text)">Facilitação de aulas teóricas e práticas para graduação, aplicação de metodologias ativas de aprendizagem, planejamento de planos de ensino e orientação de projetos experimentais acadêmicos.</p>
+                  <div class="text-xs mb-1.5" style="color:var(--c-accent)" data-i18n="exp_ufpe_sub">Graduate Program in Communication (PPGCOM/UFPE)</div>
+                  <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_ufpe_desc">Facilitation of theoretical and practical undergraduate lectures, active learning methodologies, syllabus design, and mentoring academic capstone projects.</p>
                 </div>
               </div>
 
@@ -1106,9 +1160,9 @@
 <section id="stack" class="py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-5">
     <div class="reveal mb-14 text-center max-w-2xl mx-auto">
-      <div class="section-eyebrow justify-center">Competências &amp; Ferramentas</div>
-      <h2 class="section-title">Stack &amp; <span>IA</span></h2>
-      <p style="color:var(--c-text-muted)" class="mt-4">Quatro pilares integrados que sustentam minha prática como Senior ISD &amp; LXD.</p>
+      <div class="section-eyebrow justify-center" data-i18n="stack_eyebrow">Skills &amp; Tools</div>
+      <h2 class="section-title" data-i18n-html="stack_title">Stack &amp; <span>AI</span></h2>
+      <p style="color:var(--c-text-muted)" class="mt-4" data-i18n="stack_subtitle">Four integrated pillars underpinning my practice as Senior ISD &amp; LXD.</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-6">
@@ -1116,10 +1170,10 @@
         <div class="pillar-icon" style="background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.2)">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#14b8a6" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
         </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Design Instrucional &amp; Andragogia</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)">Fundamentação pedagógica sólida para criar experiências que respeitam a autonomia do aprendiz adulto e geram transferência real de aprendizagem para o trabalho.</p>
+        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar1_title">Instructional Design &amp; Andragogy</h3>
+        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar1_desc">Grounded pedagogical foundation to create experiences respecting adult learner autonomy and driving real workplace skill transfer.</p>
         <div class="flex flex-wrap">
-          <span class="skill-tag">ADDIE</span><span class="skill-tag">Kirkpatrick L1–L4</span><span class="skill-tag">SAM Model</span><span class="skill-tag">Design de Currículo</span><span class="skill-tag">Microlearning</span><span class="skill-tag">Gamificação</span><span class="skill-tag">Andragogia</span><span class="skill-tag">Análise de Necessidades</span>
+          <span class="skill-tag">ADDIE</span><span class="skill-tag">Kirkpatrick L1–L4</span><span class="skill-tag">SAM Model</span><span class="skill-tag" data-i18n="p1_curriculum">Curriculum Design</span><span class="skill-tag">Microlearning</span><span class="skill-tag" data-i18n="p1_gamification">Gamification</span><span class="skill-tag" data-i18n="p1_andragogy">Andragogy</span><span class="skill-tag" data-i18n="p1_needs">Needs Assessment</span>
         </div>
       </div>
 
@@ -1127,10 +1181,10 @@
         <div class="pillar-icon" style="background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2)">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#818cf8" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Autoria &amp; Ecossistema de Aprendizagem</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)">Domínio das principais plataformas do mercado global para criar, testar, publicar e rastrear métricas de engajamento em escala corporativa.</p>
+        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar2_title">Authoring &amp; Learning Ecosystems</h3>
+        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar2_desc">Command of top global authoring and delivery platforms to design, test, publish, and track engagement metrics at enterprise scale.</p>
         <div class="flex flex-wrap">
-          <span class="skill-tag">Articulate Storyline 360</span><span class="skill-tag">Rise 360</span><span class="skill-tag">Beedoo LMS</span><span class="skill-tag">SCORM / xAPI</span><span class="skill-tag">Moodle</span><span class="skill-tag">KMS Architecture</span><span class="skill-tag">Trilhas de Aprendizagem</span>
+          <span class="skill-tag">Articulate Storyline 360</span><span class="skill-tag">Rise 360</span><span class="skill-tag">Beedoo LMS</span><span class="skill-tag">SCORM / xAPI</span><span class="skill-tag">Moodle</span><span class="skill-tag">KMS Architecture</span><span class="skill-tag" data-i18n="p2_paths">Learning Paths</span>
         </div>
       </div>
 
@@ -1138,10 +1192,10 @@
         <div class="pillar-icon" style="background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.2)">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#c084fc" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">IA Generativa &amp; Automação Técnica</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)">Integração avançada de LLMs, IDEs e automação para acelerar roteirização, parsing regulatório e personalização adaptativa de conteúdos instrucionais.</p>
+        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar3_title">Generative AI &amp; Technical Automation</h3>
+        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar3_desc">Advanced integration of LLMs, IDEs, and automation pipelines to accelerate scripting, regulatory parsing, and adaptive content customization.</p>
         <div class="flex flex-wrap">
-          <span class="skill-tag">Prompt Engineering</span><span class="skill-tag">LLM Integration</span><span class="skill-tag">Regulatory Parsing</span><span class="skill-tag">Cursor / Windsurf IDE</span><span class="skill-tag">ChatGPT / Claude</span><span class="skill-tag">AI Content Pipelines</span><span class="skill-tag">Prototipagem Rápida</span>
+          <span class="skill-tag">Prompt Engineering</span><span class="skill-tag">LLM Integration</span><span class="skill-tag">Regulatory Parsing</span><span class="skill-tag">Cursor / Windsurf IDE</span><span class="skill-tag">ChatGPT / Claude</span><span class="skill-tag">AI Content Pipelines</span><span class="skill-tag" data-i18n="p3_proto">Rapid Prototyping</span>
         </div>
       </div>
 
@@ -1149,37 +1203,37 @@
         <div class="pillar-icon" style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2)">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#fcd34d" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
         </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Comunicação &amp; Design Visual</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)">Jornalismo, redação publicitária e design visual convergindo para transformar tópicos técnicos complexos em narrativas visualmente ricas e fáceis de memorizar.</p>
+        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar4_title">Communication &amp; Visual Design</h3>
+        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar4_desc">Journalism, creative copywriting, and visual design converging to turn complex technical topics into engaging, memorable visual stories.</p>
         <div class="flex flex-wrap">
-          <span class="skill-tag">Storytelling</span><span class="skill-tag">Roteirização</span><span class="skill-tag">Figma</span><span class="skill-tag">Adobe Illustrator</span><span class="skill-tag">UX Design</span><span class="skill-tag">Storyboarding</span><span class="skill-tag">Vídeo Instrucional</span>
+          <span class="skill-tag">Storytelling</span><span class="skill-tag" data-i18n="p4_scripting">Scriptwriting</span><span class="skill-tag">Figma</span><span class="skill-tag">Adobe Illustrator</span><span class="skill-tag">UX Design</span><span class="skill-tag">Storyboarding</span><span class="skill-tag" data-i18n="p4_video">Instructional Video</span>
         </div>
       </div>
     </div>
 
     <!-- Idiomas -->
     <div class="mt-8 reveal card-base p-6">
-      <div class="section-eyebrow mb-4">Idiomas</div>
+      <div class="section-eyebrow mb-4" data-i18n="lang_card_title">Languages</div>
       <div class="flex flex-wrap gap-8">
         <div class="flex items-center gap-3">
           <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs" style="background:rgba(20,184,166,.15);color:var(--c-accent)">PT</div>
           <div>
-            <div class="font-semibold text-sm" style="color:var(--c-text-strong)">Português</div>
-            <div class="text-xs font-semibold" style="color:var(--c-accent)">Nativo</div>
+            <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="lang_pt_name">Portuguese</div>
+            <div class="text-xs font-semibold" style="color:var(--c-accent)" data-i18n="lang_pt_level">Native</div>
           </div>
         </div>
         <div class="flex items-center gap-3">
           <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs" style="background:rgba(99,102,241,.15);color:#818cf8">EN</div>
           <div>
-            <div class="font-semibold text-sm" style="color:var(--c-text-strong)">Inglês</div>
-            <div class="text-xs font-semibold" style="color:var(--c-accent)">Fluente · C1/C2</div>
+            <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="lang_en_name">English</div>
+            <div class="text-xs font-semibold" style="color:var(--c-accent)" data-i18n="lang_en_level">Fluent · C1/C2</div>
           </div>
         </div>
         <div class="flex items-center gap-3">
           <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs" style="background:rgba(168,85,247,.15);color:#c084fc">ES</div>
           <div>
-            <div class="font-semibold text-sm" style="color:var(--c-text-strong)">Espanhol</div>
-            <div class="text-xs font-semibold" style="color:var(--c-accent)">Intermediário</div>
+            <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="lang_es_name">Spanish</div>
+            <div class="text-xs font-semibold" style="color:var(--c-accent)" data-i18n="lang_es_level">Intermediate</div>
           </div>
         </div>
       </div>
@@ -1193,14 +1247,14 @@
 <section id="contato" class="py-24 lg:py-32">
   <div class="max-w-3xl mx-auto px-5 text-center">
     <div class="reveal">
-      <div class="section-eyebrow justify-center">Vamos Conversar</div>
-      <h2 class="section-title mb-5">Pronto para <span>colaborar</span>?</h2>
-      <p class="text-lg leading-relaxed mb-12" style="color:var(--c-text)">Seja para projetos estratégicos de L&amp;D, implantação de LMS, desenho de currículos com IA ou novas posições sênior — estou à disposição.</p>
+      <div class="section-eyebrow justify-center" data-i18n="contact_eyebrow">Let's Connect</div>
+      <h2 class="section-title mb-5" data-i18n-html="contact_title">Ready to <span>collaborate</span>?</h2>
+      <p class="text-lg leading-relaxed mb-12" style="color:var(--c-text)" data-i18n="contact_desc">Whether for strategic L&amp;D initiatives, LMS implementations, AI-assisted curriculum design, or new senior roles — let's talk.</p>
 
       <div class="flex flex-wrap justify-center gap-4 mb-16">
         <a href="mailto:erickvascp@gmail.com" class="btn-primary" id="contact-email-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          Enviar E-mail
+          <span data-i18n="contact_btn_email">Send Email</span>
         </a>
         <a href="https://www.linkedin.com/in/erick-vasconcelos" target="_blank" rel="noopener" class="btn-outline" id="contact-linkedin-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -1208,7 +1262,7 @@
         </a>
         <a href="Erick_Vasconcelos_CV.pdf" download class="btn-pdf" id="contact-cv-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Baixar CV em PDF
+          <span data-i18n="contact_btn_cv">Download CV (PDF)</span>
         </a>
       </div>
 
@@ -1235,7 +1289,7 @@
   <div class="max-w-7xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
     <div class="flex items-center gap-3">
       <div class="w-7 h-7 rounded-md flex items-center justify-center text-white font-bold text-xs" style="background:linear-gradient(135deg,#14b8a6,#6366f1);font-family:'Plus Jakarta Sans',sans-serif">EV</div>
-      <span style="color:var(--c-text-muted)" class="text-sm">Erick Vasconcelos — Senior ISD &amp; LXD</span>
+      <span style="color:var(--c-text-muted)" class="text-sm" data-i18n="footer_role">Erick Vasconcelos — Senior ISD &amp; LXD</span>
     </div>
     <div style="color:var(--c-text-muted)" class="text-xs">© <span id="year"></span> · erickvascp@gmail.com</div>
   </div>
@@ -1311,51 +1365,434 @@
     track.scrollBy({ left: 370, behavior: 'smooth' });
   });
 
-  // Modal Cases Data
-  const cases = {
-    1: {
-      icon: '🏥',
-      bg: 'linear-gradient(135deg,#0a2020,#0f1a2e,#1a0f2e)',
-      tags: [
-        { l: 'Storyline 360', c: 'tag-teal' },
-        { l: 'Variáveis & Condicionais', c: 'tag-indigo' },
-        { l: 'BPO Scale', c: 'tag-amber' },
-        { l: 'Simulação Ramificada', c: 'tag-emerald' }
-      ],
-      title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360 & Variáveis)',
-      challenge: 'Uma operação de BPO de saúde enfrentava altas taxas de erro na triagem de chamadas clínicas, com riscos de conformidade regulatória (HIPAA) e impacto direto no SLA de atendimento. O treinamento tradicional, baseado em leitura de procedimentos estáticos, não desenvolvia o julgamento clínico necessário para decisões complexas em tempo real sob pressão.',
-      strategy: 'Aprendizagem baseada em cenários (Scenario-Based Learning) com arquitetura de decisão ramificada, fundamentada nos princípios de andragogia de Malcolm Knowles. A estratégia priorizou a criação de consequências realistas e imediatas para cada decisão do aprendiz, reforçando o raciocínio clínico em vez de memorização mecânica.',
-      solution: 'Desenvolvido em Articulate Storyline 360 com uso avançado de variáveis, condicionais e estados de objetos. O simulador apresenta 12 cenários clínicos únicos com mais de 3 ramificações por decisão, rastreando o desempenho do aprendiz via xAPI/LRS. Inclui sistema de pontuação, feedback contextualizado e relatório de lacunas de conformidade para o gestor.'
+  // -------------------------------------------------------------
+  // Internationalization (i18n) Data & Logic
+  // -------------------------------------------------------------
+  const i18nData = {
+    en: {
+      nav_about: 'About',
+      nav_cases: 'Cases',
+      nav_experience: 'Experience',
+      nav_stack: 'Stack & AI',
+      nav_contact: 'Contact',
+      nav_cv: 'Download CV',
+
+      hero_badge: '<span class="dot"></span> Available for Senior Opportunities',
+      hero_title: 'Design that<br/><span style="background:linear-gradient(90deg,#2dd4bf,#34d399,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transforms</span><br/>learning.',
+      hero_desc: 'Senior Instructional Designer &amp; LXD with <strong style="color:var(--c-text-strong);font-weight:600">9+ years</strong> in big techs. Ex-TikTok, ex-99. Specialist in transforming complex technical processes into simple, scalable learning experiences powered by <span style="color:var(--c-accent2);font-weight:600">Generative AI</span>.',
+      hero_tag_master: "Master's UFPE",
+      hero_btn_explore: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg> Explore Projects',
+      hero_btn_linkedin: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> Connect on LinkedIn',
+      stat_years: 'Years of Experience',
+      stat_trained: 'Professionals Trained',
+      stat_bigtech: 'Big Techs & Consultancies',
+      stat_global: 'LATAM & US Operations',
+      scroll: 'Scroll',
+
+      about_eyebrow: 'About Me',
+      about_title: 'Instructional Design<br/>driven by <span>results</span>',
+      about_p1: 'My journey bridges journalism, communication, and technology to build learning experiences that truly perform at scale. At <strong style="color:var(--c-text-strong)">TikTok</strong>, I led the LATAM L&amp;D pod for over <strong style="color:var(--c-text-strong)">1,500 moderators</strong> across global operations, integrating GenAI workflows for automated policy parsing.',
+      about_p2: 'I hold a <strong style="color:var(--c-text-strong)">Master\'s in Communication from UFPE</strong> and a Bachelor\'s in Journalism — a foundation that enables me to translate dense technical content into clear, engaging, and pedagogically sound narratives grounded in adult learning theory (andragogy), curriculum design, and frameworks such as <strong style="color:var(--c-text-strong)">ADDIE and Kirkpatrick</strong>.',
+      about_p3: 'Today, my differentiator is orchestrating <strong style="color:var(--c-accent2)">Generative AI</strong> pipelines — LLMs, prompt engineering, and modern development environments — to accelerate storyboarding, prototyping, and content personalization across global workflows.',
+      about_card_role: 'Senior ISD & LXD',
+      about_card_item1: 'AI Workflows & Prompt Engineering',
+      about_card_item2: 'Corporate Curricula at Global Scale',
+      about_card_item3: 'Andragogy & Learning UX',
+      about_card_item4: 'Journalism & Technical Storytelling',
+      about_edu_title: 'Academic Education',
+      about_edu_msc: "Master's Degree in Communication",
+      about_edu_school1: 'Federal University of Pernambuco · UFPE',
+      about_edu_ba: "Bachelor's Degree in Journalism",
+      about_edu_school2: 'Federal University of Pernambuco · UFPE',
+
+      cases_eyebrow: 'Project Portfolio',
+      cases_title: 'Impactful <span>Case Studies</span>',
+      tag_variables: 'Variables & Logic',
+      case1_title: 'Clinical Compliance Triage Simulator',
+      case1_desc: 'Branching scenario simulator for clinical compliance triage using variables and conditional logic adapted to the learner journey.',
+      case2_title: 'Agile Continuing Education Ecosystem with GenAI',
+      case2_desc: 'Generative AI workflows for automated parsing of corporate policies and continuous curriculum updates for 1,500+ moderators.',
+      case3_title: 'LMS Infrastructure Modernization & Rollout (99/Beedoo)',
+      case3_desc: 'End-to-end LMS Beedoo deployment at 99, establishing a Kirkpatrick Level 2 measurement framework for commercial sales teams.',
+      case_view_details: 'View details',
+      cases_scroll_hint: '← Swipe to explore cases →',
+
+      modal_lbl_challenge: '🎯 Business Challenge',
+      modal_lbl_strategy: '📚 Pedagogical Strategy',
+      modal_lbl_solution: '⚙️ Technical Solution & Tools',
+      modal_btn_demo: 'Launch Interactive Demo',
+      modal_btn_behance: 'View on Behance',
+
+      exp_eyebrow: 'Career Trajectory',
+      exp_title: 'Professional <span>Experience</span>',
+      exp_subtitle: 'Click on any role to expand full details of deliveries and business impact.',
+      exp_99_role: 'Senior Training Specialist',
+      exp_99_loc: '99 · São Paulo, Brazil',
+      exp_99_date: 'Nov 2025 – Jun 2026',
+      exp_99_b1: '• End-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the entire commercial sales force.',
+      exp_99_b2: '• Structured a <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> metrics framework to evaluate learning transfer.',
+      exp_99_p1: 'At 99, I led the complete modernization of the training infrastructure, managing the end-to-end deployment of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> from scratch — from stakeholder scope alignment to catalog curation and custom learning path architecture.',
+      exp_99_p2: 'Developed and delivered the <strong style="color:var(--c-text-strong)">commercial sales enablement</strong> program, designing modules aligned with sales playbooks and driver-partner onboarding. Designed an assessment framework based on <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> to measure skill transfer and impact on the commercial pipeline.',
+      exp_99_tag3: 'Sales Enablement',
+      exp_99_tag4: 'Curriculum Management',
+
+      exp_tiktok_role: 'Senior Instructional Designer',
+      exp_tiktok_loc: 'TikTok · LATAM (Remote)',
+      exp_tiktok_date: 'Apr 2022 – Aug 2025',
+      exp_tiktok_b1: '• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.',
+      exp_tiktok_b2: '• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.',
+      exp_tiktok_p1: 'Principal ISD for TikTok\'s LATAM Trust &amp; Safety team, responsible for <strong style="color:var(--c-text-strong)">architecting and delivering curricula</strong> for 1,500+ moderators across multiple countries and time zones.',
+      exp_tiktok_p2: 'Engineered <strong style="color:var(--c-text-strong)">Generative AI pipelines</strong> using LLMs to automate semantic parsing and pedagogical translation of dense global regulatory guidelines, accelerating content production time by ~70%.',
+      exp_tiktok_p3: 'Established bi-weekly agile cadences (instructional content sprints) and hands-on workshops with technical leaders, ensuring real-time alignment with rapid policy revisions.',
+
+      exp_ac_role: 'Senior Instructional Designer',
+      exp_ac_loc: 'Avenue Code · São Paulo (Hybrid)',
+      exp_ac_date: 'Mar 2021 – Mar 2022',
+      exp_ac_b1: '• Strategic learning consultancy in <strong style="color:var(--c-text-strong)">digital transformation</strong> and agile upskilling for enterprise clients.',
+      exp_ac_b2: '• Key project: enterprise Scrum upskilling curriculum for <strong style="color:var(--c-text-strong)">Braskem</strong>.',
+      exp_ac_p1: 'Served as Senior ISD on enterprise digital transformation learning initiatives, collaborating directly with large multinational accounts to redesign cultural and technical competencies.',
+      exp_ac_p2: 'Key highlight: <strong style="color:var(--c-text-strong)">enterprise Scrum and agile upskilling program for Braskem</strong>, designing interactive paths in Articulate Rise 360 integrated with scenario assessments based on live business challenges.',
+
+      exp_ttec_role: 'Instructional Designer &amp; KMS Specialist',
+      exp_ttec_loc: 'TTEC · Remote (US/Global)',
+      exp_ttec_date: 'Jul 2019 – Mar 2021',
+      exp_ttec_b1: '• Knowledge management across global enterprise accounts: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.',
+      exp_ttec_b2: '• Bilingual KMS architecture for highly regulated environments (HIPAA) at international scale.',
+      exp_ttec_p1: 'ISD and Knowledge Management Specialist for mission-critical BPO operations, leading strategic accounts across financial and healthcare verticals.',
+      exp_ttec_p2: 'For <strong style="color:var(--c-text-strong)">Mastercard</strong>: structured standard operating procedures, call scripts, and bilingual training tracks. For <strong style="color:var(--c-text-strong)">Kaiser Permanente</strong>: established a HIPAA-compliant clinical knowledge base with branching simulations and interactive compliance modules.',
+      exp_ttec_tag2: 'Technical Documentation',
+      exp_ttec_tag4: 'Bilingual EN/PT',
+
+      exp_other_title: 'Additional Professional Experience',
+      exp_other_sub: 'ReFrame Learning · BTG Agência · UFPE (Teaching Practicum)',
+      exp_ref_role: 'ReFrame Learning · Instructional Designer',
+      exp_ref_sub: 'EdTech Startup · Remote',
+      exp_ref_desc: 'Instructional design for corporate learning platforms, focusing on microlearning, gamified interactive journeys, and self-paced modular architectures.',
+      exp_btg_role: 'BTG Agência · Social Media Analyst & Copywriter',
+      exp_btg_sub: 'Communication, Content & Digital Media',
+      exp_btg_desc: 'Development of advertising narratives, creative copywriting for corporate brands, strategic digital content planning, and audience engagement analysis.',
+      exp_ufpe_role: 'UFPE · Higher Education Teaching Practicum',
+      exp_ufpe_sub: 'Graduate Program in Communication (PPGCOM/UFPE)',
+      exp_ufpe_desc: 'Facilitation of theoretical and practical undergraduate lectures, active learning methodologies, syllabus design, and mentoring academic capstone projects.',
+
+      stack_eyebrow: 'Skills & Tools',
+      stack_title: 'Stack & <span>AI</span>',
+      stack_subtitle: 'Four integrated pillars underpinning my practice as Senior ISD & LXD.',
+      pillar1_title: 'Instructional Design & Andragogy',
+      pillar1_desc: 'Grounded pedagogical foundation to create experiences respecting adult learner autonomy and driving real workplace skill transfer.',
+      p1_curriculum: 'Curriculum Design',
+      p1_gamification: 'Gamification',
+      p1_andragogy: 'Andragogy',
+      p1_needs: 'Needs Assessment',
+      pillar2_title: 'Authoring & Learning Ecosystems',
+      pillar2_desc: 'Command of top global authoring and delivery platforms to design, test, publish, and track engagement metrics at enterprise scale.',
+      p2_paths: 'Learning Paths',
+      pillar3_title: 'Generative AI & Technical Automation',
+      pillar3_desc: 'Advanced integration of LLMs, IDEs, and automation pipelines to accelerate scripting, regulatory parsing, and adaptive content customization.',
+      p3_proto: 'Rapid Prototyping',
+      pillar4_title: 'Communication & Visual Design',
+      pillar4_desc: 'Journalism, creative copywriting, and visual design converging to turn complex technical topics into engaging, memorable visual stories.',
+      p4_scripting: 'Scriptwriting',
+      p4_video: 'Instructional Video',
+      lang_card_title: 'Languages',
+      lang_pt_name: 'Portuguese',
+      lang_pt_level: 'Native',
+      lang_en_name: 'English',
+      lang_en_level: 'Fluent · C1/C2',
+      lang_es_name: 'Spanish',
+      lang_es_level: 'Intermediate',
+
+      contact_eyebrow: "Let's Connect",
+      contact_title: 'Ready to <span>collaborate</span>?',
+      contact_desc: "Whether for strategic L&D initiatives, LMS implementations, AI-assisted curriculum design, or new senior roles — let's talk.",
+      contact_btn_email: 'Send Email',
+      contact_btn_cv: 'Download CV (PDF)',
+      footer_role: 'Erick Vasconcelos — Senior ISD & LXD'
     },
-    2: {
-      icon: '🤖',
-      bg: 'linear-gradient(135deg,#0a1a12,#0a1120,#150d28)',
-      tags: [
-        { l: 'GenAI Workflows', c: 'tag-emerald' },
-        { l: 'LLM Parsing', c: 'tag-purple' },
-        { l: 'TikTok LATAM', c: 'tag-indigo' },
-        { l: 'Prompt Engineering', c: 'tag-teal' }
-      ],
-      title: 'Ecossistema Ágil de Educação Continuada com GenAI (TikTok)',
-      challenge: 'No TikTok Trust & Safety LATAM, o currículo precisava se atualizar em menos de 48h sempre que políticas corporativas globais eram revisadas — documentos técnicos densos de centenas de páginas que deveriam ser transformados em micromódulos consumíveis por 1.500+ moderadores em múltiplos idiomas. O processo manual era inviável em escala e velocidade.',
-      strategy: 'Pipeline de educação contínua baseado em ciclos ágeis bi-semanais (sprints de conteúdo), integrando IA Generativa como copiloto de produção instrucional. A estratégia combinou engenharia de prompt avançada com revisão humana especializada (ISD como curador), garantindo precisão regulatória sem abrir mão da agilidade.',
-      solution: 'Pipeline construído com LLMs (GPT-4/Claude) via prompt engineering estruturado para: (1) parsing e segmentação semântica de políticas; (2) extração de pontos de aprendizagem críticos; (3) geração de roteiros para micromodules em Rise 360; (4) criação de question banks. Redução de ~70% no tempo de produção e cobertura simultânea em PT, EN e ES.'
-    },
-    3: {
-      icon: '🚀',
-      bg: 'linear-gradient(135deg,#16160a,#0f172a,#0a1f18)',
-      tags: [
-        { l: 'LMS Deployment', c: 'tag-indigo' },
-        { l: 'Beedoo', c: 'tag-teal' },
-        { l: 'Kirkpatrick L2', c: 'tag-amber' },
-        { l: 'Cap. Comercial', c: 'tag-emerald' }
-      ],
-      title: 'Modernização de Infraestrutura e Implementação de LMS (99/Beedoo)',
-      challenge: 'A 99 não possuía infraestrutura centralizada de T&D para sua força comercial — os treinamentos ocorriam de forma desorganizada e sem rastreabilidade de impacto. Era necessário implantar um LMS corporativo do zero, migrar conteúdos dispersos, estruturar trilhas de aprendizagem e criar mecanismos de avaliação alinhados ao negócio.',
-      strategy: 'Modelo de implementação em fases (MVP → Expansão), utilizando ADDIE como framework de projeto e metodologia de Gestão de Mudança (PROSCI/ADKAR) para garantir adoção do LMS pelas equipes de campo e liderança. Framework de avaliação baseado em Kirkpatrick Nível 2 conectado a indicadores de performance comercial.',
-      solution: 'Implantação completa do LMS Beedoo: configuração de ambiente, estruturação de categorias e trilhas, integração com sistemas de RH e migração de conteúdos legados. Desenvolvimento de módulos em Storyline 360 e Rise 360. Dashboard de métricas Kirkpatrick L2 com pré/pós-avaliação, mapeando lacunas por segmento e correlacionando com KPIs comerciais.'
+    pt: {
+      nav_about: 'Sobre',
+      nav_cases: 'Cases',
+      nav_experience: 'Experiência',
+      nav_stack: 'Stack & IA',
+      nav_contact: 'Contato',
+      nav_cv: 'Baixar CV',
+
+      hero_badge: '<span class="dot"></span> Disponível para Oportunidades Sênior',
+      hero_title: 'Design que<br/><span style="background:linear-gradient(90deg,#2dd4bf,#34d399,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">transforma</span><br/>aprendizagem.',
+      hero_desc: 'Senior Instructional Designer &amp; LXD com <strong style="color:var(--c-text-strong);font-weight:600">9+ anos</strong> em big techs. Ex-TikTok, ex-99. Especialista em transformar processos técnicos complexos em experiências simples, escaláveis e potencializadas por <span style="color:var(--c-accent2);font-weight:600">IA Generativa</span>.',
+      hero_tag_master: 'Mestre UFPE',
+      hero_btn_explore: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg> Explorar Cases',
+      hero_btn_linkedin: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> Conectar no LinkedIn',
+      stat_years: 'Anos de Experiência',
+      stat_trained: 'Profissionais Treinados',
+      stat_bigtech: 'Big Techs & Consultorias',
+      stat_global: 'Operações LATAM & EUA',
+      scroll: 'Rolar',
+
+      about_eyebrow: 'Sobre Mim',
+      about_title: 'Design Instrucional<br/>orientado a <span>resultados</span>',
+      about_p1: 'Minha trajetória une jornalismo, comunicação e tecnologia para criar experiências de aprendizagem que realmente funcionam em escala. Na <strong style="color:var(--c-text-strong)">TikTok</strong>, liderei o pod de T&amp;D LATAM para mais de <strong style="color:var(--c-text-strong)">1.500 moderadores</strong> em operações globais, integrando fluxos de GenAI para parsing automatizado de políticas corporativas.',
+      about_p2: 'Sou <strong style="color:var(--c-text-strong)">Mestre em Comunicação pela UFPE</strong> e Jornalista de formação — habilidades que me permitem traduzir conteúdo técnico denso em narrativas claras, engajantes e pedagogicamente sólidas, fundamentadas em andragogia, design de currículo e modelos como <strong style="color:var(--c-text-strong)">ADDIE e Kirkpatrick</strong>.',
+      about_p3: 'Hoje, meu diferencial é a integração de pipelines de <strong style="color:var(--c-accent2)">IA Generativa</strong> — LLMs, engenharia de prompt e IDEs modernas — para acelerar roteirização, prototipagem e personalização de conteúdo em escala global.',
+      about_card_role: 'Senior ISD & LXD',
+      about_card_item1: 'AI Workflows & Prompt Engineering',
+      about_card_item2: 'Currículos Corporativos em Escala Global',
+      about_card_item3: 'Andragogia & UX de Aprendizagem',
+      about_card_item4: 'Jornalismo & Storytelling Técnico',
+      about_edu_title: 'Formação Acadêmica',
+      about_edu_msc: 'Mestrado em Comunicação',
+      about_edu_school1: 'Universidade Federal de Pernambuco · UFPE',
+      about_edu_ba: 'Bacharelado em Jornalismo',
+      about_edu_school2: 'Universidade Federal de Pernambuco · UFPE',
+
+      cases_eyebrow: 'Portfólio de Projetos',
+      cases_title: 'Cases de <span>Impacto</span>',
+      tag_variables: 'Variáveis & Condicionais',
+      case1_title: 'Simulador de Triagem de Conformidade Clínica',
+      case1_desc: 'Simulador ramificado para triagem de conformidade clínica com lógica de variáveis e estados adaptados à jornada do aprendiz.',
+      case2_title: 'Ecossistema Ágil de Educação Continuada com GenAI',
+      case2_desc: 'Fluxos de IA Generativa para parsing automatizado de políticas corporativas e atualização contínua de currículo para 1.500+ moderadores.',
+      case3_title: 'Modernização de Infraestrutura e Implementação de LMS (99/Beedoo)',
+      case3_desc: 'Implantação end-to-end do LMS Beedoo na 99, estruturando framework de métricas Kirkpatrick Nível 2 para capacitação comercial.',
+      case_view_details: 'Ver detalhes',
+      cases_scroll_hint: '← Deslize para explorar os cases →',
+
+      modal_lbl_challenge: '🎯 Desafio de Negócio',
+      modal_lbl_strategy: '📚 Estratégia Pedagógica',
+      modal_lbl_solution: '⚙️ Solução Técnica & Ferramentas',
+      modal_btn_demo: 'Acessar Demonstração Interativa',
+      modal_btn_behance: 'Ver no Behance',
+
+      exp_eyebrow: 'Trajetória Profissional',
+      exp_title: 'Experiência <span>Profissional</span>',
+      exp_subtitle: 'Clique em qualquer cargo para expandir o detalhamento completo de entregas e impacto.',
+      exp_99_role: 'Senior Training Specialist',
+      exp_99_loc: '99 · São Paulo, Brasil',
+      exp_99_date: 'Nov 2025 – Jun 2026',
+      exp_99_b1: '• Implantação end-to-end do <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> para toda a força comercial.',
+      exp_99_b2: '• Estruturação de framework de métricas <strong style="color:var(--c-text-strong)">Kirkpatrick Nível 2</strong> para avaliação de transferência.',
+      exp_99_p1: 'Na 99, assumi a responsabilidade pela modernização completa da infraestrutura de treinamento, liderando a implantação do <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> do zero — desde a negociação de escopo com stakeholders até a curadoria do catálogo e configuração de trilhas de aprendizagem.',
+      exp_99_p2: 'Desenvolvi e conduzi o programa de <strong style="color:var(--c-text-strong)">capacitação comercial</strong>, desenhando módulos alinhados ao playbook de vendas e onboarding de parceiros motoristas. Estruturei o framework de avaliação baseado em <strong style="color:var(--c-text-strong)">Kirkpatrick Nível 2</strong> para mensurar transferência e impacto no pipeline comercial.',
+      exp_99_tag3: 'Cap. Comercial',
+      exp_99_tag4: 'Gestão de Currículo',
+
+      exp_tiktok_role: 'Senior Instructional Designer',
+      exp_tiktok_loc: 'TikTok · LATAM (Remoto)',
+      exp_tiktok_date: 'Abr 2022 – Ago 2025',
+      exp_tiktok_b1: '• Liderança do <strong style="color:var(--c-text-strong)">pod T&amp;D LATAM</strong> para 1.500+ moderadores em Trust &amp; Safety global.',
+      exp_tiktok_b2: '• Fluxos de <strong style="color:var(--c-text-strong)">IA Generativa</strong> para parsing automatizado de políticas corporativas complexas.',
+      exp_tiktok_p1: 'Principal ISD da equipe de Trust &amp; Safety LATAM do TikTok, responsável por <strong style="color:var(--c-text-strong)">arquitetar e executar o currículo</strong> de formação para mais de 1.500 moderadores distribuídos em múltiplos países e fusos.',
+      exp_tiktok_p2: 'Desenvolvi <strong style="color:var(--c-text-strong)">pipelines de IA Generativa</strong> com LLMs para automatizar o parsing semântico e adaptação pedagógica de diretrizes corporativas globais densas, reduzindo em ~70% o tempo de produção de conteúdo atualizado.',
+      exp_tiktok_p3: 'Implantei cadência ágil bi-semanal (sprints de conteúdo instrucional) e workshops práticos com lideranças técnicas, garantindo alinhamento imediato às mudanças regulatórias.',
+
+      exp_ac_role: 'Senior Instructional Designer',
+      exp_ac_loc: 'Avenue Code · São Paulo (Híbrido)',
+      exp_ac_date: 'Mar 2021 – Mar 2022',
+      exp_ac_b1: '• Consultoria em <strong style="color:var(--c-text-strong)">transformação digital</strong> e upskilling em metodologias ágeis para grandes contas.',
+      exp_ac_b2: '• Projeto de destaque: programa corporativo de capacitação Scrum para a <strong style="color:var(--c-text-strong)">Braskem</strong>.',
+      exp_ac_p1: 'Atuei como ISD sênior em projetos de consultoria de aprendizagem para transformação digital, trabalhando diretamente com grandes corporações no redesign de competências técnicas e culturais.',
+      exp_ac_p2: 'Projeto de maior impacto: <strong style="color:var(--c-text-strong)">programa de upskilling em Scrum e metodologias ágeis para a Braskem</strong>, onde projetei a trilha do zero em Articulate Rise 360 com avaliações práticas baseadas em casos reais do negócio.',
+
+      exp_ttec_role: 'Instructional Designer &amp; KMS Specialist',
+      exp_ttec_loc: 'TTEC · Remoto (EUA/Global)',
+      exp_ttec_date: 'Jul 2019 – Mar 2021',
+      exp_ttec_b1: '• Gestão de conhecimento para operações globais: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.',
+      exp_ttec_b2: '• Arquitetura de KMS bilíngue para ambientes de alta regulação (HIPAA) e escala internacional.',
+      exp_ttec_p1: 'ISD e especialista em KMS para operações de BPO de alta complexidade, sendo responsável por contas estratégicas dos setores financeiro e de saúde.',
+      exp_ttec_p2: 'Para a <strong style="color:var(--c-text-strong)">Mastercard</strong>: estruturação de procedimentos técnicos, scripts de atendimento e trilhas de capacitação para equipes bilíngues. Para a <strong style="color:var(--c-text-strong)">Kaiser Permanente</strong>: base de conhecimento de saúde com rigor regulatório HIPAA, simulações clínicas e módulos interativos de conformidade.',
+      exp_ttec_tag2: 'Documentação Técnica',
+      exp_ttec_tag4: 'Bilíngue EN/PT',
+
+      exp_other_title: 'Outras Experiências Profissionais',
+      exp_other_sub: 'ReFrame Learning · BTG Agência · UFPE (Estágio de Docência)',
+      exp_ref_role: 'ReFrame Learning · Instructional Designer',
+      exp_ref_sub: 'Startup EdTech · Remoto',
+      exp_ref_desc: 'Design instrucional para plataformas corporativas, com foco em microlearning, trilhas interativas gamificadas e arquitetura de módulos autoinstrucionais.',
+      exp_btg_role: 'BTG Agência · Analista de Social Media & Redator Publicitário',
+      exp_btg_sub: 'Comunicação, Conteúdo & Mídia Digital',
+      exp_btg_desc: 'Desenvolvimento de narrativas publicitárias, redação criativa para campanhas de marcas corporativas, planejamento de conteúdo estratégico para mídias digitais e análise de engajamento.',
+      exp_ufpe_role: 'UFPE · Estágio de Docência no Ensino Superior',
+      exp_ufpe_sub: 'Programa de Pós-Graduação em Comunicação (PPGCOM/UFPE)',
+      exp_ufpe_desc: 'Facilitação de aulas teóricas e práticas para graduação, aplicação de metodologias ativas de aprendizagem, planejamento de planos de ensino e orientação de projetos experimentais acadêmicos.',
+
+      stack_eyebrow: 'Competências & Ferramentas',
+      stack_title: 'Stack & <span>IA</span>',
+      stack_subtitle: 'Quatro pilares integrados que sustentam minha prática como Senior ISD & LXD.',
+      pillar1_title: 'Design Instrucional & Andragogia',
+      pillar1_desc: 'Fundamentação pedagógica sólida para criar experiências que respeitam a autonomia do aprendiz adulto e geram transferência real de aprendizagem para o trabalho.',
+      p1_curriculum: 'Design de Currículo',
+      p1_gamification: 'Gamificação',
+      p1_andragogy: 'Andragogia',
+      p1_needs: 'Análise de Necessidades',
+      pillar2_title: 'Autoria & Ecossistema de Aprendizagem',
+      pillar2_desc: 'Domínio das principais plataformas do mercado global para criar, testar, publicar e rastrear métricas de engajamento em escala corporativa.',
+      p2_paths: 'Trilhas de Aprendizagem',
+      pillar3_title: 'IA Generativa & Automação Técnica',
+      pillar3_desc: 'Integração avançada de LLMs, IDEs e automação para acelerar roteirização, parsing regulatório e personalização adaptativa de conteúdos instrucionais.',
+      p3_proto: 'Prototipagem Rápida',
+      pillar4_title: 'Comunicação & Design Visual',
+      pillar4_desc: 'Jornalismo, redação publicitária e design visual convergindo para transformar tópicos técnicos complexos em narrativas visualmente ricas e fáceis de memorizar.',
+      p4_scripting: 'Roteirização',
+      p4_video: 'Vídeo Instrucional',
+      lang_card_title: 'Idiomas',
+      lang_pt_name: 'Português',
+      lang_pt_level: 'Nativo',
+      lang_en_name: 'Inglês',
+      lang_en_level: 'Fluente · C1/C2',
+      lang_es_name: 'Espanhol',
+      lang_es_level: 'Intermediário',
+
+      contact_eyebrow: 'Vamos Conversar',
+      contact_title: 'Pronto para <span>colaborar</span>?',
+      contact_desc: 'Seja para projetos estratégicos de L&D, implantação de LMS, desenho de currículos com IA ou novas posições sênior — estou à disposição.',
+      contact_btn_email: 'Enviar E-mail',
+      contact_btn_cv: 'Baixar CV em PDF',
+      footer_role: 'Erick Vasconcelos — Senior ISD & LXD'
     }
   };
+
+  // Bilingual Modal Cases Data
+  const casesData = {
+    en: {
+      1: {
+        icon: '🏥',
+        bg: 'linear-gradient(135deg,#0a2020,#0f1a2e,#1a0f2e)',
+        tags: [
+          { l: 'Storyline 360', c: 'tag-teal' },
+          { l: 'Variables & Logic', c: 'tag-indigo' },
+          { l: 'BPO Scale', c: 'tag-amber' },
+          { l: 'Branching Simulation', c: 'tag-emerald' }
+        ],
+        title: 'Clinical Compliance Triage Simulator (Storyline 360 & Variables)',
+        challenge: 'A healthcare BPO operation faced elevated error rates in clinical call triage, generating significant regulatory compliance risks (HIPAA) and degrading service SLAs. Traditional training, centered on static SOP documents, failed to build the real-time clinical judgment required for high-stakes decisions under time pressure.',
+        strategy: 'Scenario-Based Learning featuring a multi-path branching decision architecture, rooted in Malcolm Knowles\' principles of adult learning (andragogy). The design prioritized authentic, immediate operational consequences for every learner decision, reinforcing clinical critical thinking rather than passive memorization.',
+        solution: 'Built in Articulate Storyline 360 utilizing advanced variables, conditional logic, and state transitions. The simulator delivers 12 unique clinical pathways with 3+ decision branches per case, instrumented for learner tracking via xAPI/LRS. Features scored telemetry, contextual feedback, and a real-time compliance gap report for managers.'
+      },
+      2: {
+        icon: '🤖',
+        bg: 'linear-gradient(135deg,#0a1a12,#0a1120,#150d28)',
+        tags: [
+          { l: 'GenAI Workflows', c: 'tag-emerald' },
+          { l: 'LLM Parsing', c: 'tag-purple' },
+          { l: 'TikTok LATAM', c: 'tag-indigo' },
+          { l: 'Prompt Engineering', c: 'tag-teal' }
+        ],
+        title: 'Agile Continuing Education Ecosystem with GenAI (TikTok)',
+        challenge: 'At TikTok Trust & Safety LATAM, curricula needed to update in under 48 hours following revisions to dense, hundred-page global policy documents. These needed to be translated into bite-sized micromodules for 1,500+ moderators across multiple languages. Manual instructional production could not match this velocity or scale.',
+        strategy: 'A continuous learning pipeline structured around bi-weekly agile sprints, incorporating Generative AI as an instructional co-pilot. The methodology married structured prompt engineering with expert human oversight (ISD as subject-matter curator), preserving strict regulatory accuracy while maximizing speed.',
+        solution: 'Engineered an LLM pipeline (GPT-4/Claude) using structured prompt templates for: (1) semantic parsing and policy decomposition; (2) extraction of core learning objectives; (3) rapid storyboarding for Rise 360 micromodules; (4) automated scenario question banks. Delivered a ~70% reduction in production turnaround with simultaneous multi-language support (PT, EN, ES).'
+      },
+      3: {
+        icon: '🚀',
+        bg: 'linear-gradient(135deg,#16160a,#0f172a,#0a1f18)',
+        tags: [
+          { l: 'LMS Deployment', c: 'tag-indigo' },
+          { l: 'Beedoo', c: 'tag-teal' },
+          { l: 'Kirkpatrick L2', c: 'tag-amber' },
+          { l: 'Sales Enablement', c: 'tag-emerald' }
+        ],
+        title: 'LMS Infrastructure Modernization & Rollout (99/Beedoo)',
+        challenge: '99 lacked a unified L&D infrastructure for its commercial sales team — training sessions were fragmented with no traceability of business impact. The organization needed a complete corporate LMS deployment from ground zero, content migration, structured learning paths, and robust evaluation mechanisms aligned with commercial KPIs.',
+        strategy: 'A phased rollout model (MVP → Scaled Expansion) leveraging ADDIE as project management framework alongside Change Management principles (PROSCI/ADKAR) to foster high adoption among field reps and leadership. Structured a Kirkpatrick Level 2 assessment model tied directly to sales pipeline velocity metrics.',
+        solution: 'Full-cycle rollout of LMS Beedoo: tenant provisioning, taxonomy and track structuring, HRIS integration, and legacy content migration. Authored custom interactive modules in Storyline 360 and Rise 360. Deployed Kirkpatrick L2 pre/post dashboards pinpointing knowledge gaps by sales segment and correlating scores with conversion metrics.'
+      }
+    },
+    pt: {
+      1: {
+        icon: '🏥',
+        bg: 'linear-gradient(135deg,#0a2020,#0f1a2e,#1a0f2e)',
+        tags: [
+          { l: 'Storyline 360', c: 'tag-teal' },
+          { l: 'Variáveis & Condicionais', c: 'tag-indigo' },
+          { l: 'BPO Scale', c: 'tag-amber' },
+          { l: 'Simulação Ramificada', c: 'tag-emerald' }
+        ],
+        title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360 & Variáveis)',
+        challenge: 'Uma operação de BPO de saúde enfrentava altas taxas de erro na triagem de chamadas clínicas, com riscos de conformidade regulatória (HIPAA) e impacto direto no SLA de atendimento. O treinamento tradicional, baseado em leitura de procedimentos estáticos, não desenvolvia o julgamento clínico necessário para decisões complexas em tempo real sob pressão.',
+        strategy: 'Aprendizagem baseada em cenários (Scenario-Based Learning) com arquitetura de decisão ramificada, fundamentada nos princípios de andragogia de Malcolm Knowles. A estratégia priorizou a criação de consequências realistas e imediatas para cada decisão do aprendiz, reforçando o raciocínio clínico em vez de memorização mecânica.',
+        solution: 'Desenvolvido em Articulate Storyline 360 com uso avançado de variáveis, condicionais e estados de objetos. O simulador apresenta 12 cenários clínicos únicos com mais de 3 ramificações por decisão, rastreando o desempenho do aprendiz via xAPI/LRS. Inclui sistema de pontuação, feedback contextualizado e relatório de lacunas de conformidade para o gestor.'
+      },
+      2: {
+        icon: '🤖',
+        bg: 'linear-gradient(135deg,#0a1a12,#0a1120,#150d28)',
+        tags: [
+          { l: 'GenAI Workflows', c: 'tag-emerald' },
+          { l: 'LLM Parsing', c: 'tag-purple' },
+          { l: 'TikTok LATAM', c: 'tag-indigo' },
+          { l: 'Prompt Engineering', c: 'tag-teal' }
+        ],
+        title: 'Ecossistema Ágil de Educação Continuada com GenAI (TikTok)',
+        challenge: 'No TikTok Trust & Safety LATAM, o currículo precisava se atualizar em menos de 48h sempre que políticas corporativas globais eram revisadas — documentos técnicos densos de centenas de páginas que deveriam ser transformados em micromódulos consumíveis por 1.500+ moderadores em múltiplos idiomas. O processo manual era inviável em escala e velocidade.',
+        strategy: 'Pipeline de educação contínua baseado em ciclos ágeis bi-semanais (sprints de conteúdo), integrando IA Generativa como copiloto de produção instrucional. A estratégia combinou engenharia de prompt avançada com revisão humana especializada (ISD como curador), garantindo precisão regulatória sem abrir mão da agilidade.',
+        solution: 'Pipeline construído com LLMs (GPT-4/Claude) via prompt engineering estruturado para: (1) parsing e segmentação semântica de políticas; (2) extração de pontos de aprendizagem críticos; (3) geração de roteiros para micromodules em Rise 360; (4) criação de question banks. Redução de ~70% no tempo de produção e cobertura simultânea em PT, EN e ES.'
+      },
+      3: {
+        icon: '🚀',
+        bg: 'linear-gradient(135deg,#16160a,#0f172a,#0a1f18)',
+        tags: [
+          { l: 'LMS Deployment', c: 'tag-indigo' },
+          { l: 'Beedoo', c: 'tag-teal' },
+          { l: 'Kirkpatrick L2', c: 'tag-amber' },
+          { l: 'Cap. Comercial', c: 'tag-emerald' }
+        ],
+        title: 'Modernização de Infraestrutura e Implementação de LMS (99/Beedoo)',
+        challenge: 'A 99 não possuía infraestrutura centralizada de T&D para sua força comercial — os treinamentos ocorriam de forma desorganizada e sem rastreabilidade de impacto. Era necessário implantar um LMS corporativo do zero, migrar conteúdos dispersos, estruturar trilhas de aprendizagem e criar mecanismos de avaliação alinhados ao negócio.',
+        strategy: 'Modelo de implementação em fases (MVP → Expansão), utilizando ADDIE como framework de projeto e metodologia de Gestão de Mudança (PROSCI/ADKAR) para garantir adoção do LMS pelas equipes de campo e liderança. Framework de avaliação baseado em Kirkpatrick Nível 2 conectado a indicadores de performance comercial.',
+        solution: 'Implantação completa do LMS Beedoo: configuração de ambiente, estruturação de categorias e trilhas, integração com sistemas de RH e migração de conteúdos legados. Desenvolvimento de módulos em Storyline 360 e Rise 360. Dashboard de métricas Kirkpatrick L2 com pré/pós-avaliação, mapeando lacunas por segmento e correlacionando com KPIs comerciais.'
+      }
+    }
+  };
+
+  let currentLang = 'en';
+
+  function applyLanguage(lang) {
+    currentLang = lang === 'pt' ? 'pt' : 'en';
+    document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+
+    // Update active badges in nav toggle button
+    const enBadge = document.getElementById('lang-en-badge');
+    const ptBadge = document.getElementById('lang-pt-badge');
+    if (enBadge && ptBadge) {
+      if (currentLang === 'pt') {
+        enBadge.classList.remove('active');
+        ptBadge.classList.add('active');
+      } else {
+        enBadge.classList.add('active');
+        ptBadge.classList.remove('active');
+      }
+    }
+
+    // Update elements with textContent
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18nData[currentLang] && i18nData[currentLang][key] !== undefined) {
+        el.textContent = i18nData[currentLang][key];
+      }
+    });
+
+    // Update elements with innerHTML
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (i18nData[currentLang] && i18nData[currentLang][key] !== undefined) {
+        el.innerHTML = i18nData[currentLang][key];
+      }
+    });
+
+    // Persist choice
+    localStorage.setItem('ev_lang_pref', currentLang);
+  }
+
+  // Language toggle click listener
+  const langToggleBtn = document.getElementById('lang-toggle');
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener('click', () => {
+      applyLanguage(currentLang === 'en' ? 'pt' : 'en');
+    });
+  }
+
+  // Initialize language (Default: English)
+  const savedLang = localStorage.getItem('ev_lang_pref') || 'en';
+  applyLanguage(savedLang);
 
   // Modal handlers
   const modal = document.getElementById('case-modal');
@@ -1363,7 +1800,8 @@
   const closeBtn = document.getElementById('modal-close-btn');
 
   function openModal(id) {
-    const d = cases[id];
+    const dataset = casesData[currentLang] || casesData.en;
+    const d = dataset[id];
     if (!d) return;
     document.getElementById('modal-cover').style.background = d.bg;
     document.getElementById('modal-icon').textContent = d.icon;
