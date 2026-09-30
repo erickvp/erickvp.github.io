@@ -572,7 +572,7 @@
       border-radius: 50%;
       background: rgba(20, 184, 166, .1);
       color: var(--c-accent);
-      margin-top: 6px;
+      margin-top: 8px;
       transition: transform .3s, background .3s;
     }
     .exp-toggle.expanded .exp-chevron {
@@ -587,10 +587,39 @@
     }
     .exp-detail.open { max-height: 900px; opacity: 1; }
 
+    /* Experience Header Alignment & Responsiveness */
+    .exp-header-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+    }
+    .exp-header-info {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .exp-bullets {
+      margin-left: 58px;
+    }
+    .exp-detail-inner {
+      margin-left: 58px;
+    }
+    @media (max-width: 640px) {
+      .exp-header-row {
+        flex-wrap: wrap;
+        gap: 10px 14px;
+      }
+      .exp-bullets,
+      .exp-detail-inner {
+        margin-left: 0 !important;
+      }
+    }
+
     /* Consolidated Date Badge */
     .exp-date-badge {
       display: inline-flex;
       align-items: center;
+      flex-shrink: 0;
       gap: 5px;
       padding: 4px 12px;
       border-radius: 999px;
@@ -610,40 +639,75 @@
       border-color: rgba(13, 148, 136, 0.25);
     }
 
-    /* Company Logo Wrap */
+    /* Company Logo Wrap & Monograms */
     .company-logo-wrap {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid var(--c-border);
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(51, 65, 85, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      padding: 7px;
-      transition: all .3s;
       overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
     }
     html.light .company-logo-wrap {
-      background: #ffffff;
-      border-color: rgba(203, 213, 225, .9);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
-    .company-logo-wrap svg,
-    .company-logo-wrap img {
+    .company-logo-wrap:hover,
+    .exp-toggle:hover .company-logo-wrap {
+      border-color: rgba(45, 212, 191, 0.45);
+      background: rgba(30, 41, 59, 0.65);
+    }
+    html.light .company-logo-wrap:hover,
+    html.light .exp-toggle:hover .company-logo-wrap {
+      border-color: rgba(20, 184, 166, 0.45);
+      background: #ffffff;
+    }
+    .company-logo-wrap img,
+    .company-logo-wrap svg {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      padding: 4px;
       display: block;
-      transition: filter .3s ease;
-    }
-    /* Monochromatic logo adaptation for light and dark themes */
-    html.dark .company-logo-wrap img {
-      filter: grayscale(1) invert(1) brightness(1.6);
-    }
-    html.light .company-logo-wrap img {
       filter: grayscale(1);
+      opacity: 0.75;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .company-logo-wrap:hover img,
+    .company-logo-wrap:hover svg,
+    .exp-toggle:hover .company-logo-wrap img,
+    .exp-toggle:hover .company-logo-wrap svg {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+    .company-monogram {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+      color: var(--c-text-strong);
+      opacity: 0.85;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .company-monogram.sm {
+      font-size: 0.72rem;
+      letter-spacing: 0.01em;
+    }
+    .company-logo-wrap:hover .company-monogram,
+    .exp-toggle:hover .company-logo-wrap .company-monogram {
+      color: var(--c-accent2);
+      opacity: 1;
     }
 
     /* Skill Pillars */
@@ -925,7 +989,10 @@
             </div>
           </div>
         </div>
-        <div class="absolute -top-4 -right-4 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg" style="background:linear-gradient(135deg,#6366f1,#a855f7);box-shadow:0 4px 20px rgba(99,102,241,.35)">🤖 GenAI Expert</div>
+        <div class="absolute -top-4 -right-4 text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5" style="background:linear-gradient(135deg,#6366f1,#a855f7);box-shadow:0 4px 20px rgba(99,102,241,.35)">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          <span>GenAI Specialist</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1104,18 +1171,18 @@
       <div class="timeline-item reveal">
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-99" aria-expanded="false" aria-controls="exp-detail-99">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="exp-header-row mb-2">
                 <div class="company-logo-wrap" title="99">
-                  <img src="assets/logos/logo-99.png" alt="Logo 99" width="48" height="48" loading="lazy">
+                  <img src="assets/logos/logo-99.png" alt="Logo 99" width="44" height="44" loading="lazy">
                 </div>
-                <div>
+                <div class="exp-header-info">
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_99_role">Senior Training Specialist</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_99_loc">99 · São Paulo, Brazil</div>
                 </div>
                 <span class="exp-date-badge" data-i18n="exp_99_date">Nov 2025 – Jun 2026</span>
               </div>
-              <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_99_b1">• End-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the entire commercial sales force.</li>
                 <li data-i18n-html="exp_99_b2">• Structured a <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> metrics framework to evaluate learning transfer.</li>
               </ul>
@@ -1123,7 +1190,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-99">
-            <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_99_p1">At 99, I led the complete modernization of the training infrastructure, managing the end-to-end deployment of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> from scratch — from stakeholder scope alignment to catalog curation and custom learning path architecture.</p>
               <p data-i18n-html="exp_99_p2">Developed and delivered the <strong style="color:var(--c-text-strong)">commercial sales enablement</strong> program, designing modules aligned with sales playbooks and driver-partner onboarding. Designed an assessment framework based on <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> to measure skill transfer and impact on the commercial pipeline.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1138,18 +1205,18 @@
       <div class="timeline-item reveal" style="transition-delay:.1s">
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-tiktok" aria-expanded="false" aria-controls="exp-detail-tiktok">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="exp-header-row mb-2">
                 <div class="company-logo-wrap" title="TikTok">
-                  <img src="assets/logos/logo-tiktok.png" alt="Logo TikTok" width="48" height="48" loading="lazy">
+                  <img src="assets/logos/logo-tiktok.png" alt="Logo TikTok" width="44" height="44" loading="lazy">
                 </div>
-                <div>
+                <div class="exp-header-info">
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_tiktok_role">Senior Instructional Designer</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_tiktok_loc">TikTok · LATAM (Remote)</div>
                 </div>
                 <span class="exp-date-badge" data-i18n="exp_tiktok_date">Apr 2022 – Aug 2025</span>
               </div>
-              <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_tiktok_b1">• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.</li>
                 <li data-i18n-html="exp_tiktok_b2">• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.</li>
               </ul>
@@ -1157,7 +1224,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-tiktok">
-            <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_tiktok_p1">Principal ISD for TikTok's LATAM Trust &amp; Safety team, responsible for <strong style="color:var(--c-text-strong)">architecting and delivering curricula</strong> for 1,500+ moderators across multiple countries and time zones.</p>
               <p data-i18n-html="exp_tiktok_p2">Engineered <strong style="color:var(--c-text-strong)">Generative AI pipelines</strong> using LLMs to automate semantic parsing and pedagogical translation of dense global regulatory guidelines, accelerating content production time by ~70%.</p>
               <p data-i18n-html="exp_tiktok_p3">Established bi-weekly agile cadences (instructional content sprints) and hands-on workshops with technical leaders, ensuring real-time alignment with rapid policy revisions.</p>
@@ -1173,18 +1240,18 @@
       <div class="timeline-item reveal" style="transition-delay:.2s">
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-avenuecode" aria-expanded="false" aria-controls="exp-detail-avenuecode">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="exp-header-row mb-2">
                 <div class="company-logo-wrap" title="Avenue Code">
-                  <img src="assets/logos/logo-avenuecode.png" alt="Logo Avenue Code" width="48" height="48" loading="lazy">
+                  <span class="company-monogram">AC</span>
                 </div>
-                <div>
+                <div class="exp-header-info">
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ac_role">Senior Instructional Designer</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ac_loc">Avenue Code · São Paulo (Hybrid)</div>
                 </div>
                 <span class="exp-date-badge" data-i18n="exp_ac_date">Mar 2021 – Mar 2022</span>
               </div>
-              <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_ac_b1">• Strategic learning consultancy in <strong style="color:var(--c-text-strong)">digital transformation</strong> and agile upskilling for enterprise clients.</li>
                 <li data-i18n-html="exp_ac_b2">• Key project: enterprise Scrum upskilling curriculum for <strong style="color:var(--c-text-strong)">Braskem</strong>.</li>
               </ul>
@@ -1192,7 +1259,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-avenuecode">
-            <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_ac_p1">Served as Senior ISD on enterprise digital transformation learning initiatives, collaborating directly with large multinational accounts to redesign cultural and technical competencies.</p>
               <p data-i18n-html="exp_ac_p2">Key highlight: <strong style="color:var(--c-text-strong)">enterprise Scrum and agile upskilling program for Braskem</strong>, designing interactive paths in Articulate Rise 360 integrated with scenario assessments based on live business challenges.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1207,18 +1274,18 @@
       <div class="timeline-item reveal" style="transition-delay:.3s">
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-ttec" aria-expanded="false" aria-controls="exp-detail-ttec">
-            <div class="flex-1">
-              <div class="flex flex-wrap items-center gap-4 mb-2">
+            <div class="flex-1 min-w-0">
+              <div class="exp-header-row mb-2">
                 <div class="company-logo-wrap" title="TTEC">
-                  <img src="assets/logos/logo-ttec.png" alt="Logo TTEC" width="48" height="48" loading="lazy">
+                  <span class="company-monogram">TT</span>
                 </div>
-                <div>
+                <div class="exp-header-info">
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ttec_role">Instructional Designer &amp; KMS Specialist</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ttec_loc">TTEC · Remote (US/Global)</div>
                 </div>
                 <span class="exp-date-badge" data-i18n="exp_ttec_date">Jul 2019 – Mar 2021</span>
               </div>
-              <ul class="text-sm space-y-1.5 ml-14 mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_ttec_b1">• Knowledge management across global enterprise accounts: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.</li>
                 <li data-i18n-html="exp_ttec_b2">• Bilingual KMS architecture for highly regulated environments (HIPAA) at international scale.</li>
               </ul>
@@ -1226,7 +1293,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-ttec">
-            <div class="ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_ttec_p1">ISD and Knowledge Management Specialist for mission-critical BPO operations, leading strategic accounts across financial and healthcare verticals.</p>
               <p data-i18n-html="exp_ttec_p2">For <strong style="color:var(--c-text-strong)">Mastercard</strong>: structured standard operating procedures, call scripts, and bilingual training tracks. For <strong style="color:var(--c-text-strong)">Kaiser Permanente</strong>: established a HIPAA-compliant clinical knowledge base with branching simulations and interactive compliance modules.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1241,7 +1308,7 @@
       <div class="timeline-item reveal" style="transition-delay:.4s">
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-other" aria-expanded="false" aria-controls="exp-detail-other">
-            <div class="flex-1">
+            <div class="flex-1 min-w-0">
               <div class="font-bold text-sm mb-1" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_other_title">Additional Professional Experience</div>
               <p style="color:var(--c-text-muted)" class="text-xs" data-i18n="exp_other_sub">ReFrame Learning · BTG Agência · UFPE (Teaching Practicum)</p>
             </div>
@@ -1252,51 +1319,45 @@
 
               <!-- ReFrame Learning -->
               <div class="flex items-start gap-4">
-                <div class="company-logo-wrap" style="width:44px;height:44px;padding:8px" title="ReFrame Learning">
-                  <svg viewBox="0 0 23 26" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-label="ReFrame Learning">
-                    <path d="M10.0678 16.7908L6.20318 16.7659L6.15355 25.5812L0 25.5439L0.148876 0L11.3146 0.0622112C17.8527 0.0995379 21.1901 2.8866 21.159 8.4234C21.1342 12.3427 19.2981 14.8871 16.06 16.0567L22.5423 25.208V25.6746L15.4087 25.631L10.0678 16.7846V16.7908ZM6.27141 5.18841L6.23419 12.0005L10.8183 12.0254C13.7897 12.0441 15.0675 10.9865 15.0861 8.60381C15.0985 6.22112 13.9199 5.23196 10.8618 5.2133L6.27762 5.18841H6.27141Z" fill="currentColor"/>
-                  </svg>
+                <div class="company-logo-wrap" title="ReFrame Learning">
+                  <span class="company-monogram">RF</span>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                   <div class="flex flex-wrap items-center justify-between gap-2">
                     <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_ref_role">ReFrame Learning · Instructional Designer</div>
                     <span class="exp-date-badge">2018 – 2019</span>
                   </div>
-                  <div class="text-xs mb-1.5" style="color:var(--c-accent)" data-i18n="exp_ref_sub">EdTech Startup · Remote</div>
+                  <div class="text-xs mb-1.5 font-medium" style="color:var(--c-accent)" data-i18n="exp_ref_sub">EdTech Startup · Remote</div>
                   <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_ref_desc">Instructional design for corporate learning platforms, focusing on microlearning, gamified interactive journeys, and self-paced modular architectures.</p>
                 </div>
               </div>
 
               <!-- BTG Agência -->
               <div class="flex items-start gap-4">
-                <div class="company-logo-wrap" style="width:44px;height:44px;padding:4px" title="BTG Agência">
-                  <svg viewBox="0 0 44 44" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-label="Logo BTG Agência">
-                    <rect width="44" height="44" rx="10" fill="currentColor" opacity="0.08"/>
-                    <text x="22" y="22" font-family="'Plus Jakarta Sans',sans-serif" font-size="12" font-weight="800" fill="currentColor" text-anchor="middle" letter-spacing="0.5">BTG</text>
-                    <text x="22" y="32" font-family="'Plus Jakarta Sans',sans-serif" font-size="6" font-weight="600" fill="currentColor" opacity="0.65" text-anchor="middle" letter-spacing="1.5">AGÊNCIA</text>
-                  </svg>
+                <div class="company-logo-wrap" title="BTG Agência">
+                  <span class="company-monogram sm">BTG</span>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                   <div class="flex flex-wrap items-center justify-between gap-2">
                     <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_btg_role">BTG Agência · Social Media Analyst &amp; Copywriter</div>
                     <span class="exp-date-badge">2016 – 2018</span>
                   </div>
-                  <div class="text-xs mb-1.5" style="color:var(--c-accent)" data-i18n="exp_btg_sub">Communication, Content &amp; Digital Media</div>
+                  <div class="text-xs mb-1.5 font-medium" style="color:var(--c-accent)" data-i18n="exp_btg_sub">Communication, Content &amp; Digital Media</div>
                   <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_btg_desc">Development of advertising narratives, creative copywriting for corporate brands, strategic digital content planning, and audience engagement analysis.</p>
                 </div>
               </div>
 
               <!-- UFPE Estágio de Docência -->
               <div class="flex items-start gap-4">
-                <div class="company-logo-wrap" style="width:44px;height:44px;padding:4px" title="UFPE - Estágio de Docência">
+                <div class="company-logo-wrap" title="UFPE - Estágio de Docência">
                   <img src="assets/logos/logo-ufpe.png" alt="Logo UFPE" width="44" height="44" loading="lazy">
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                   <div class="flex flex-wrap items-center justify-between gap-2">
                     <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_ufpe_role">UFPE · Higher Education Teaching Practicum</div>
                     <span class="exp-date-badge">Recife, PE</span>
                   </div>
-                  <div class="text-xs mb-1.5" style="color:var(--c-accent)" data-i18n="exp_ufpe_sub">Graduate Program in Communication (PPGCOM/UFPE)</div>
+                  <div class="text-xs mb-1.5 font-medium" style="color:var(--c-accent)" data-i18n="exp_ufpe_sub">Graduate Program in Communication (PPGCOM/UFPE)</div>
                   <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_ufpe_desc">Facilitation of theoretical and practical undergraduate lectures, active learning methodologies, syllabus design, and mentoring academic capstone projects.</p>
                 </div>
               </div>
