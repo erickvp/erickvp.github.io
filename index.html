@@ -687,6 +687,18 @@
       filter: grayscale(0);
       opacity: 1;
     }
+    .company-logo-wrap .logo-dark {
+      display: block;
+    }
+    .company-logo-wrap .logo-light {
+      display: none;
+    }
+    html.light .company-logo-wrap .logo-light {
+      display: block !important;
+    }
+    html.light .company-logo-wrap .logo-dark {
+      display: none !important;
+    }
     .company-monogram {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 800;
@@ -1208,7 +1220,8 @@
             <div class="flex-1 min-w-0">
               <div class="exp-header-row mb-2">
                 <div class="company-logo-wrap" title="TikTok">
-                  <img src="assets/logos/logo-tiktok.png" alt="Logo TikTok" width="44" height="44" loading="lazy">
+                  <img src="assets/logos/logo-tiktok.png" class="logo-light" alt="Logo TikTok" width="44" height="44" loading="lazy">
+                  <img src="assets/logos/logo-tiktok-dark.png" class="logo-dark" alt="Logo TikTok" width="44" height="44" loading="lazy">
                 </div>
                 <div class="exp-header-info">
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_tiktok_role">Senior Instructional Designer</div>
@@ -1243,7 +1256,8 @@
             <div class="flex-1 min-w-0">
               <div class="exp-header-row mb-2">
                 <div class="company-logo-wrap" title="Avenue Code">
-                  <span class="company-monogram">AC</span>
+                  <img src="assets/logos/logo-avenuecode.png" class="logo-light" alt="Logo Avenue Code" width="44" height="44" loading="lazy">
+                  <img src="assets/logos/logo-avenuecode-dark.png" class="logo-dark" alt="Logo Avenue Code" width="44" height="44" loading="lazy">
                 </div>
                 <div class="exp-header-info">
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ac_role">Senior Instructional Designer</div>
@@ -1277,7 +1291,8 @@
             <div class="flex-1 min-w-0">
               <div class="exp-header-row mb-2">
                 <div class="company-logo-wrap" title="TTEC">
-                  <span class="company-monogram">TT</span>
+                  <img src="assets/logos/logo-ttec.png" class="logo-light" alt="Logo TTEC" width="44" height="44" loading="lazy">
+                  <img src="assets/logos/logo-ttec-dark.png" class="logo-dark" alt="Logo TTEC" width="44" height="44" loading="lazy">
                 </div>
                 <div class="exp-header-info">
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ttec_role">Instructional Designer &amp; KMS Specialist</div>
