@@ -231,6 +231,20 @@
       color: var(--c-accent2);
       transform: translateY(-2px);
     }
+    @media (max-width: 640px) {
+      .btn-primary,
+      .btn-outline {
+        padding: 9px 14px;
+        font-size: 0.75rem;
+        gap: 6px;
+        white-space: nowrap;
+      }
+      .btn-primary svg,
+      .btn-outline svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
     .btn-pdf {
       display: inline-flex;
       align-items: center;
@@ -608,19 +622,39 @@
       min-width: 0;
     }
     .exp-bullets {
-      margin-left: 58px;
+      margin-left: 56px;
     }
     .exp-detail-inner {
-      margin-left: 58px;
+      margin-left: 56px;
     }
     @media (max-width: 640px) {
+      .exp-toggle {
+        gap: 10px;
+      }
       .exp-header-row {
+        align-items: flex-start;
         flex-wrap: wrap;
-        gap: 10px 14px;
+        gap: 4px 12px;
+      }
+      .exp-header-info {
+        flex: 1 1 calc(100% - 60px);
+      }
+      .exp-date-badge {
+        font-size: 0.7rem;
+        padding: 2px 10px;
+      }
+      .exp-header-row .exp-date-badge {
+        order: 3;
+        margin-left: 56px;
+        margin-top: 4px;
+        width: fit-content;
       }
       .exp-bullets,
       .exp-detail-inner {
         margin-left: 0 !important;
+      }
+      .exp-chevron {
+        margin-top: 4px;
       }
     }
 
@@ -936,19 +970,19 @@
       <div class="badge-pill mb-8" style="animation:fadeIn .6s ease-out .1s both" data-i18n-html="hero_badge">
         <span class="dot"></span> Available for Senior Opportunities
       </div>
-      <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif;animation:fadeUp .7s ease-out .2s both" data-i18n-html="hero_title">
+      <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif;animation:fadeUp .7s ease-out .2s both" data-i18n-html="hero_title">
         Learning Architecture at Scale,<br/>
-        <span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Data &amp; Applied AI</span>
+        <span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Data &amp; Applied&nbsp;AI</span>
       </h1>
-      <p style="color:var(--c-text);animation:fadeUp .7s ease-out .35s both" class="text-lg lg:text-xl max-w-2xl leading-relaxed mb-8" data-i18n-html="hero_desc">
+      <p style="color:var(--c-text);animation:fadeUp .7s ease-out .35s both" class="text-lg lg:text-xl max-w-2xl leading-relaxed mb-6" data-i18n-html="hero_desc">
         Senior Instructional Designer &amp; Learning Experience Designer with <strong style="color:var(--c-text-strong);font-weight:600">9+ years</strong> in high technical density environments and large-scale operations (ex-TikTok, 99). Specialist in translating complex ecosystems and regulations into scalable learning solutions, with active integration of <span style="color:var(--c-accent2);font-weight:600">LLMs and modern AI workflows</span>.
       </p>
-      <div class="flex flex-wrap gap-4" style="animation:fadeUp .7s ease-out .45s both">
-        <a href="#cases" class="btn-primary" id="hero-explore-btn" data-i18n-html="hero_btn_explore">
+      <div class="flex flex-row items-center gap-2 sm:gap-4 mt-6" style="animation:fadeUp .7s ease-out .45s both">
+        <a href="#cases" class="btn-primary px-3.5 py-2.5 text-xs sm:text-sm sm:px-6 sm:py-3 whitespace-nowrap" id="hero-explore-btn" data-i18n-html="hero_btn_explore">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           Explore Projects
         </a>
-        <a href="https://www.linkedin.com/in/erick-vasconcelos" target="_blank" rel="noopener" class="btn-outline" id="hero-linkedin-btn" data-i18n-html="hero_btn_linkedin">
+        <a href="https://www.linkedin.com/in/erick-vasconcelos" target="_blank" rel="noopener" class="btn-outline px-3.5 py-2.5 text-xs sm:text-sm sm:px-6 sm:py-3 whitespace-nowrap" id="hero-linkedin-btn" data-i18n-html="hero_btn_linkedin">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           Connect on LinkedIn
         </a>
@@ -1189,7 +1223,7 @@
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-99" aria-expanded="false" aria-controls="exp-detail-99">
             <div class="flex-1 min-w-0">
-              <div class="exp-header-row mb-2">
+              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
                 <div class="company-logo-wrap" title="99">
                   <img src="assets/logos/logo-99.png" alt="Logo 99" width="44" height="44" loading="lazy">
                 </div>
@@ -1197,9 +1231,9 @@
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_99_role">Senior Training Specialist</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_99_loc">99</div>
                 </div>
-                <span class="exp-date-badge" data-i18n="exp_99_date">Nov 2025 – Jun 2026</span>
+                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_99_date">Nov 2025 – Jun 2026</span>
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_99_b1">• End-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the entire commercial sales force.</li>
                 <li data-i18n-html="exp_99_b2">• Structured a <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> metrics framework to evaluate learning transfer.</li>
               </ul>
@@ -1207,7 +1241,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-99">
-            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_99_p1">At 99, I led the complete modernization of the training infrastructure, managing the end-to-end deployment of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> from scratch — from stakeholder scope alignment to catalog curation and custom learning path architecture.</p>
               <p data-i18n-html="exp_99_p2">Developed and delivered the <strong style="color:var(--c-text-strong)">commercial sales enablement</strong> program, designing modules aligned with sales playbooks and driver-partner onboarding. Designed an assessment framework based on <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> to measure skill transfer and impact on the commercial pipeline.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1223,7 +1257,7 @@
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-tiktok" aria-expanded="false" aria-controls="exp-detail-tiktok">
             <div class="flex-1 min-w-0">
-              <div class="exp-header-row mb-2">
+              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
                 <div class="company-logo-wrap" title="TikTok">
                   <img src="assets/logos/logo-tiktok.png" class="logo-light" alt="Logo TikTok" width="44" height="44" loading="lazy">
                   <img src="assets/logos/logo-tiktok-dark.png" class="logo-dark" alt="Logo TikTok" width="44" height="44" loading="lazy">
@@ -1232,9 +1266,9 @@
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_tiktok_role">Senior Instructional Designer</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_tiktok_loc">TikTok</div>
                 </div>
-                <span class="exp-date-badge" data-i18n="exp_tiktok_date">Apr 2022 – Aug 2025</span>
+                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_tiktok_date">Apr 2022 – Aug 2025</span>
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_tiktok_b1">• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.</li>
                 <li data-i18n-html="exp_tiktok_b2">• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.</li>
               </ul>
@@ -1242,7 +1276,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-tiktok">
-            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_tiktok_p1">Principal ISD for TikTok's LATAM Trust &amp; Safety team, responsible for <strong style="color:var(--c-text-strong)">architecting and delivering curricula</strong> for 1,500+ moderators across multiple countries and time zones.</p>
               <p data-i18n-html="exp_tiktok_p2">Engineered <strong style="color:var(--c-text-strong)">Generative AI pipelines</strong> using LLMs to automate semantic parsing and pedagogical translation of dense global regulatory guidelines, accelerating content production time by ~70%.</p>
               <p data-i18n-html="exp_tiktok_p3">Established bi-weekly agile cadences (instructional content sprints) and hands-on workshops with technical leaders, ensuring real-time alignment with rapid policy revisions.</p>
@@ -1259,7 +1293,7 @@
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-avenuecode" aria-expanded="false" aria-controls="exp-detail-avenuecode">
             <div class="flex-1 min-w-0">
-              <div class="exp-header-row mb-2">
+              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
                 <div class="company-logo-wrap" title="Avenue Code">
                   <img src="assets/logos/logo-avenuecode.png" class="logo-light" alt="Logo Avenue Code" width="44" height="44" loading="lazy">
                   <img src="assets/logos/logo-avenuecode-dark.png" class="logo-dark" alt="Logo Avenue Code" width="44" height="44" loading="lazy">
@@ -1268,9 +1302,9 @@
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ac_role">Senior Instructional Designer</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ac_loc">Avenue Code</div>
                 </div>
-                <span class="exp-date-badge" data-i18n="exp_ac_date">Mar 2021 – Mar 2022</span>
+                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_ac_date">Mar 2021 – Mar 2022</span>
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_ac_b1">• Strategic learning consultancy in <strong style="color:var(--c-text-strong)">digital transformation</strong> and agile upskilling for enterprise clients.</li>
                 <li data-i18n-html="exp_ac_b2">• Key project: enterprise Scrum upskilling curriculum for <strong style="color:var(--c-text-strong)">Braskem</strong>.</li>
               </ul>
@@ -1278,7 +1312,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-avenuecode">
-            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_ac_p1">Served as Senior ISD on enterprise digital transformation learning initiatives, collaborating directly with large multinational accounts to redesign cultural and technical competencies.</p>
               <p data-i18n-html="exp_ac_p2">Key highlight: <strong style="color:var(--c-text-strong)">enterprise Scrum and agile upskilling program for Braskem</strong>, designing interactive paths in Articulate Rise 360 integrated with scenario assessments based on live business challenges.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1294,7 +1328,7 @@
         <div class="card-base p-6">
           <button class="exp-toggle" id="exp-toggle-ttec" aria-expanded="false" aria-controls="exp-detail-ttec">
             <div class="flex-1 min-w-0">
-              <div class="exp-header-row mb-2">
+              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
                 <div class="company-logo-wrap" title="TTEC">
                   <img src="assets/logos/logo-ttec.png" class="logo-light" alt="Logo TTEC" width="44" height="44" loading="lazy">
                   <img src="assets/logos/logo-ttec-dark.png" class="logo-dark" alt="Logo TTEC" width="44" height="44" loading="lazy">
@@ -1303,9 +1337,9 @@
                   <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ttec_role">Instructional Designer and Knowledge Management Specialist</div>
                   <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ttec_loc">TTEC</div>
                 </div>
-                <span class="exp-date-badge" data-i18n="exp_ttec_date">Jul 2019 – Mar 2021</span>
+                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_ttec_date">Jul 2019 – Mar 2021</span>
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets mt-3" style="color:var(--c-text)">
+              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
                 <li data-i18n-html="exp_ttec_b1">• Knowledge management across global enterprise accounts: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.</li>
                 <li data-i18n-html="exp_ttec_b2">• Bilingual KMS architecture for highly regulated environments (HIPAA) at international scale.</li>
               </ul>
@@ -1313,7 +1347,7 @@
             <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-ttec">
-            <div class="exp-detail-inner mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_ttec_p1">ISD and Knowledge Management Specialist for mission-critical BPO operations, leading strategic accounts across financial and healthcare verticals.</p>
               <p data-i18n-html="exp_ttec_p2">For <strong style="color:var(--c-text-strong)">Mastercard</strong>: structured standard operating procedures, call scripts, and bilingual training tracks. For <strong style="color:var(--c-text-strong)">Kaiser Permanente</strong>: established a HIPAA-compliant clinical knowledge base with branching simulations and interactive compliance modules.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1616,7 +1650,7 @@
       nav_cv: 'Download CV',
 
       hero_badge: '<span class="dot"></span> Available for Senior Opportunities',
-      hero_title: 'Learning Architecture at Scale,<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Data &amp; Applied AI</span>',
+      hero_title: 'Learning Architecture at Scale,<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Data &amp; Applied&nbsp;AI</span>',
       hero_desc: 'Senior Instructional Designer &amp; Learning Experience Designer with <strong style="color:var(--c-text-strong);font-weight:600">9+ years</strong> in high technical density environments and large-scale operations (ex-TikTok, 99). Specialist in translating complex ecosystems and regulations into scalable learning solutions, with active integration of <span style="color:var(--c-accent2);font-weight:600">LLMs and modern AI workflows</span>.',
       hero_tag_master: "Master's UFPE",
       hero_btn_explore: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg> Explore Projects',
@@ -1771,7 +1805,7 @@
       nav_cv: 'Baixar CV',
 
       hero_badge: '<span class="dot"></span> Disponível para Oportunidades Sênior',
-      hero_title: 'Arquitetura de Aprendizagem em Escala,<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Dados &amp; IA Aplicada</span>',
+      hero_title: 'Arquitetura de Aprendizagem em Escala,<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Dados &amp; IA&nbsp;Aplicada</span>',
       hero_desc: 'Senior Instructional Designer &amp; Learning Experience Designer com <strong style="color:var(--c-text-strong);font-weight:600">9+ anos</strong> em ambientes de alta densidade técnica e grandes operações (ex-TikTok, 99). Especialista em traduzir ecossistemas complexos e regulações em soluções de aprendizagem escaláveis, com integração ativa de <span style="color:var(--c-accent2);font-weight:600">LLMs e fluxos modernos de IA</span>.',
       hero_tag_master: 'Mestre UFPE',
       hero_btn_explore: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg> Explorar Cases',
