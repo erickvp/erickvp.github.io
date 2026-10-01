@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { heading: ['"Plus Jakarta Sans"', 'sans-serif'], body: ['Inter', 'sans-serif'] } } } };
+    tailwind.config = { darkMode: 'class', theme: { extend: { spacing: { '13': '3.25rem' }, fontFamily: { heading: ['"Plus Jakarta Sans"', 'sans-serif'], body: ['Inter', 'sans-serif'] } } } };
   </script>
   <style>
     * { box-sizing: border-box; }
@@ -582,7 +582,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
       padding: 0;
     }
     .exp-chevron {
@@ -595,7 +595,7 @@
       border-radius: 50%;
       background: rgba(237, 106, 90, .1);
       color: var(--c-accent);
-      margin-top: 8px;
+      margin-top: 4px;
       transition: transform .3s, background .3s;
     }
     .exp-toggle.expanded .exp-chevron {
@@ -610,82 +610,44 @@
     }
     .exp-detail.open { max-height: 900px; opacity: 1; }
 
-    /* Experience Header Alignment & Responsiveness */
-    .exp-header-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      width: 100%;
-    }
-    .exp-header-info {
-      flex: 1 1 auto;
-      min-width: 0;
-    }
+    /* Bullets & detail indent matching w-10 (40px) + gap-3 (12px) = 52px (3.25rem = 13) */
     .exp-bullets {
-      margin-left: 56px;
+      padding-left: 0;
+      margin-left: 0;
     }
-    .exp-detail-inner {
-      margin-left: 56px;
-    }
-    @media (max-width: 640px) {
-      .exp-toggle {
-        gap: 10px;
-      }
-      .exp-header-row {
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 4px 12px;
-      }
-      .exp-header-info {
-        flex: 1 1 calc(100% - 60px);
-      }
-      .exp-date-badge {
-        font-size: 0.7rem;
-        padding: 2px 10px;
-      }
-      .exp-header-row .exp-date-badge {
-        order: 3;
-        margin-left: 56px;
-        margin-top: 4px;
-        width: fit-content;
-      }
+    @media (min-width: 640px) {
+      .sm\:pl-13,
       .exp-bullets,
       .exp-detail-inner {
-        margin-left: 0 !important;
+        padding-left: 3.25rem;
       }
-      .exp-chevron {
-        margin-top: 4px;
+    }
+    @media (max-width: 640px) {
+      .exp-bullets,
+      .exp-detail-inner {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
       }
     }
 
-    /* Consolidated Date Badge */
+    /* Clean metadata date style */
     .exp-date-badge {
       display: inline-flex;
       align-items: center;
       flex-shrink: 0;
-      gap: 5px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: .76rem;
-      font-weight: 600;
-      letter-spacing: .02em;
-      background: rgba(237, 106, 90, .12);
-      color: var(--c-accent2);
-      border: 1px solid rgba(237, 106, 90, .25);
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--c-text-muted);
+      background: transparent;
+      border: none;
+      padding: 0;
       white-space: nowrap;
-      margin-left: auto;
-      transition: all .2s ease;
-    }
-    html.light .exp-date-badge {
-      background: rgba(217, 83, 67, 0.08);
-      color: var(--c-accent);
-      border-color: rgba(217, 83, 67, 0.25);
     }
 
     /* Company Logo Wrap & Monograms */
     .company-logo-wrap {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       border-radius: 8px;
       background: rgba(33, 31, 38, 0.6);
       border: 1px solid var(--c-border);
@@ -717,7 +679,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      padding: 4px;
+      padding: 3px;
       display: block;
       filter: grayscale(1);
       opacity: 0.75;
@@ -1221,27 +1183,28 @@
       <!-- 99 -->
       <div class="timeline-item reveal">
         <div class="card-base p-6">
-          <button class="exp-toggle" id="exp-toggle-99" aria-expanded="false" aria-controls="exp-detail-99">
-            <div class="flex-1 min-w-0">
-              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
-                <div class="company-logo-wrap" title="99">
-                  <img src="assets/logos/logo-99.png" alt="Logo 99" width="44" height="44" loading="lazy">
-                </div>
-                <div class="exp-header-info">
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_99_role">Senior Training Specialist</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_99_loc">99</div>
-                </div>
-                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_99_date">Nov 2025 – Jun 2026</span>
+          <button class="exp-toggle flex items-start justify-between gap-3 w-full" id="exp-toggle-99" aria-expanded="false" aria-controls="exp-detail-99">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
+              <div class="company-logo-wrap w-10 h-10 rounded-lg flex-shrink-0" title="99">
+                <img src="assets/logos/logo-99.png" alt="Logo 99" width="40" height="40" loading="lazy">
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
-                <li data-i18n-html="exp_99_b1">• End-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the entire commercial sales force.</li>
-                <li data-i18n-html="exp_99_b2">• Structured a <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> metrics framework to evaluate learning transfer.</li>
-              </ul>
+              <div class="flex flex-col min-w-0">
+                <div class="text-sm sm:text-base font-bold leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_99_role">Senior Training Specialist</div>
+                <div class="flex flex-wrap items-center gap-1.5 mt-1">
+                  <span class="text-xs font-semibold text-[#ed6a5a]" data-i18n="exp_99_loc">99</span>
+                  <span class="text-[0.7rem] text-slate-500">•</span>
+                  <span class="text-[0.7rem] text-slate-400 font-medium" data-i18n="exp_99_date">Nov 2025 – Jun 2026</span>
+                </div>
+              </div>
             </div>
-            <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+            <div class="exp-chevron mt-1 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
+          <ul class="pl-0 sm:pl-13 mt-3 space-y-1.5 text-xs sm:text-sm text-slate-300 exp-bullets" style="color:var(--c-text)">
+            <li data-i18n-html="exp_99_b1">• End-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the entire commercial sales force.</li>
+            <li data-i18n-html="exp_99_b2">• Structured a <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> metrics framework to evaluate learning transfer.</li>
+          </ul>
           <div class="exp-detail" id="exp-detail-99">
-            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner pl-0 sm:pl-13 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_99_p1">At 99, I led the complete modernization of the training infrastructure, managing the end-to-end deployment of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> from scratch — from stakeholder scope alignment to catalog curation and custom learning path architecture.</p>
               <p data-i18n-html="exp_99_p2">Developed and delivered the <strong style="color:var(--c-text-strong)">commercial sales enablement</strong> program, designing modules aligned with sales playbooks and driver-partner onboarding. Designed an assessment framework based on <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> to measure skill transfer and impact on the commercial pipeline.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1255,28 +1218,29 @@
       <!-- TikTok -->
       <div class="timeline-item reveal" style="transition-delay:.1s">
         <div class="card-base p-6">
-          <button class="exp-toggle" id="exp-toggle-tiktok" aria-expanded="false" aria-controls="exp-detail-tiktok">
-            <div class="flex-1 min-w-0">
-              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
-                <div class="company-logo-wrap" title="TikTok">
-                  <img src="assets/logos/logo-tiktok.png" class="logo-light" alt="Logo TikTok" width="44" height="44" loading="lazy">
-                  <img src="assets/logos/logo-tiktok-dark.png" class="logo-dark" alt="Logo TikTok" width="44" height="44" loading="lazy">
-                </div>
-                <div class="exp-header-info">
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_tiktok_role">Senior Instructional Designer</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_tiktok_loc">TikTok</div>
-                </div>
-                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_tiktok_date">Apr 2022 – Aug 2025</span>
+          <button class="exp-toggle flex items-start justify-between gap-3 w-full" id="exp-toggle-tiktok" aria-expanded="false" aria-controls="exp-detail-tiktok">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
+              <div class="company-logo-wrap w-10 h-10 rounded-lg flex-shrink-0" title="TikTok">
+                <img src="assets/logos/logo-tiktok.png" class="logo-light" alt="Logo TikTok" width="40" height="40" loading="lazy">
+                <img src="assets/logos/logo-tiktok-dark.png" class="logo-dark" alt="Logo TikTok" width="40" height="40" loading="lazy">
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
-                <li data-i18n-html="exp_tiktok_b1">• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.</li>
-                <li data-i18n-html="exp_tiktok_b2">• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.</li>
-              </ul>
+              <div class="flex flex-col min-w-0">
+                <div class="text-sm sm:text-base font-bold leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_tiktok_role">Senior Instructional Designer</div>
+                <div class="flex flex-wrap items-center gap-1.5 mt-1">
+                  <span class="text-xs font-semibold text-[#ed6a5a]" data-i18n="exp_tiktok_loc">TikTok</span>
+                  <span class="text-[0.7rem] text-slate-500">•</span>
+                  <span class="text-[0.7rem] text-slate-400 font-medium" data-i18n="exp_tiktok_date">Apr 2022 – Aug 2025</span>
+                </div>
+              </div>
             </div>
-            <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+            <div class="exp-chevron mt-1 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
+          <ul class="pl-0 sm:pl-13 mt-3 space-y-1.5 text-xs sm:text-sm text-slate-300 exp-bullets" style="color:var(--c-text)">
+            <li data-i18n-html="exp_tiktok_b1">• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.</li>
+            <li data-i18n-html="exp_tiktok_b2">• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.</li>
+          </ul>
           <div class="exp-detail" id="exp-detail-tiktok">
-            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner pl-0 sm:pl-13 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_tiktok_p1">Principal ISD for TikTok's LATAM Trust &amp; Safety team, responsible for <strong style="color:var(--c-text-strong)">architecting and delivering curricula</strong> for 1,500+ moderators across multiple countries and time zones.</p>
               <p data-i18n-html="exp_tiktok_p2">Engineered <strong style="color:var(--c-text-strong)">Generative AI pipelines</strong> using LLMs to automate semantic parsing and pedagogical translation of dense global regulatory guidelines, accelerating content production time by ~70%.</p>
               <p data-i18n-html="exp_tiktok_p3">Established bi-weekly agile cadences (instructional content sprints) and hands-on workshops with technical leaders, ensuring real-time alignment with rapid policy revisions.</p>
@@ -1291,28 +1255,29 @@
       <!-- Avenue Code -->
       <div class="timeline-item reveal" style="transition-delay:.2s">
         <div class="card-base p-6">
-          <button class="exp-toggle" id="exp-toggle-avenuecode" aria-expanded="false" aria-controls="exp-detail-avenuecode">
-            <div class="flex-1 min-w-0">
-              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
-                <div class="company-logo-wrap" title="Avenue Code">
-                  <img src="assets/logos/logo-avenuecode.png" class="logo-light" alt="Logo Avenue Code" width="44" height="44" loading="lazy">
-                  <img src="assets/logos/logo-avenuecode-dark.png" class="logo-dark" alt="Logo Avenue Code" width="44" height="44" loading="lazy">
-                </div>
-                <div class="exp-header-info">
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ac_role">Senior Instructional Designer</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ac_loc">Avenue Code</div>
-                </div>
-                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_ac_date">Mar 2021 – Mar 2022</span>
+          <button class="exp-toggle flex items-start justify-between gap-3 w-full" id="exp-toggle-avenuecode" aria-expanded="false" aria-controls="exp-detail-avenuecode">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
+              <div class="company-logo-wrap w-10 h-10 rounded-lg flex-shrink-0" title="Avenue Code">
+                <img src="assets/logos/logo-avenuecode.png" class="logo-light" alt="Logo Avenue Code" width="40" height="40" loading="lazy">
+                <img src="assets/logos/logo-avenuecode-dark.png" class="logo-dark" alt="Logo Avenue Code" width="40" height="40" loading="lazy">
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
-                <li data-i18n-html="exp_ac_b1">• Strategic learning consultancy in <strong style="color:var(--c-text-strong)">digital transformation</strong> and agile upskilling for enterprise clients.</li>
-                <li data-i18n-html="exp_ac_b2">• Key project: enterprise Scrum upskilling curriculum for <strong style="color:var(--c-text-strong)">Braskem</strong>.</li>
-              </ul>
+              <div class="flex flex-col min-w-0">
+                <div class="text-sm sm:text-base font-bold leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ac_role">Senior Instructional Designer</div>
+                <div class="flex flex-wrap items-center gap-1.5 mt-1">
+                  <span class="text-xs font-semibold text-[#ed6a5a]" data-i18n="exp_ac_loc">Avenue Code</span>
+                  <span class="text-[0.7rem] text-slate-500">•</span>
+                  <span class="text-[0.7rem] text-slate-400 font-medium" data-i18n="exp_ac_date">Mar 2021 – Mar 2022</span>
+                </div>
+              </div>
             </div>
-            <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+            <div class="exp-chevron mt-1 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
+          <ul class="pl-0 sm:pl-13 mt-3 space-y-1.5 text-xs sm:text-sm text-slate-300 exp-bullets" style="color:var(--c-text)">
+            <li data-i18n-html="exp_ac_b1">• Strategic learning consultancy in <strong style="color:var(--c-text-strong)">digital transformation</strong> and agile upskilling for enterprise clients.</li>
+            <li data-i18n-html="exp_ac_b2">• Key project: enterprise Scrum upskilling curriculum for <strong style="color:var(--c-text-strong)">Braskem</strong>.</li>
+          </ul>
           <div class="exp-detail" id="exp-detail-avenuecode">
-            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner pl-0 sm:pl-13 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_ac_p1">Served as Senior ISD on enterprise digital transformation learning initiatives, collaborating directly with large multinational accounts to redesign cultural and technical competencies.</p>
               <p data-i18n-html="exp_ac_p2">Key highlight: <strong style="color:var(--c-text-strong)">enterprise Scrum and agile upskilling program for Braskem</strong>, designing interactive paths in Articulate Rise 360 integrated with scenario assessments based on live business challenges.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1326,28 +1291,29 @@
       <!-- TTEC -->
       <div class="timeline-item reveal" style="transition-delay:.3s">
         <div class="card-base p-6">
-          <button class="exp-toggle" id="exp-toggle-ttec" aria-expanded="false" aria-controls="exp-detail-ttec">
-            <div class="flex-1 min-w-0">
-              <div class="exp-header-row items-start sm:items-center flex flex-wrap sm:flex-nowrap gap-3 sm:gap-3.5 mb-2">
-                <div class="company-logo-wrap" title="TTEC">
-                  <img src="assets/logos/logo-ttec.png" class="logo-light" alt="Logo TTEC" width="44" height="44" loading="lazy">
-                  <img src="assets/logos/logo-ttec-dark.png" class="logo-dark" alt="Logo TTEC" width="44" height="44" loading="lazy">
-                </div>
-                <div class="exp-header-info">
-                  <div class="font-bold text-base leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ttec_role">Instructional Designer and Knowledge Management Specialist</div>
-                  <div class="text-sm font-semibold" style="color:var(--c-accent)" data-i18n="exp_ttec_loc">TTEC</div>
-                </div>
-                <span class="exp-date-badge order-3 sm:order-none ml-[56px] sm:ml-auto mt-1 sm:mt-0 w-fit text-[0.7rem] px-2.5 py-0.5" data-i18n="exp_ttec_date">Jul 2019 – Mar 2021</span>
+          <button class="exp-toggle flex items-start justify-between gap-3 w-full" id="exp-toggle-ttec" aria-expanded="false" aria-controls="exp-detail-ttec">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
+              <div class="company-logo-wrap w-10 h-10 rounded-lg flex-shrink-0" title="TTEC">
+                <img src="assets/logos/logo-ttec.png" class="logo-light" alt="Logo TTEC" width="40" height="40" loading="lazy">
+                <img src="assets/logos/logo-ttec-dark.png" class="logo-dark" alt="Logo TTEC" width="40" height="40" loading="lazy">
               </div>
-              <ul class="text-sm space-y-1.5 exp-bullets ml-0 sm:ml-14 mt-3" style="color:var(--c-text)">
-                <li data-i18n-html="exp_ttec_b1">• Knowledge management across global enterprise accounts: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.</li>
-                <li data-i18n-html="exp_ttec_b2">• Bilingual KMS architecture for highly regulated environments (HIPAA) at international scale.</li>
-              </ul>
+              <div class="flex flex-col min-w-0">
+                <div class="text-sm sm:text-base font-bold leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_ttec_role">Instructional Designer and Knowledge Management Specialist</div>
+                <div class="flex flex-wrap items-center gap-1.5 mt-1">
+                  <span class="text-xs font-semibold text-[#ed6a5a]" data-i18n="exp_ttec_loc">TTEC</span>
+                  <span class="text-[0.7rem] text-slate-500">•</span>
+                  <span class="text-[0.7rem] text-slate-400 font-medium" data-i18n="exp_ttec_date">Jul 2019 – Mar 2021</span>
+                </div>
+              </div>
             </div>
-            <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+            <div class="exp-chevron mt-1 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
+          <ul class="pl-0 sm:pl-13 mt-3 space-y-1.5 text-xs sm:text-sm text-slate-300 exp-bullets" style="color:var(--c-text)">
+            <li data-i18n-html="exp_ttec_b1">• Knowledge management across global enterprise accounts: <strong style="color:var(--c-text-strong)">Mastercard &amp; Kaiser Permanente</strong>.</li>
+            <li data-i18n-html="exp_ttec_b2">• Bilingual KMS architecture for highly regulated environments (HIPAA) at international scale.</li>
+          </ul>
           <div class="exp-detail" id="exp-detail-ttec">
-            <div class="exp-detail-inner ml-0 sm:ml-14 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
+            <div class="exp-detail-inner pl-0 sm:pl-13 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
               <p data-i18n-html="exp_ttec_p1">ISD and Knowledge Management Specialist for mission-critical BPO operations, leading strategic accounts across financial and healthcare verticals.</p>
               <p data-i18n-html="exp_ttec_p2">For <strong style="color:var(--c-text-strong)">Mastercard</strong>: structured standard operating procedures, call scripts, and bilingual training tracks. For <strong style="color:var(--c-text-strong)">Kaiser Permanente</strong>: established a HIPAA-compliant clinical knowledge base with branching simulations and interactive compliance modules.</p>
               <div class="flex flex-wrap gap-2 pt-2">
@@ -1361,59 +1327,62 @@
       <!-- Outras Experiências Profissionais (Accordion Colapsado) -->
       <div class="timeline-item reveal" style="transition-delay:.4s">
         <div class="card-base p-6">
-          <button class="exp-toggle" id="exp-toggle-other" aria-expanded="false" aria-controls="exp-detail-other">
+          <button class="exp-toggle flex items-start justify-between gap-3 w-full" id="exp-toggle-other" aria-expanded="false" aria-controls="exp-detail-other">
             <div class="flex-1 min-w-0">
-              <div class="font-bold text-sm mb-1" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_other_title">Additional Professional Experience</div>
+              <div class="font-bold text-sm sm:text-base mb-1" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="exp_other_title">Additional Professional Experience</div>
               <p style="color:var(--c-text-muted)" class="text-xs" data-i18n="exp_other_sub">ReFrame Learning · BTG Agência · UFPE</p>
             </div>
-            <div class="exp-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+            <div class="exp-chevron mt-1 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <div class="exp-detail" id="exp-detail-other">
             <div class="mt-5 pt-5 space-y-6 text-sm" style="border-top:1px solid var(--c-border)">
 
               <!-- ReFrame Learning -->
-              <div class="flex items-start gap-4">
-                <div class="company-logo-wrap" title="ReFrame Learning">
+              <div class="flex items-start gap-3">
+                <div class="company-logo-wrap w-10 h-10 rounded-lg flex-shrink-0" title="ReFrame Learning">
                   <span class="company-monogram">RF</span>
                 </div>
                 <div class="flex-1 min-w-0">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_ref_role">Instructional Designer</div>
-                    <span class="exp-date-badge">2018 – 2019</span>
+                  <div class="text-sm font-semibold" style="color:var(--c-text-strong)" data-i18n="exp_ref_role">Instructional Designer</div>
+                  <div class="flex flex-wrap items-center gap-1.5 mt-0.5 mb-1.5">
+                    <span class="text-xs font-semibold text-[#ed6a5a]" data-i18n="exp_ref_sub">ReFrame Learning</span>
+                    <span class="text-[0.7rem] text-slate-500">•</span>
+                    <span class="text-[0.7rem] text-slate-400 font-medium">2018 – 2019</span>
                   </div>
-                  <div class="text-xs mb-1.5 font-medium" style="color:var(--c-accent)" data-i18n="exp_ref_sub">ReFrame Learning</div>
-                  <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_ref_desc">Instructional design for corporate learning platforms, focusing on microlearning, gamified interactive journeys, and self-paced modular architectures.</p>
+                  <p class="leading-relaxed text-xs sm:text-sm" style="color:var(--c-text)" data-i18n="exp_ref_desc">Instructional design for corporate learning platforms, focusing on microlearning, gamified interactive journeys, and self-paced modular architectures.</p>
                 </div>
               </div>
 
               <!-- BTG Agência -->
-              <div class="flex items-start gap-4">
-                <div class="company-logo-wrap" title="BTG Agência">
+              <div class="flex items-start gap-3">
+                <div class="company-logo-wrap w-10 h-10 rounded-lg flex-shrink-0" title="BTG Agência">
                   <span class="company-monogram sm">BTG</span>
                 </div>
                 <div class="flex-1 min-w-0">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_btg_role">Social Media Analyst &amp; Copywriter</div>
-                    <span class="exp-date-badge">2016 – 2018</span>
+                  <div class="text-sm font-semibold" style="color:var(--c-text-strong)" data-i18n="exp_btg_role">Social Media Analyst &amp; Copywriter</div>
+                  <div class="flex flex-wrap items-center gap-1.5 mt-0.5 mb-1.5">
+                    <span class="text-xs font-semibold text-[#ed6a5a]" data-i18n="exp_btg_sub">BTG Agência</span>
+                    <span class="text-[0.7rem] text-slate-500">•</span>
+                    <span class="text-[0.7rem] text-slate-400 font-medium">2016 – 2018</span>
                   </div>
-                  <div class="text-xs mb-1.5 font-medium" style="color:var(--c-accent)" data-i18n="exp_btg_sub">BTG Agência</div>
-                  <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_btg_desc">Development of advertising narratives, creative copywriting for corporate brands, strategic digital content planning, and audience engagement analysis.</p>
+                  <p class="leading-relaxed text-xs sm:text-sm" style="color:var(--c-text)" data-i18n="exp_btg_desc">Development of advertising narratives, creative copywriting for corporate brands, strategic digital content planning, and audience engagement analysis.</p>
                 </div>
               </div>
 
               <!-- UFPE Estágio de Docência -->
-              <div class="flex items-start gap-4">
-                <div class="company-logo-wrap" title="UFPE">
-                  <img src="assets/logos/logo-ufpe.png" class="logo-light" alt="Logo UFPE" width="44" height="44" loading="lazy">
-                  <img src="assets/logos/logo-ufpe-dark.png" class="logo-dark" alt="Logo UFPE" width="44" height="44" loading="lazy">
+              <div class="flex items-start gap-3">
+                <div class="company-logo-wrap w-10 h-10 rounded-lg flex-shrink-0" title="UFPE">
+                  <img src="assets/logos/logo-ufpe.png" class="logo-light" alt="Logo UFPE" width="40" height="40" loading="lazy">
+                  <img src="assets/logos/logo-ufpe-dark.png" class="logo-dark" alt="Logo UFPE" width="40" height="40" loading="lazy">
                 </div>
                 <div class="flex-1 min-w-0">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="font-semibold text-sm" style="color:var(--c-text-strong)" data-i18n="exp_ufpe_role">Higher Education Teaching Intern - Advertising and Marketing</div>
-                    <span class="exp-date-badge">2013 – 2014</span>
+                  <div class="text-sm font-semibold" style="color:var(--c-text-strong)" data-i18n="exp_ufpe_role">Higher Education Teaching Intern - Advertising and Marketing</div>
+                  <div class="flex flex-wrap items-center gap-1.5 mt-0.5 mb-1.5">
+                    <span class="text-xs font-semibold text-[#ed6a5a]" data-i18n="exp_ufpe_sub">Federal University of Pernambuco (UFPE)</span>
+                    <span class="text-[0.7rem] text-slate-500">•</span>
+                    <span class="text-[0.7rem] text-slate-400 font-medium">2013 – 2014</span>
                   </div>
-                  <div class="text-xs mb-1.5 font-medium" style="color:var(--c-accent)" data-i18n="exp_ufpe_sub">Federal University of Pernambuco (UFPE)</div>
-                  <p class="leading-relaxed" style="color:var(--c-text)" data-i18n="exp_ufpe_desc">Facilitation of theoretical and practical undergraduate lectures, active learning methodologies, syllabus design, and mentoring academic capstone projects.</p>
+                  <p class="leading-relaxed text-xs sm:text-sm" style="color:var(--c-text)" data-i18n="exp_ufpe_desc">Facilitation of theoretical and practical undergraduate lectures, active learning methodologies, syllabus design, and mentoring academic capstone projects.</p>
                 </div>
               </div>
 
