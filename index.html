@@ -985,271 +985,55 @@
         </div>
       </div>
 
-      <!-- Right Column: 3-Tier Isometric Architecture Illustration Container (Hidden on mobile) -->
+      <!-- Right Column: Clean Isometric Architecture Vector (Hidden on mobile) -->
       <div class="lg:col-span-5 hidden lg:flex items-center justify-center relative select-none" style="animation:fadeIn 1s ease-out .4s both">
-        <!-- Ambient Radial Backglow -->
-        <div class="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-[#ed6a5a]/15 dark:bg-[#ed6a5a]/20 blur-3xl pointer-events-none -z-10"></div>
-        <div class="absolute -bottom-10 -left-10 w-64 h-64 rounded-full bg-[#9bc1bc]/20 dark:bg-[#9bc1bc]/25 blur-3xl pointer-events-none -z-10"></div>
+        <div class="relative w-full max-w-[380px] lg:max-w-[420px] aspect-square flex items-center justify-center mx-auto">
+          <!-- Halo difuso no fundo (luz ambiente coral calibrada para light/dark) -->
+          <div class="absolute inset-4 bg-[#ed6a5a]/10 dark:bg-[#ed6a5a]/20 blur-3xl rounded-full pointer-events-none -z-10"></div>
 
-        <!-- Glassmorphism Interactive Housing -->
-        <div class="relative w-full max-w-[480px] p-4 sm:p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md shadow-2xl shadow-slate-200/40 dark:shadow-none hover:border-[#ed6a5a]/30 transition-all duration-500 group iso-float">
-          <!-- 3-Tier Isometric Architecture SVG -->
-          <svg class="w-full h-auto overflow-visible" viewBox="0 0 520 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="3-Tier Isometric Learning Architecture Diagram">
-            <defs>
-              <!-- Gradients for Base LMS Layer (Sage #9bc1bc) -->
-              <linearGradient id="sage-slab-grad" x1="100" y1="315" x2="400" y2="465" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#9bc1bc" stop-opacity="0.32" />
-                <stop offset="50%" stop-color="#9bc1bc" stop-opacity="0.18" />
-                <stop offset="100%" stop-color="#9bc1bc" stop-opacity="0.08" />
-              </linearGradient>
-              <linearGradient id="sage-side-left" x1="100" y1="390" x2="250" y2="487" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#7ea6a0" stop-opacity="0.75" />
-                <stop offset="100%" stop-color="#648983" stop-opacity="0.9" />
-              </linearGradient>
-              <linearGradient id="sage-side-right" x1="250" y1="465" x2="400" y2="412" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#9bc1bc" stop-opacity="0.7" />
-                <stop offset="100%" stop-color="#82aba5" stop-opacity="0.85" />
-              </linearGradient>
-
-              <!-- Gradients for Middle Structural Layer -->
-              <linearGradient id="mid-slab-grad" x1="120" y1="180" x2="380" y2="310" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#64748b" stop-opacity="0.25" />
-                <stop offset="50%" stop-color="#475569" stop-opacity="0.15" />
-                <stop offset="100%" stop-color="#334155" stop-opacity="0.22" />
-              </linearGradient>
-              <linearGradient id="mid-side-left" x1="120" y1="245" x2="250" y2="328" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#334155" stop-opacity="0.7" />
-                <stop offset="100%" stop-color="#1e293b" stop-opacity="0.9" />
-              </linearGradient>
-              <linearGradient id="mid-side-right" x1="250" y1="310" x2="380" y2="263" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#475569" stop-opacity="0.65" />
-                <stop offset="100%" stop-color="#334155" stop-opacity="0.8" />
-              </linearGradient>
-
-              <!-- Gradients for Top GenAI Layer (Coral #ed6a5a) -->
-              <linearGradient id="coral-slab-grad" x1="145" y1="53" x2="355" y2="157" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#ed6a5a" stop-opacity="0.45" />
-                <stop offset="50%" stop-color="#ed6a5a" stop-opacity="0.25" />
-                <stop offset="100%" stop-color="#f49d37" stop-opacity="0.15" />
-              </linearGradient>
-              <linearGradient id="coral-side-left" x1="145" y1="105" x2="250" y2="172" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#d65141" stop-opacity="0.85" />
-                <stop offset="100%" stop-color="#b83f30" stop-opacity="0.95" />
-              </linearGradient>
-              <linearGradient id="coral-side-right" x1="250" y1="157" x2="355" y2="120" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#ed6a5a" stop-opacity="0.8" />
-                <stop offset="100%" stop-color="#d65141" stop-opacity="0.9" />
-              </linearGradient>
-
-              <!-- Soft Glow Filters -->
-              <filter id="coral-glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="4" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-
-            <!-- ========================================== -->
-            <!-- 1. AUXILIARY STRUCTURAL GUIDES & CONNECTOR BEAMS -->
-            <!-- ========================================== -->
-            <g id="auxiliary-lines" class="opacity-80">
-              <!-- Corner Inter-Tier Projection Guides -->
-              <!-- Left Edge Guides -->
-              <path d="M 100 390 L 120 245 L 145 105 L 145 45" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" fill="none" />
-              <!-- Right Edge Guides -->
-              <path d="M 400 390 L 380 245 L 355 105 L 355 45" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" fill="none" />
-              <!-- Back Vertex Guides -->
-              <path d="M 250 315 L 250 180 L 250 53 L 250 25" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" fill="none" />
-              <!-- Front Vertex Guides -->
-              <path d="M 250 487 L 250 328 L 250 172" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" fill="none" />
-
-              <!-- Central Telemetry Pipeline Beam -->
-              <line x1="250" y1="465" x2="250" y2="40" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.4" stroke-dasharray="2 4" vector-effect="non-scaling-stroke" />
-
-              <!-- Data transit pulse packets -->
-              <circle cx="250" cy="340" r="3" fill="#9bc1bc" />
-              <circle cx="250" cy="205" r="3" class="fill-slate-400 dark:fill-slate-500" />
-              <circle cx="250" cy="70" r="3" fill="#ed6a5a" />
-
-              <!-- Technical Datum Crosshairs & Elevation Ticks -->
-              <g class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1" vector-effect="non-scaling-stroke">
-                <!-- Base Crosshairs -->
-                <path d="M 94 390 L 106 390 M 100 384 L 100 396" />
-                <path d="M 394 390 L 406 390 M 400 384 L 400 396" />
-                <!-- Middle Crosshairs -->
-                <path d="M 114 245 L 126 245 M 120 239 L 120 251" />
-                <path d="M 374 245 L 386 245 M 380 239 L 380 251" />
-                <!-- Top Crosshairs -->
-                <path d="M 139 105 L 151 105 M 145 99 L 145 111" />
-                <path d="M 349 105 L 361 105 M 355 99 L 355 111" />
-              </g>
+          <svg class="w-full h-full overflow-visible" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Eixos e Guias Verticais Pontilhadas -->
+            <g class="stroke-slate-300 dark:stroke-slate-700/80" stroke-width="1.2" stroke-dasharray="3 3">
+              <line x1="170" y1="70" x2="170" y2="250" />
+              <line x1="75" y1="125" x2="75" y2="215" />
+              <line x1="265" y1="125" x2="265" y2="215" />
             </g>
 
-            <!-- ========================================== -->
-            <!-- 2. BASE LAYER: LMS FOUNDATION (SÁLVIA #9bc1bc) -->
-            <!-- ========================================== -->
-            <g id="layer-base-lms">
-              <!-- Slab Sides -->
-              <!-- Left Face -->
-              <path d="M 100 390 L 250 465 L 250 487 L 100 412 Z" fill="url(#sage-side-left)" stroke="#9bc1bc" stroke-width="1.2" stroke-opacity="0.7" vector-effect="non-scaling-stroke" />
-              <!-- Right Face -->
-              <path d="M 250 465 L 400 390 L 400 412 L 250 487 Z" fill="url(#sage-side-right)" stroke="#9bc1bc" stroke-width="1.2" stroke-opacity="0.7" vector-effect="non-scaling-stroke" />
-              <!-- Top Face -->
-              <path d="M 250 315 L 400 390 L 250 465 L 100 390 Z" fill="url(#sage-slab-grad)" stroke="#9bc1bc" stroke-width="1.8" vector-effect="non-scaling-stroke" />
-
-              <!-- Isometric Infrastructure Mesh Lines -->
-              <path d="M 175 352.5 L 325 427.5 M 212.5 333.75 L 362.5 408.75 M 175 427.5 L 325 352.5 M 212.5 446.25 L 362.5 371.25" stroke="#9bc1bc" stroke-opacity="0.32" stroke-width="1" vector-effect="non-scaling-stroke" />
-
-              <!-- Left Node: LMS Core Server Rack -->
-              <g>
-                <path d="M 175 372 L 192 380.5 L 175 389 L 158 380.5 Z" fill="#9bc1bc" fill-opacity="0.4" stroke="#9bc1bc" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-                <path d="M 158 380.5 L 175 389 L 175 405 L 158 396.5 Z" fill="#7ea6a0" stroke="#9bc1bc" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <path d="M 175 389 L 192 380.5 L 192 396.5 L 175 405 Z" fill="#9bc1bc" fill-opacity="0.6" stroke="#9bc1bc" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <!-- Server rack LED indicators -->
-                <line x1="179" y1="389" x2="188" y2="384.5" stroke="#ffffff" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <line x1="179" y1="394" x2="188" y2="389.5" stroke="#ffffff" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <line x1="179" y1="399" x2="188" y2="394.5" stroke="#ffffff" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <circle cx="163" cy="386" r="1.5" fill="#9bc1bc" />
-                <circle cx="163" cy="392" r="1.5" fill="#9bc1bc" />
-              </g>
-
-              <!-- Center Node: xAPI / LRS Data Lake (Concentric Isometric Rings) -->
-              <g>
-                <ellipse cx="250" cy="390" rx="36" ry="18" fill="none" stroke="#9bc1bc" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
-                <ellipse cx="250" cy="390" rx="24" ry="12" fill="#9bc1bc" fill-opacity="0.25" stroke="#9bc1bc" stroke-width="1.4" vector-effect="non-scaling-stroke" />
-                <ellipse cx="250" cy="390" rx="12" ry="6" fill="#9bc1bc" fill-opacity="0.45" stroke="#9bc1bc" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-                <circle cx="250" cy="390" r="3.5" fill="#9bc1bc" />
-              </g>
-
-              <!-- Right Node: Telemetry & Analytics Hub -->
-              <g>
-                <path d="M 325 372 L 342 380.5 L 325 389 L 308 380.5 Z" fill="#9bc1bc" fill-opacity="0.4" stroke="#9bc1bc" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-                <path d="M 308 380.5 L 325 389 L 325 403 L 308 394.5 Z" fill="#7ea6a0" stroke="#9bc1bc" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <path d="M 325 389 L 342 380.5 L 342 394.5 L 325 403 Z" fill="#9bc1bc" fill-opacity="0.6" stroke="#9bc1bc" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <!-- Mini Telemetry Signal Waves -->
-                <path d="M 319 367 Q 325 363 331 367" fill="none" stroke="#9bc1bc" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-                <path d="M 315 363 Q 325 357 335 363" fill="none" stroke="#9bc1bc" stroke-width="1.2" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
-              </g>
+            <!-- 1. CAMADA BASE (INFRAESTRUTURA / SÁLVIA) -->
+            <g class="transition-transform duration-500 ease-out hover:-translate-y-1 cursor-pointer">
+              <polygon points="170,205 265,250 170,295 75,250" 
+                       class="fill-[#9bc1bc]/10 dark:fill-[#9bc1bc]/5 stroke-[#9bc1bc]" 
+                       stroke-width="1.8" />
+              <polygon points="170,220 235,250 170,280 105,250" 
+                       class="stroke-[#9bc1bc]/40" 
+                       stroke-width="1.2" 
+                       stroke-dasharray="2 2" />
+              <circle cx="170" cy="250" r="3.5" fill="#9bc1bc" />
             </g>
 
-            <!-- ========================================== -->
-            <!-- 3. MIDDLE LAYER: CENTRAL ESTRUTURAL -->
-            <!-- ========================================== -->
-            <g id="layer-mid-structural">
-              <!-- Slab Sides -->
-              <!-- Left Face -->
-              <path d="M 120 245 L 250 310 L 250 328 L 120 263 Z" fill="url(#mid-side-left)" stroke="#475569" stroke-width="1.2" stroke-opacity="0.7" vector-effect="non-scaling-stroke" />
-              <!-- Right Face -->
-              <path d="M 250 310 L 380 245 L 380 263 L 250 328 Z" fill="url(#mid-side-right)" stroke="#64748b" stroke-width="1.2" stroke-opacity="0.7" vector-effect="non-scaling-stroke" />
-              <!-- Top Face -->
-              <path d="M 250 180 L 380 245 L 250 310 L 120 245 Z" fill="url(#mid-slab-grad)" stroke="#64748b" stroke-width="1.8" vector-effect="non-scaling-stroke" />
-
-              <!-- Structural Logic Circuit Tracks -->
-              <path d="M 195 245 L 250 255 L 305 245" fill="none" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" vector-effect="non-scaling-stroke" />
-              <path d="M 250 215 L 250 255" fill="none" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.2" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" />
-
-              <!-- Modular Instructional Block 1: Competency & Needs Matrix -->
-              <g>
-                <path d="M 195 237 L 210 244.5 L 195 252 L 180 244.5 Z" class="fill-slate-200 dark:fill-slate-800" stroke="#64748b" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-                <path d="M 180 244.5 L 195 252 L 195 260 L 180 252.5 Z" class="fill-slate-300 dark:fill-slate-900" stroke="#475569" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <path d="M 195 252 L 210 244.5 L 210 252.5 L 195 260 Z" class="fill-slate-400 dark:fill-slate-700" stroke="#64748b" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <circle cx="195" cy="244.5" r="2" fill="#9bc1bc" />
-              </g>
-
-              <!-- Modular Instructional Block 2: Scenario Engine & Kirkpatrick L2 (Center) -->
-              <g>
-                <path d="M 250 246 L 268 255 L 250 264 L 232 255 Z" class="fill-slate-100 dark:fill-slate-800" stroke="#ed6a5a" stroke-width="1.4" vector-effect="non-scaling-stroke" />
-                <path d="M 232 255 L 250 264 L 250 274 L 232 265 Z" class="fill-slate-300 dark:fill-slate-900" stroke="#475569" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <path d="M 250 264 L 268 255 L 268 265 L 250 274 Z" class="fill-slate-400 dark:fill-slate-700" stroke="#64748b" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <circle cx="250" cy="255" r="3" fill="#ed6a5a" />
-              </g>
-
-              <!-- Modular Instructional Block 3: Assessment & Authoring Pipeline -->
-              <g>
-                <path d="M 305 237 L 320 244.5 L 305 252 L 290 244.5 Z" class="fill-slate-200 dark:fill-slate-800" stroke="#64748b" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-                <path d="M 290 244.5 L 305 252 L 305 260 L 290 252.5 Z" class="fill-slate-300 dark:fill-slate-900" stroke="#475569" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <path d="M 305 252 L 320 244.5 L 320 252.5 L 305 260 Z" class="fill-slate-400 dark:fill-slate-700" stroke="#64748b" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <circle cx="305" cy="244.5" r="2" fill="#9bc1bc" />
-              </g>
+            <!-- 2. CAMADA INTERMEDIÁRIA (DESIGN INSTRUCIONAL / ESTRUTURAL) -->
+            <g class="transition-transform duration-500 ease-out hover:-translate-y-1 cursor-pointer">
+              <polygon points="170,135 265,180 170,225 75,180" 
+                       class="fill-white/80 dark:fill-[#18191e]/85 stroke-slate-500 dark:stroke-slate-400" 
+                       stroke-width="1.8" />
+              <line x1="125" y1="157" x2="215" y2="202" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" />
+              <line x1="215" y1="157" x2="125" y2="202" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" />
+              <rect x="165" y="175" width="10" height="10" transform="rotate(45 170 180)" class="fill-slate-500 dark:fill-slate-400 opacity-60" />
             </g>
 
-            <!-- ========================================== -->
-            <!-- 4. TOP LAYER: GENAI APPLIED (CORAL #ed6a5a) -->
-            <!-- ========================================== -->
-            <g id="layer-top-genai">
-              <!-- Slab Sides -->
-              <!-- Left Face -->
-              <path d="M 145 105 L 250 157 L 250 172 L 145 120 Z" fill="url(#coral-side-left)" stroke="#ed6a5a" stroke-width="1.2" stroke-opacity="0.8" vector-effect="non-scaling-stroke" />
-              <!-- Right Face -->
-              <path d="M 250 157 L 355 105 L 355 120 L 250 172 Z" fill="url(#coral-side-right)" stroke="#ed6a5a" stroke-width="1.2" stroke-opacity="0.8" vector-effect="non-scaling-stroke" />
-              <!-- Top Face -->
-              <path d="M 250 53 L 355 105 L 250 157 L 145 105 Z" fill="url(#coral-slab-grad)" stroke="#ed6a5a" stroke-width="2" vector-effect="non-scaling-stroke" />
-
-              <!-- Orbiting Neural Ring -->
-              <ellipse cx="250" cy="105" rx="58" ry="29" fill="none" stroke="#ed6a5a" stroke-width="1.2" stroke-dasharray="4 4" stroke-opacity="0.75" vector-effect="non-scaling-stroke" />
-
-              <!-- Radiating AI Neural Rays -->
-              <g stroke="#ed6a5a" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke">
-                <line x1="250" y1="84" x2="204" y2="105" />
-                <line x1="250" y1="84" x2="296" y2="105" />
-                <line x1="250" y1="84" x2="250" y2="60" />
-                <line x1="250" y1="84" x2="250" y2="134" />
-              </g>
-
-              <!-- Orbiting Neural Nodes -->
-              <circle cx="204" cy="105" r="3.5" fill="#ed6a5a" filter="url(#coral-glow)" />
-              <circle cx="296" cy="105" r="3.5" fill="#ed6a5a" filter="url(#coral-glow)" />
-              <circle cx="250" cy="60" r="3.5" fill="#ed6a5a" filter="url(#coral-glow)" />
-              <circle cx="250" cy="134" r="3.5" fill="#ed6a5a" filter="url(#coral-glow)" />
-
-              <!-- Levitating AI Core (Crystalline Microchip / Neural Nexus) -->
-              <g transform="translate(0, -6)">
-                <!-- Lower diamond under-shadow -->
-                <path d="M 250 102 L 268 93 L 250 112 L 232 93 Z" fill="#ed6a5a" fill-opacity="0.5" />
-                <!-- Side Faces -->
-                <path d="M 232 83 L 250 92 L 250 102 L 232 93 Z" fill="#d65141" stroke="#ed6a5a" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <path d="M 250 92 L 268 83 L 268 93 L 250 102 Z" fill="#f49d37" stroke="#ed6a5a" stroke-width="1" vector-effect="non-scaling-stroke" />
-                <!-- Top Diamond Face -->
-                <path d="M 250 74 L 268 83 L 250 92 L 232 83 Z" fill="#ed6a5a" stroke="#ffffff" stroke-width="1.4" vector-effect="non-scaling-stroke" filter="url(#coral-glow)" />
-                <circle cx="250" cy="83" r="2.5" fill="#ffffff" />
-              </g>
-
-              <!-- GenAI Sparkles (4-Point Stars) -->
-              <path d="M 208 66 Q 208 71 203 71 Q 208 71 208 76 Q 208 71 213 71 Q 208 71 208 66 Z" fill="#ed6a5a" />
-              <path d="M 292 60 Q 292 65 287 65 Q 292 65 292 70 Q 292 65 297 65 Q 292 65 292 60 Z" fill="#f49d37" />
-            </g>
-
-            <!-- ========================================== -->
-            <!-- 5. INTERACTIVE HUD CALLOUT PILLS & LABELS -->
-            <!-- ========================================== -->
-            <g id="hud-labels" class="select-none">
-              <!-- Top Layer Callout (GenAI & Applied AI) -->
-              <path d="M 355 105 L 372 105" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-              <g transform="translate(372, 88)">
-                <rect width="138" height="34" rx="8" class="fill-white/90 dark:fill-slate-900/90 stroke-[#ed6a5a]/40" stroke-width="1" />
-                <circle cx="14" cy="17" r="3.5" fill="#ed6a5a" />
-                <circle cx="14" cy="17" r="6" fill="#ed6a5a" fill-opacity="0.25" />
-                <text x="25" y="14" class="fill-slate-900 dark:fill-slate-100 font-bold text-[10px]" font-family="'Plus Jakarta Sans',sans-serif">GenAI &amp; Applied AI</text>
-                <text x="25" y="25" class="fill-slate-500 dark:fill-slate-400 text-[8px]" font-family="'Plus Jakarta Sans',sans-serif">LLMs · Prompts · Parsing</text>
-              </g>
-
-              <!-- Middle Layer Callout (Instructional Systems) -->
-              <path d="M 120 245 L 142 245" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-              <g transform="translate(10, 228)">
-                <rect width="132" height="34" rx="8" class="fill-white/90 dark:fill-slate-900/90 stroke-slate-300 dark:stroke-slate-700" stroke-width="1" />
-                <circle cx="14" cy="17" r="3.5" class="fill-slate-400 dark:fill-slate-500" />
-                <text x="25" y="14" class="fill-slate-900 dark:fill-slate-100 font-bold text-[10px]" font-family="'Plus Jakarta Sans',sans-serif">Instructional Systems</text>
-                <text x="25" y="25" class="fill-slate-500 dark:fill-slate-400 text-[8px]" font-family="'Plus Jakarta Sans',sans-serif">Modular · Scenarios · SJT</text>
-              </g>
-
-              <!-- Base Layer Callout (LMS & Learning Infrastructure) -->
-              <path d="M 400 390 L 372 390" class="stroke-slate-300 dark:stroke-slate-700" stroke-width="1.2" vector-effect="non-scaling-stroke" />
-              <g transform="translate(372, 373)">
-                <rect width="138" height="34" rx="8" class="fill-white/90 dark:fill-slate-900/90 stroke-[#9bc1bc]/50" stroke-width="1" />
-                <circle cx="14" cy="17" r="3.5" fill="#9bc1bc" />
-                <circle cx="14" cy="17" r="6" fill="#9bc1bc" fill-opacity="0.25" />
-                <text x="25" y="14" class="fill-slate-900 dark:fill-slate-100 font-bold text-[10px]" font-family="'Plus Jakarta Sans',sans-serif">LMS &amp; Data Foundation</text>
-                <text x="25" y="25" class="fill-slate-500 dark:fill-slate-400 text-[8px]" font-family="'Plus Jakarta Sans',sans-serif">xAPI · SCORM · Governance</text>
-              </g>
+            <!-- 3. CAMADA SUPERIOR (IA GENERATIVA & AGENTES / CORAL) -->
+            <g class="transition-transform duration-500 ease-out hover:-translate-y-1 cursor-pointer">
+              <polygon points="170,60 265,105 170,150 75,105" 
+                       class="fill-[#ed6a5a]/10 dark:fill-[#ed6a5a]/15 stroke-[#ed6a5a]" 
+                       stroke-width="2" />
+              <line x1="170" y1="88" x2="125" y2="108" stroke="#ed6a5a" stroke-width="1.5" stroke-dasharray="2 1" />
+              <line x1="170" y1="88" x2="215" y2="108" stroke="#ed6a5a" stroke-width="1.5" stroke-dasharray="2 1" />
+              <line x1="125" y1="108" x2="170" y2="128" stroke="#ed6a5a" stroke-width="1.5" />
+              <line x1="215" y1="108" x2="170" y2="128" stroke="#ed6a5a" stroke-width="1.5" />
+              <circle cx="170" cy="88" r="3.5" fill="#ed6a5a" />
+              <circle cx="125" cy="108" r="2.8" fill="#ed6a5a" />
+              <circle cx="215" cy="108" r="2.8" fill="#ed6a5a" />
+              <circle cx="170" cy="128" r="3.5" fill="#ed6a5a" />
             </g>
           </svg>
         </div>
