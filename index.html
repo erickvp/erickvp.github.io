@@ -998,13 +998,15 @@
               
               <!-- Borda gradiente Coral -> Sálvia calibrada para ambos os temas -->
               <div class="p-[2px] rounded-2xl bg-gradient-to-br from-[#ed6a5a] via-[#ed6a5a]/70 to-[#9bc1bc] dark:from-[#ed6a5a]/80 dark:via-[#ed6a5a]/40 dark:to-[#9bc1bc]/30 shadow-lg shadow-[#ed6a5a]/15 dark:shadow-none transition-all duration-300">
-                <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-[14px] overflow-hidden bg-white dark:bg-[#18191e]">
+                <div class="relative w-28 h-28 sm:w-32 sm:h-32 rounded-[14px] overflow-hidden bg-white dark:bg-[#18191e]">
                   <img 
                     src="assets/avatar.jpg" 
                     alt="Foto de Erick Vasconcelos" 
                     class="w-full h-full object-cover filter contrast-[1.03] dark:contrast-[1.06] dark:saturate-[0.9] group-hover:saturate-100 transition-all duration-300"
                     loading="lazy"
                   >
+                  <!-- Gradiente coral no canto inferior para fusão tonal -->
+                  <div class="absolute inset-0 bg-gradient-to-tr from-[#ed6a5a]/25 via-[#ed6a5a]/5 to-transparent dark:from-[#ed6a5a]/35 dark:via-transparent dark:to-transparent pointer-events-none mix-blend-normal transition-opacity duration-300 group-hover:opacity-80"></div>
                 </div>
               </div>
             </div>
