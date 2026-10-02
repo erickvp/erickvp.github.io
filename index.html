@@ -992,10 +992,25 @@
       <div class="relative">
         <div class="card-base p-6 sm:p-8" style="box-shadow:0 0 30px rgba(237,106,90,.12)">
           <div class="flex items-center gap-5 sm:gap-6 mb-6">
-            <img src="assets/profile.jpg" alt="Erick Vasconcelos" class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover object-center border border-[#9bc1bc]/30 shadow-md flex-shrink-0" width="144" height="144" loading="lazy">
+            <div class="relative flex-shrink-0 group">
+              <!-- Halo sutil exclusivo para modo escuro -->
+              <div class="hidden dark:block absolute -inset-1 rounded-2xl bg-[#ed6a5a]/20 blur-md group-hover:bg-[#ed6a5a]/35 transition-all duration-300 -z-10"></div>
+              
+              <!-- Borda gradiente Coral -> Sálvia calibrada para ambos os temas -->
+              <div class="p-[2px] rounded-2xl bg-gradient-to-br from-[#ed6a5a] via-[#ed6a5a]/70 to-[#9bc1bc] dark:from-[#ed6a5a]/80 dark:via-[#ed6a5a]/40 dark:to-[#9bc1bc]/30 shadow-lg shadow-[#ed6a5a]/15 dark:shadow-none transition-all duration-300">
+                <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-[14px] overflow-hidden bg-white dark:bg-[#18191e]">
+                  <img 
+                    src="assets/avatar.jpg" 
+                    alt="Foto de Erick Vasconcelos" 
+                    class="w-full h-full object-cover filter contrast-[1.03] dark:contrast-[1.06] dark:saturate-[0.9] group-hover:saturate-100 transition-all duration-300"
+                    loading="lazy"
+                  >
+                </div>
+              </div>
+            </div>
             <div class="min-w-0">
-              <div class="font-bold text-lg sm:text-xl leading-tight mb-1" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif">Erick Vasconcelos</div>
-              <div class="text-xs sm:text-sm font-semibold text-[#ed6a5a] leading-snug" style="color:var(--c-accent)" data-i18n="about_card_role">Senior Instructional Designer &amp; Training Expert</div>
+              <div class="font-bold text-lg sm:text-xl leading-tight mb-1 text-slate-900 dark:text-white" style="font-family:'Plus Jakarta Sans',sans-serif">Erick Vasconcelos</div>
+              <div class="text-xs sm:text-sm font-semibold text-[#ed6a5a] leading-snug" data-i18n="about_card_role">Senior Instructional Designer &amp; Training Expert</div>
             </div>
           </div>
           <div class="space-y-3 mb-6">
