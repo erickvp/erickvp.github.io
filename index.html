@@ -915,6 +915,90 @@
       transform: translateY(-2px);
     }
 
+    /* Rise 360 Numbered List Badge */
+    .rise-list-badge {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--c-accent), var(--c-accent2));
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: .875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(237, 106, 90, .35);
+      user-select: none;
+      margin-top: 1px;
+    }
+
+    /* Enhanced Action Buttons (Email & Behance) */
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 18px;
+      border-radius: 10px;
+      background: var(--c-bg2);
+      border: 1.5px solid var(--c-border);
+      color: var(--c-text-strong);
+      font-size: .875rem;
+      font-weight: 600;
+      transition: all .25s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
+      position: relative;
+    }
+    .social-icon-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(237, 106, 90, .14);
+      color: var(--c-accent);
+      transition: all .25s ease;
+      flex-shrink: 0;
+    }
+    .social-icon-box.behance {
+      background: rgba(155, 193, 188, .18);
+      color: var(--c-secondary);
+    }
+    .social-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--c-accent);
+      color: var(--c-text-strong);
+      box-shadow: 0 8px 24px rgba(237, 106, 90, .2);
+    }
+    .social-btn:hover .social-icon-box {
+      background: var(--c-accent);
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+    .social-btn-behance:hover {
+      border-color: var(--c-secondary);
+      box-shadow: 0 8px 24px rgba(155, 193, 188, .22);
+    }
+    .social-btn-behance:hover .social-icon-box.behance {
+      background: var(--c-secondary);
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+    html.light .social-btn {
+      background: #ffffff;
+      border-color: rgba(93, 87, 107, 0.22);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
+    }
+    html.light .social-btn:hover {
+      box-shadow: 0 8px 20px rgba(217, 83, 67, .18);
+    }
+    html.light .social-btn-behance:hover {
+      box-shadow: 0 8px 20px rgba(93, 87, 107, .2);
+    }
+
     /* Focus Visible Outline */
     :focus-visible {
       outline: 2px solid var(--c-accent);
@@ -1141,15 +1225,38 @@
     <div class="reveal">
       <div class="section-eyebrow" data-i18n="about_eyebrow">About Me</div>
       <h2 class="section-title mb-6" data-i18n-html="about_title">Instructional Design<br/>driven by <span>results</span></h2>
-      <p style="color:var(--c-text)" class="leading-relaxed mb-5" data-i18n-html="about_p1">My trajectory combines the analytical rigor of journalism and a <strong style="color:var(--c-text-strong)">Master's in Communication from UFPE</strong> with the ability to translate dense technical ecosystems, product architectures, and complex regulations into clear, strategic, and high-impact corporate learning solutions.</p>
-      <p style="color:var(--c-text)" class="leading-relaxed mb-5" data-i18n-html="about_p2">With a proven track record across big techs and large-scale operations, I led the LATAM L&amp;D pod at <strong style="color:var(--c-text-strong)">TikTok</strong> for over <strong style="color:var(--c-text-strong)">1,500 moderators</strong> in Trust &amp; Safety, establishing agile curriculum governance and bi-weekly learning sprints. At <strong style="color:var(--c-text-strong)">99</strong>, I architected the end-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the commercial sales force, connecting training metrics to the <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> framework.</p>
-      <p style="color:var(--c-text)" class="leading-relaxed mb-8" data-i18n-html="about_p3">I actively integrate <strong style="color:var(--c-accent2)">Generative AI</strong> into the instructional production pipeline — combining LLMs, structured prompt engineering, and modern development environments (Cursor/Windsurf) to automate complex regulatory policy parsing, accelerate multimedia scripting, and enable rapid prototyping of high-fidelity interactive experiences and simulators.</p>
+      <div class="space-y-4 mb-8">
+        <div class="flex items-start gap-3.5">
+          <div class="rise-list-badge">1</div>
+          <p style="color:var(--c-text)" class="leading-relaxed text-sm sm:text-base pt-0.5" data-i18n-html="about_p1">The best corporate learning is that which simplifies what seems inaccessible and delivers immediate value to teams' day-to-day work. That has been the approach I pursued across every project I have led.</p>
+        </div>
+        <div class="flex items-start gap-3.5">
+          <div class="rise-list-badge">2</div>
+          <p style="color:var(--c-text)" class="leading-relaxed text-sm sm:text-base pt-0.5" data-i18n-html="about_p2">At <strong style="color:var(--c-text-strong)">TikTok</strong>, this meant designing rapid cycles to train over <strong style="color:var(--c-text-strong)">1,500 moderation professionals</strong> in dynamic operational scenarios. At <strong style="color:var(--c-text-strong)">99</strong>, it translated into architecting the learning ecosystem and sales enablement tracking. At <strong style="color:var(--c-text-strong)">Avenue Code</strong> and <strong style="color:var(--c-text-strong)">TTEC</strong>, I implemented scalable training development routines and key learning indicator dashboards.</p>
+        </div>
+        <div class="flex items-start gap-3.5">
+          <div class="rise-list-badge">3</div>
+          <p style="color:var(--c-text)" class="leading-relaxed text-sm sm:text-base pt-0.5" data-i18n-html="about_p3">I combine a foundation in communication and research with modern <strong style="color:var(--c-accent2)">artificial intelligence</strong> tools to automate operational steps and focus on what truly matters: creating intuitive, measurable, and scalable learning experiences.</p>
+        </div>
+      </div>
       <div class="flex flex-wrap gap-3">
-        <a href="mailto:erickvascp@gmail.com" class="social-link" id="about-email-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          erickvascp@gmail.com
+        <a href="mailto:erickvascp@gmail.com" class="social-btn social-btn-email group" id="about-email-btn" title="Enviar e-mail para Erick Vasconcelos">
+          <div class="social-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <span class="font-medium text-xs sm:text-sm">erickvascp@gmail.com</span>
         </a>
-        <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="social-link" id="about-behance-btn">Behance</a>
+        <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="social-btn social-btn-behance group" id="about-behance-btn" title="Acessar portfólio no Behance">
+          <div class="social-icon-box behance">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-4.108 0-5.741-2.906-5.741-5.783 0-3.153 1.942-5.917 5.741-5.917 4.102 0 5.402 3.125 5.161 6.136h-8.083c.097 1.745 1.258 3.205 3.322 3.205 1.583 0 2.502-.857 2.872-1.641l1.829 1zm-5.15-6.529c-1.744 0-2.617 1.154-2.81 2.292h5.45c-.097-1.313-.973-2.292-2.64-2.292zm-12.576-4.471h5.367c1.385 0 2.766.277 3.518 1.488.583.942.619 2.287-.044 3.238-.636.909-1.571 1.272-2.585 1.536 1.341.341 2.378 1.054 2.834 2.339.467 1.314.281 2.811-.476 3.923-.979 1.439-2.73 1.677-4.417 1.677h-6.197v-14.201zm3.178 5.688h1.869c.895 0 1.936-.184 2.213-1.077.26-.84-.287-1.547-1.229-1.547h-2.853v2.624zm0 5.433h2.18c.99 0 2.193-.245 2.457-1.267.247-.954-.383-1.704-1.464-1.704h-3.173v2.971z"/>
+            </svg>
+          </div>
+          <span class="font-medium text-xs sm:text-sm" data-i18n="about_btn_behance">Behance Portfolio</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" class="opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        </a>
       </div>
     </div>
     <div class="reveal" style="transition-delay:.15s">
@@ -1803,9 +1910,10 @@
 
       about_eyebrow: 'About Me',
       about_title: 'Instructional Design<br/>driven by <span>results</span>',
-      about_p1: 'My trajectory combines the analytical rigor of journalism and a <strong style="color:var(--c-text-strong)">Master\'s in Communication from UFPE</strong> with the ability to translate dense technical ecosystems, product architectures, and complex regulations into clear, strategic, and high-impact corporate learning solutions.',
-      about_p2: 'With a proven track record across big techs and large-scale operations, I led the LATAM L&amp;D pod at <strong style="color:var(--c-text-strong)">TikTok</strong> for over <strong style="color:var(--c-text-strong)">1,500 moderators</strong> in Trust &amp; Safety, establishing agile curriculum governance and bi-weekly learning sprints. At <strong style="color:var(--c-text-strong)">99</strong>, I architected the end-to-end rollout of <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> for the commercial sales force, connecting training metrics to the <strong style="color:var(--c-text-strong)">Kirkpatrick Level 2</strong> framework.',
-      about_p3: 'I actively integrate <strong style="color:var(--c-accent2)">Generative AI</strong> into the instructional production pipeline — combining LLMs, structured prompt engineering, and modern development environments (Cursor/Windsurf) to automate complex regulatory policy parsing, accelerate multimedia scripting, and enable rapid prototyping of high-fidelity interactive experiences and simulators.',
+      about_p1: 'The best corporate learning is that which simplifies what seems inaccessible and delivers immediate value to teams\' day-to-day work. That has been the approach I pursued across every project I have led.',
+      about_p2: 'At <strong style="color:var(--c-text-strong)">TikTok</strong>, this meant designing rapid cycles to train over <strong style="color:var(--c-text-strong)">1,500 moderation professionals</strong> in dynamic operational scenarios. At <strong style="color:var(--c-text-strong)">99</strong>, it translated into architecting the learning ecosystem and sales enablement tracking. At <strong style="color:var(--c-text-strong)">Avenue Code</strong> and <strong style="color:var(--c-text-strong)">TTEC</strong>, I implemented scalable training development routines and key learning indicator dashboards.',
+      about_p3: 'I combine a foundation in communication and research with modern <strong style="color:var(--c-accent2)">artificial intelligence</strong> tools to automate operational steps and focus on what truly matters: creating intuitive, measurable, and scalable learning experiences.',
+      about_btn_behance: 'Behance Portfolio',
       about_card_role: 'Senior Instructional Designer & Training Expert',
       about_card_item1: 'Global-Scale Curriculum Architecture',
       about_card_item2: 'Learning Experience Design (LXD) & Andragogy',
@@ -1951,9 +2059,10 @@
 
       about_eyebrow: 'Sobre Mim',
       about_title: 'Design Instrucional<br/>orientado a <span>resultados</span>',
-      about_p1: 'Minha trajetória combina o rigor analítico da formação jornalística e do <strong style="color:var(--c-text-strong)">Mestrado em Comunicação pela UFPE</strong> com a capacidade de traduzir ecossistemas técnicos densos, arquiteturas de produto e regulações complexas em soluções de aprendizagem claras, estratégicas e de alto impacto corporativo.',
-      about_p2: 'Com histórico comprovado em big techs e operações de grande escala, liderei no <strong style="color:var(--c-text-strong)">TikTok</strong> o pod de T&amp;D LATAM para mais de <strong style="color:var(--c-text-strong)">1.500 moderadores</strong> em Trust &amp; Safety, estabelecendo governança ágil de currículo e sprints bi-semanais de atualização. Na <strong style="color:var(--c-text-strong)">99</strong>, arquitetei a implantação end-to-end do <strong style="color:var(--c-text-strong)">LMS Beedoo</strong> para a força comercial, conectando métricas de capacitação ao framework <strong style="color:var(--c-text-strong)">Kirkpatrick Nível 2</strong>.',
-      about_p3: 'Integro ativamente <strong style="color:var(--c-accent2)">IA Generativa</strong> à esteira de produção instrucional — combinando LLMs, engenharia de prompt estruturada e IDEs modernas (Cursor/Windsurf) para automatizar o parsing de políticas regulatórias complexas, acelerar a roteirização multimídia e viabilizar a prototipagem ágil de experiências e simuladores interativos de alta fidelidade.',
+      about_p1: 'A melhor aprendizagem corporativa é a que simplifica o que parece inacessível e gera valor imediato no dia a dia das equipes. Foi essa a abordagem que busquei implementar em todos os projetos que já assumi.',
+      about_p2: 'No <strong style="color:var(--c-text-strong)">TikTok</strong>, isso significava desenhar ciclos rápidos para treinar mais de <strong style="color:var(--c-text-strong)">1.500 profissionais</strong> de moderação em cenários operacionais dinâmicos. Na <strong style="color:var(--c-text-strong)">99</strong>, isso se traduziu na estruturação do ecossistema de aprendizagem e acompanhamento do time de vendas. Na <strong style="color:var(--c-text-strong)">Avenue Code</strong> e na <strong style="color:var(--c-text-strong)">TTEC</strong>, busquei implementar rotinas escaláveis de desenvolvimento de treinamento e acompanhamento de indicadores-chave de aprendizado.',
+      about_p3: 'Eu combino uma bagagem em comunicação e pesquisa com ferramentas modernas de <strong style="color:var(--c-accent2)">inteligência artificial</strong> para automatizar etapas operacionais e me dedicar ao que realmente importa: criar experiências de aprendizagem intuitivas, mensuráveis e escaláveis.',
+      about_btn_behance: 'Portfólio Behance',
       about_card_role: 'Designer Instrucional e Especialista em Treinamento Sênior',
       about_card_item1: 'Arquitetura Curricular em Escala Global',
       about_card_item2: 'Learning Experience Design (LXD) & Andragogia',
