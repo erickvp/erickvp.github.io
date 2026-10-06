@@ -887,6 +887,29 @@
       background: rgba(237, 106, 90, .08);
     }
 
+    /* Selos das abas — laranja, igual aos selos de Experiência Profissional */
+    .stack-panel .skill-tag {
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      background: rgba(237, 106, 90, .15);
+      color: var(--c-accent2);
+      border: 1px solid rgba(237, 106, 90, .25);
+      margin: 4px;
+    }
+    html.light .stack-panel .skill-tag {
+      background: rgba(237, 106, 90, .15);
+      color: var(--c-accent);
+      border-color: rgba(237, 106, 90, .25);
+    }
+    .stack-panel .skill-tag:hover {
+      background: rgba(237, 106, 90, .26);
+      border-color: var(--c-accent);
+      transform: translateY(-1px);
+    }
+
     /* Ferramentas & Métodos — Rise-style tabs */
     .stack-tabs { max-width: 960px; margin: 0 auto; }
     .stack-tablist {
@@ -1657,9 +1680,9 @@
 <section id="stack" class="py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-5">
     <div class="reveal mb-14 text-center max-w-2xl mx-auto">
-      <div class="section-eyebrow justify-center" data-i18n="stack_eyebrow">Skills &amp; Tools</div>
+      <div class="section-eyebrow justify-center" data-i18n="stack_eyebrow">Skills</div>
       <h2 class="section-title" data-i18n-html="stack_title">Tools &amp; <span>Methods</span></h2>
-      <p style="color:var(--c-text-muted)" class="mt-4" data-i18n="stack_subtitle">Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation.</p>
+      <p style="color:var(--c-text-muted)" class="mt-4" data-i18n="stack_subtitle">Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation. Click the tabs to switch between skill areas.</p>
     </div>
 
     <div class="stack-tabs reveal">
@@ -2181,9 +2204,9 @@
       exp_ufpe_sub: 'Federal University of Pernambuco (UFPE)',
       exp_ufpe_desc: 'Facilitation of theoretical and practical undergraduate lectures, active learning methodologies, syllabus design, and mentoring academic capstone projects.',
 
-      stack_eyebrow: 'Skills & Tools',
+      stack_eyebrow: 'Skills',
       stack_title: 'Tools & <span>Methods</span>',
-      stack_subtitle: 'Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation.',
+      stack_subtitle: 'Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation. Click the tabs to switch between skill areas.',
       stack_tab1: 'Pedagogy & Andragogy',
       stack_desc1: 'Instructional architecture driven by learner autonomy, practical transfer to the workplace, and measurable business impact assessment.',
       s1_tna: 'Training Needs Analysis (TNA)',
@@ -2331,9 +2354,9 @@
       exp_ufpe_sub: 'UFPE - Programa de Pós-Graduação em Comunicação (PPGCOM)',
       exp_ufpe_desc: 'Facilitação de aulas teóricas e práticas para graduação, aplicação de metodologias ativas de aprendizagem, planejamento de planos de ensino e orientação de projetos experimentais acadêmicos.',
 
-      stack_eyebrow: 'Competências & Ferramentas',
+      stack_eyebrow: 'Competências',
       stack_title: 'Ferramentas & <span>Métodos</span>',
-      stack_subtitle: 'Abaixo estão os quatro pilares integrados que sustentam as minhas entregas em aprendizagem técnica, governança e inovação.',
+      stack_subtitle: 'Abaixo estão os quatro pilares integrados que sustentam as minhas entregas em aprendizagem técnica, governança e inovação. Clique nas abas para alternar entre as competências.',
       stack_tab1: 'Pedagogia & Andragogia',
       stack_desc1: 'Arquitetura instrucional orientada à autonomia do aprendiz, transferência prática no ambiente de trabalho e avaliação de impacto mensurável no negócio.',
       s1_tna: 'Levantamento de Necessidades (LNT)',
