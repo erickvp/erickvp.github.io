@@ -24,6 +24,7 @@
   </script>
   <style>
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     :root {
       /* Modo Escuro (Base grafite profundo e contraste editorial suave) */
       --c-bg: #101114;
@@ -537,10 +538,16 @@
       display: none;
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--c-border) 40%, var(--c-border));
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.12));
     }
     .rise-divider-line.right {
-      background: linear-gradient(90deg, var(--c-border), var(--c-border) 60%, transparent);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12) 60%, transparent);
+    }
+    html.light .rise-divider-line {
+      background: linear-gradient(90deg, transparent, rgba(93, 87, 107, 0.22) 40%, rgba(93, 87, 107, 0.22));
+    }
+    html.light .rise-divider-line.right {
+      background: linear-gradient(90deg, rgba(93, 87, 107, 0.22), rgba(93, 87, 107, 0.22) 60%, transparent);
     }
     @media (min-width: 640px) {
       .rise-divider-line {
@@ -555,29 +562,30 @@
       width: 100%;
       max-width: 440px;
       padding: 14px 32px;
-      border-radius: 6px;
-      background: var(--c-bg2);
-      border: 1.5px solid var(--c-border);
-      color: var(--c-text-strong);
+      border-radius: 8px;
+      background: #20222a;
+      border: 1.5px solid rgba(237, 106, 90, 0.35);
+      color: #ffffff;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
       font-size: .85rem;
       letter-spacing: .09em;
       text-transform: uppercase;
       text-decoration: none;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, .14);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .35), 0 0 15px rgba(237, 106, 90, 0.08);
       transition: all .25s ease;
       position: relative;
       cursor: pointer;
     }
     .rise-continue-btn:hover {
-      background: rgba(237, 106, 90, .12);
+      background: rgba(237, 106, 90, .2);
       border-color: var(--c-accent);
-      color: var(--c-accent2);
+      color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(237, 106, 90, .22);
+      box-shadow: 0 8px 30px rgba(237, 106, 90, .35);
     }
     .rise-continue-btn svg {
+      color: var(--c-accent2);
       transition: transform .25s ease;
     }
     .rise-continue-btn:hover svg {
@@ -585,13 +593,16 @@
     }
     html.light .rise-continue-btn {
       background: #ffffff;
-      border-color: rgba(93, 87, 107, 0.22);
+      border-color: rgba(217, 83, 67, 0.3);
       color: var(--c-text-strong);
       box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
     }
     html.light .rise-continue-btn:hover {
       background: rgba(217, 83, 67, 0.08);
       border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
+    html.light .rise-continue-btn svg {
       color: var(--c-accent);
     }
 
@@ -1073,9 +1084,9 @@
     </a>
     <div class="hidden md:flex items-center gap-7">
       <a href="#sobre" class="nav-link" data-i18n="nav_about">About</a>
-      <a href="#cases" class="nav-link" data-i18n="nav_cases">Cases</a>
       <a href="#experiencia" class="nav-link" data-i18n="nav_experience">Experience</a>
       <a href="#stack" class="nav-link" data-i18n="nav_stack">Stack &amp; AI</a>
+      <a href="#cases" class="nav-link" data-i18n="nav_cases">Cases</a>
       <a href="#contato" class="nav-link" data-i18n="nav_contact">Contact</a>
     </div>
     <div class="flex items-center gap-3">
@@ -1107,7 +1118,7 @@
       </button>
 
       <a href="Erick_Vasconcelos_CV.pdf" download class="btn-pdf" id="nav-cv-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span class="hidden sm:inline" data-i18n="nav_cv">Download CV</span>
       </a>
       <button id="hamburger-btn" class="md:hidden p-2" style="color:var(--c-text-muted)" aria-label="Abrir menu">
@@ -1118,9 +1129,9 @@
   <div id="mobile-menu" class="md:hidden border-t" style="border-color:var(--c-border);background:var(--c-nav-bg);backdrop-filter:blur(16px)">
     <div class="px-5 py-4 flex flex-col gap-1">
       <a href="#sobre" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_about">About</a>
-      <a href="#cases" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_cases">Cases</a>
       <a href="#experiencia" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_experience">Experience</a>
       <a href="#stack" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_stack">Stack &amp; AI</a>
+      <a href="#cases" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_cases">Cases</a>
       <a href="#contato" class="nav-link mobile-nav-item py-3" data-i18n="nav_contact">Contact</a>
     </div>
   </div>
@@ -1249,10 +1260,10 @@
         <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="social-btn social-btn-behance group" id="about-behance-btn" title="Acessar portfólio no Behance">
           <div class="social-icon-box behance">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-4.108 0-5.741-2.906-5.741-5.783 0-3.153 1.942-5.917 5.741-5.917 4.102 0 5.402 3.125 5.161 6.136h-8.083c.097 1.745 1.258 3.205 3.322 3.205 1.583 0 2.502-.857 2.872-1.641l1.829 1zm-5.15-6.529c-1.744 0-2.617 1.154-2.81 2.292h5.45c-.097-1.313-.973-2.292-2.64-2.292zm-12.576-4.471h5.367c1.385 0 2.766.277 3.518 1.488.583.942.619 2.287-.044 3.238-.636.909-1.571 1.272-2.585 1.536 1.341.341 2.378 1.054 2.834 2.339.467 1.314.281 2.811-.476 3.923-.979 1.439-2.73 1.677-4.417 1.677h-6.197v-14.201zm3.178 5.688h1.869c.895 0 1.936-.184 2.213-1.077.26-.84-.287-1.547-1.229-1.547h-2.853v2.624zm0 5.433h2.18c.99 0 2.193-.245 2.457-1.267.247-.954-.383-1.704-1.464-1.704h-3.173v2.971z"/>
+              <path d="M16.969 16.927a2.561 2.561 0 0 0 1.901.677 2.501 2.501 0 0 0 1.531-.475c.362-.235.636-.584.779-.99h2.585a5.091 5.091 0 0 1-1.9 2.896 5.292 5.292 0 0 1-3.091.88 5.839 5.839 0 0 1-2.284-.433 4.871 4.871 0 0 1-1.723-1.211 5.657 5.657 0 0 1-1.08-1.874 7.057 7.057 0 0 1-.383-2.393c-.005-.8.129-1.595.396-2.349a5.313 5.313 0 0 1 5.088-3.604 4.87 4.87 0 0 1 2.376.563c.661.362 1.231.87 1.668 1.485a6.2 6.2 0 0 1 .943 2.133c.194.821.263 1.666.205 2.508h-7.699c-.063.79.184 1.574.688 2.187ZM6.947 4.084a8.065 8.065 0 0 1 1.928.198 4.29 4.29 0 0 1 1.49.638c.418.303.748.711.958 1.182.241.579.357 1.203.341 1.83a3.506 3.506 0 0 1-.506 1.961 3.726 3.726 0 0 1-1.503 1.287 3.588 3.588 0 0 1 2.027 1.437c.464.747.697 1.615.67 2.494a4.593 4.593 0 0 1-.423 2.032 3.945 3.945 0 0 1-1.163 1.413 5.114 5.114 0 0 1-1.683.807 7.135 7.135 0 0 1-1.928.259H0V4.084h6.947Zm-.235 12.9c.308.004.616-.029.916-.099a2.18 2.18 0 0 0 .766-.332c.228-.158.411-.371.534-.619.142-.317.208-.663.191-1.009a2.08 2.08 0 0 0-.642-1.715 2.618 2.618 0 0 0-1.696-.505h-3.54v4.279h3.471Zm13.635-5.967a2.13 2.13 0 0 0-1.654-.619 2.336 2.336 0 0 0-1.163.259 2.474 2.474 0 0 0-.738.62 2.359 2.359 0 0 0-.396.792c-.074.239-.12.485-.137.734h4.769a3.239 3.239 0 0 0-.679-1.785l-.002-.001Zm-13.813-.648a2.254 2.254 0 0 0 1.423-.433c.399-.355.607-.88.56-1.413a1.916 1.916 0 0 0-.178-.891 1.298 1.298 0 0 0-.495-.533 1.851 1.851 0 0 0-.711-.274 3.966 3.966 0 0 0-.835-.073H3.241v3.631h3.293v-.014ZM21.62 5.122h-5.976v1.527h5.976V5.122Z"/>
             </svg>
           </div>
-          <span class="font-medium text-xs sm:text-sm" data-i18n="about_btn_behance">Behance Portfolio</span>
+          <span class="font-medium text-xs sm:text-sm" data-i18n="about_btn_behance">Behance</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" class="opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
           </svg>
@@ -1316,162 +1327,6 @@
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
-
-<!-- CASES -->
-<section id="cases" class="py-24 lg:py-32">
-  <div class="max-w-7xl mx-auto px-5">
-    <div class="reveal mb-3">
-      <div class="section-eyebrow" data-i18n="cases_eyebrow">Project Portfolio</div>
-      <div class="flex flex-wrap items-end justify-between gap-6">
-        <h2 class="section-title" data-i18n-html="cases_title">Impactful <span>Case Studies</span></h2>
-        <div class="flex gap-2">
-          <button id="scroll-left-btn" class="scroll-btn" aria-label="Scroll left"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <button id="scroll-right-btn" class="scroll-btn" aria-label="Scroll right"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-        </div>
-      </div>
-    </div>
-    <div id="cases-track" class="cases-track reveal">
-      <!-- Case 1 -->
-      <article class="case-card" id="case-card-1" tabindex="0" role="button" data-case="1">
-        <div class="case-cover">
-          <div class="case-cover-grid"></div>
-          <div class="case-cover-top">
-            <div class="case-cover-dots"><span></span><span></span><span></span></div>
-            <span class="case-cover-badge" data-i18n="case1_badge">STORYLINE 360</span>
-          </div>
-          <div class="case-cover-center">
-            <div class="case-cover-kicker">CASE STUDY // 01</div>
-            <div class="case-cover-preview-title" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</div>
-          </div>
-          <div class="case-cover-footer">
-            <span data-i18n="case1_spec">Branching Logic · Modular Layers · Scoring Variables</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3">
-            <span class="tag-pill tag-teal">Storyline 360</span>
-            <span class="tag-pill tag-indigo" data-i18n="tag_branching">Conditional Branching</span>
-            <span class="tag-pill tag-amber" data-i18n="tag_scoring">Scoring Integrity</span>
-          </div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case1_desc">Branching scenario simulator engineered in Storyline 360 with a modular layer architecture, conditional logic, and boolean/numeric variable tracking to ensure zero slide bloat and auditable scoring.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent2)">
-            <span data-i18n="case_view_details">View details</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-      </article>
-
-      <!-- Case 2 -->
-      <article class="case-card" id="case-card-2" tabindex="0" role="button" data-case="2">
-        <div class="case-cover">
-          <div class="case-cover-grid"></div>
-          <div class="case-cover-top">
-            <div class="case-cover-dots"><span></span><span></span><span></span></div>
-            <span class="case-cover-badge" data-i18n="case2_badge">GENAI PIPELINE</span>
-          </div>
-          <div class="case-cover-center">
-            <div class="case-cover-kicker">CASE STUDY // 02</div>
-            <div class="case-cover-preview-title" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</div>
-          </div>
-          <div class="case-cover-footer">
-            <span data-i18n="case2_spec">LLM Parsing · 1.5K+ Moderators · Bi-weekly Sprints</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3">
-            <span class="tag-pill tag-emerald">GenAI Pipelines</span>
-            <span class="tag-pill tag-purple">LLM Parsing</span>
-            <span class="tag-pill tag-indigo" data-i18n="tag_sprints">Bi-weekly Sprints</span>
-          </div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case2_desc">Continuous learning pipeline integrating LLMs for automated semantic parsing of complex regulatory policies, enabling rapid knowledge delivery for 1,500+ moderators across bi-weekly agile sprints.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-secondary)">
-            <span data-i18n="case_view_details">View details</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-      </article>
-
-      <!-- Case 3 -->
-      <article class="case-card" id="case-card-3" tabindex="0" role="button" data-case="3">
-        <div class="case-cover">
-          <div class="case-cover-grid"></div>
-          <div class="case-cover-top">
-            <div class="case-cover-dots"><span></span><span></span><span></span></div>
-            <span class="case-cover-badge" data-i18n="case3_badge">LMS &amp; GOVERNANCE</span>
-          </div>
-          <div class="case-cover-center">
-            <div class="case-cover-kicker">CASE STUDY // 03</div>
-            <div class="case-cover-preview-title" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</div>
-          </div>
-          <div class="case-cover-footer">
-            <span data-i18n="case3_spec">Beedoo LMS · Governance · Kirkpatrick L2</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3">
-            <span class="tag-pill tag-indigo">LMS Deployment</span>
-            <span class="tag-pill tag-teal" data-i18n="tag_governance">Platform Governance</span>
-            <span class="tag-pill tag-amber">Kirkpatrick L2</span>
-          </div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case3_desc">End-to-end LMS Beedoo implementation at 99, featuring catalog governance, full transition from in-person to digital training, and a Kirkpatrick Level 2 evaluation framework tied to commercial KPIs.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent)">
-            <span data-i18n="case_view_details">View details</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-      </article>
-    </div>
-    <p class="text-sm text-center mt-1 reveal" style="color:var(--c-text-muted)" data-i18n="cases_scroll_hint">← Swipe to explore cases →</p>
-  </div>
-</section>
-
-<!-- MODAL -->
-<div id="case-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div id="modal-backdrop"></div>
-  <div id="modal-content" class="p-0">
-    <div id="modal-header-banner">
-      <div class="flex items-center gap-3">
-        <span class="w-2.5 h-2.5 rounded-full" style="background: var(--c-accent)"></span>
-        <span id="modal-category" class="text-xs font-bold uppercase tracking-wider" style="color: var(--c-accent2); font-family: 'Plus Jakarta Sans', sans-serif">CASE STUDY // 01</span>
-      </div>
-      <button id="modal-close-btn" class="p-2 rounded-lg transition-colors" style="color:var(--c-text-muted);background:rgba(255,255,255,.05)" aria-label="Close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="p-7">
-      <div id="modal-tags" class="flex flex-wrap gap-2 mb-4"></div>
-      <h2 id="modal-title" class="font-bold text-xl mb-6 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif"></h2>
-      <div class="space-y-6">
-        <div>
-          <div class="modal-section-label" data-i18n="modal_lbl_problem">Operational Problem / Business Risk</div>
-          <p id="modal-challenge" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
-        </div>
-        <div class="divider"></div>
-        <div>
-          <div class="modal-section-label" data-i18n="modal_lbl_approach">Pedagogical &amp; Andragogical Approach</div>
-          <p id="modal-strategy" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
-        </div>
-        <div class="divider"></div>
-        <div>
-          <div class="modal-section-label" data-i18n="modal_lbl_architecture">Technical Architecture &amp; Tools</div>
-          <p id="modal-solution" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
-        </div>
-      </div>
-      <div class="flex flex-wrap gap-3 mt-8 pt-6" style="border-top:1px solid var(--c-border)">
-        <a id="modal-demo-btn" href="#" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          <span data-i18n="modal_btn_demo">Launch Interactive Demo</span>
-        </a>
-        <a id="modal-behance-btn" href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="btn-outline text-sm py-3 px-5" data-i18n="modal_btn_behance">View on Behance</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="divider"></div>
 
@@ -1758,7 +1613,183 @@
       </div>
     </div>
   </div>
+
+  <!-- Rise 360 Continue Divider Block -->
+  <div class="rise-divider-wrap mt-16">
+    <div class="rise-divider-line left"></div>
+    <a href="#cases" id="stack-continue-btn" class="rise-continue-btn" aria-label="Continuar para Cases de Impacto">
+      <span data-i18n="hero_btn_continue">Continue</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </a>
+    <div class="rise-divider-line right"></div>
+  </div>
 </section>
+
+<div class="divider"></div>
+
+<!-- CASES -->
+<section id="cases" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="reveal mb-3">
+      <div class="section-eyebrow" data-i18n="cases_eyebrow">Project Portfolio</div>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <h2 class="section-title" data-i18n-html="cases_title">Impactful <span>Case Studies</span></h2>
+        <div class="flex gap-2">
+          <button id="scroll-left-btn" class="scroll-btn" aria-label="Scroll left"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+          <button id="scroll-right-btn" class="scroll-btn" aria-label="Scroll right"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div id="cases-track" class="cases-track reveal">
+      <!-- Case 1 -->
+      <article class="case-card" id="case-card-1" tabindex="0" role="button" data-case="1">
+        <div class="case-cover">
+          <div class="case-cover-grid"></div>
+          <div class="case-cover-top">
+            <div class="case-cover-dots"><span></span><span></span><span></span></div>
+            <span class="case-cover-badge" data-i18n="case1_badge">STORYLINE 360</span>
+          </div>
+          <div class="case-cover-center">
+            <div class="case-cover-kicker">CASE STUDY // 01</div>
+            <div class="case-cover-preview-title" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</div>
+          </div>
+          <div class="case-cover-footer">
+            <span data-i18n="case1_spec">Branching Logic · Modular Layers · Scoring Variables</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="tag-pill tag-teal">Storyline 360</span>
+            <span class="tag-pill tag-indigo" data-i18n="tag_branching">Conditional Branching</span>
+            <span class="tag-pill tag-amber" data-i18n="tag_scoring">Scoring Integrity</span>
+          </div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case1_desc">Branching scenario simulator engineered in Storyline 360 with a modular layer architecture, conditional logic, and boolean/numeric variable tracking to ensure zero slide bloat and auditable scoring.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent2)">
+            <span data-i18n="case_view_details">View details</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case 2 -->
+      <article class="case-card" id="case-card-2" tabindex="0" role="button" data-case="2">
+        <div class="case-cover">
+          <div class="case-cover-grid"></div>
+          <div class="case-cover-top">
+            <div class="case-cover-dots"><span></span><span></span><span></span></div>
+            <span class="case-cover-badge" data-i18n="case2_badge">GENAI PIPELINE</span>
+          </div>
+          <div class="case-cover-center">
+            <div class="case-cover-kicker">CASE STUDY // 02</div>
+            <div class="case-cover-preview-title" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</div>
+          </div>
+          <div class="case-cover-footer">
+            <span data-i18n="case2_spec">LLM Parsing · 1.5K+ Moderators · Bi-weekly Sprints</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="tag-pill tag-emerald">GenAI Pipelines</span>
+            <span class="tag-pill tag-purple">LLM Parsing</span>
+            <span class="tag-pill tag-indigo" data-i18n="tag_sprints">Bi-weekly Sprints</span>
+          </div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case2_desc">Continuous learning pipeline integrating LLMs for automated semantic parsing of complex regulatory policies, enabling rapid knowledge delivery for 1,500+ moderators across bi-weekly agile sprints.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-secondary)">
+            <span data-i18n="case_view_details">View details</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case 3 -->
+      <article class="case-card" id="case-card-3" tabindex="0" role="button" data-case="3">
+        <div class="case-cover">
+          <div class="case-cover-grid"></div>
+          <div class="case-cover-top">
+            <div class="case-cover-dots"><span></span><span></span><span></span></div>
+            <span class="case-cover-badge" data-i18n="case3_badge">LMS &amp; GOVERNANCE</span>
+          </div>
+          <div class="case-cover-center">
+            <div class="case-cover-kicker">CASE STUDY // 03</div>
+            <div class="case-cover-preview-title" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</div>
+          </div>
+          <div class="case-cover-footer">
+            <span data-i18n="case3_spec">Beedoo LMS · Governance · Kirkpatrick L2</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="tag-pill tag-indigo">LMS Deployment</span>
+            <span class="tag-pill tag-teal" data-i18n="tag_governance">Platform Governance</span>
+            <span class="tag-pill tag-amber">Kirkpatrick L2</span>
+          </div>
+          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</h3>
+          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case3_desc">End-to-end LMS Beedoo implementation at 99, featuring catalog governance, full transition from in-person to digital training, and a Kirkpatrick Level 2 evaluation framework tied to commercial KPIs.</p>
+          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent)">
+            <span data-i18n="case_view_details">View details</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="text-sm text-center mt-1 reveal" style="color:var(--c-text-muted)" data-i18n="cases_scroll_hint">← Swipe to explore cases →</p>
+  </div>
+
+  <!-- Rise 360 Continue Divider Block -->
+  <div class="rise-divider-wrap mt-14">
+    <div class="rise-divider-line left"></div>
+    <a href="#contato" id="cases-continue-btn" class="rise-continue-btn" aria-label="Continuar para Contato">
+      <span data-i18n="hero_btn_continue">Continue</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </a>
+    <div class="rise-divider-line right"></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="case-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div id="modal-backdrop"></div>
+  <div id="modal-content" class="p-0">
+    <div id="modal-header-banner">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full" style="background: var(--c-accent)"></span>
+        <span id="modal-category" class="text-xs font-bold uppercase tracking-wider" style="color: var(--c-accent2); font-family: 'Plus Jakarta Sans', sans-serif">CASE STUDY // 01</span>
+      </div>
+      <button id="modal-close-btn" class="p-2 rounded-lg transition-colors" style="color:var(--c-text-muted);background:rgba(255,255,255,.05)" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-7">
+      <div id="modal-tags" class="flex flex-wrap gap-2 mb-4"></div>
+      <h2 id="modal-title" class="font-bold text-xl mb-6 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif"></h2>
+      <div class="space-y-6">
+        <div>
+          <div class="modal-section-label" data-i18n="modal_lbl_problem">Operational Problem / Business Risk</div>
+          <p id="modal-challenge" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <div class="modal-section-label" data-i18n="modal_lbl_approach">Pedagogical &amp; Andragogical Approach</div>
+          <p id="modal-strategy" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <div class="modal-section-label" data-i18n="modal_lbl_architecture">Technical Architecture &amp; Tools</div>
+          <p id="modal-solution" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-8 pt-6" style="border-top:1px solid var(--c-border)">
+        <a id="modal-demo-btn" href="#" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          <span data-i18n="modal_btn_demo">Launch Interactive Demo</span>
+        </a>
+        <a id="modal-behance-btn" href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="btn-outline text-sm py-3 px-5" data-i18n="modal_btn_behance">View on Behance</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="divider"></div>
 
@@ -1791,7 +1822,9 @@
           LinkedIn
         </a>
         <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="social-link" id="footer-behance">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029H23.726zm-7.188-4h3.992c-.309-1.173-1.117-1.943-1.968-1.943-.916 0-1.72.77-2.024 1.943zM6.27 18H0V0h8.953C11.831 0 13.59 1.614 13.59 3.868c0 1.285-.843 2.248-2.059 2.76 1.766.34 2.809 1.325 2.809 3.088 0 2.43-1.712 3.284-4.439 3.284H6.27V18zm0-7.59H9.9c2.727 0 4.439-.854 4.439-3.284 0-1.763-1.043-2.748-2.809-3.088C12.747 6.116 13.59 5.153 13.59 3.868 13.59 1.614 11.831 0 8.953 0H0v18h6.27v-7.59z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16.969 16.927a2.561 2.561 0 0 0 1.901.677 2.501 2.501 0 0 0 1.531-.475c.362-.235.636-.584.779-.99h2.585a5.091 5.091 0 0 1-1.9 2.896 5.292 5.292 0 0 1-3.091.88 5.839 5.839 0 0 1-2.284-.433 4.871 4.871 0 0 1-1.723-1.211 5.657 5.657 0 0 1-1.08-1.874 7.057 7.057 0 0 1-.383-2.393c-.005-.8.129-1.595.396-2.349a5.313 5.313 0 0 1 5.088-3.604 4.87 4.87 0 0 1 2.376.563c.661.362 1.231.87 1.668 1.485a6.2 6.2 0 0 1 .943 2.133c.194.821.263 1.666.205 2.508h-7.699c-.063.79.184 1.574.688 2.187ZM6.947 4.084a8.065 8.065 0 0 1 1.928.198 4.29 4.29 0 0 1 1.49.638c.418.303.748.711.958 1.182.241.579.357 1.203.341 1.83a3.506 3.506 0 0 1-.506 1.961 3.726 3.726 0 0 1-1.503 1.287 3.588 3.588 0 0 1 2.027 1.437c.464.747.697 1.615.67 2.494a4.593 4.593 0 0 1-.423 2.032 3.945 3.945 0 0 1-1.163 1.413 5.114 5.114 0 0 1-1.683.807 7.135 7.135 0 0 1-1.928.259H0V4.084h6.947Zm-.235 12.9c.308.004.616-.029.916-.099a2.18 2.18 0 0 0 .766-.332c.228-.158.411-.371.534-.619.142-.317.208-.663.191-1.009a2.08 2.08 0 0 0-.642-1.715 2.618 2.618 0 0 0-1.696-.505h-3.54v4.279h3.471Zm13.635-5.967a2.13 2.13 0 0 0-1.654-.619 2.336 2.336 0 0 0-1.163.259 2.474 2.474 0 0 0-.738.62 2.359 2.359 0 0 0-.396.792c-.074.239-.12.485-.137.734h4.769a3.239 3.239 0 0 0-.679-1.785l-.002-.001Zm-13.813-.648a2.254 2.254 0 0 0 1.423-.433c.399-.355.607-.88.56-1.413a1.916 1.916 0 0 0-.178-.891 1.298 1.298 0 0 0-.495-.533 1.851 1.851 0 0 0-.711-.274 3.966 3.966 0 0 0-.835-.073H3.241v3.631h3.293v-.014ZM21.62 5.122h-5.976v1.527h5.976V5.122Z"/>
+          </svg>
           Behance
         </a>
         <a href="mailto:erickvascp@gmail.com" class="social-link" id="footer-email">
@@ -1913,7 +1946,7 @@
       about_p1: 'The best corporate learning is that which simplifies what seems inaccessible and delivers immediate value to teams\' day-to-day work. That has been the approach I pursued across every project I have led.',
       about_p2: 'At <strong style="color:var(--c-text-strong)">TikTok</strong>, this meant designing rapid cycles to train over <strong style="color:var(--c-text-strong)">1,500 moderation professionals</strong> in dynamic operational scenarios. At <strong style="color:var(--c-text-strong)">99</strong>, it translated into architecting the learning ecosystem and sales enablement tracking. At <strong style="color:var(--c-text-strong)">Avenue Code</strong> and <strong style="color:var(--c-text-strong)">TTEC</strong>, I implemented scalable training development routines and key learning indicator dashboards.',
       about_p3: 'I combine a foundation in communication and research with modern <strong style="color:var(--c-accent2)">artificial intelligence</strong> tools to automate operational steps and focus on what truly matters: creating intuitive, measurable, and scalable learning experiences.',
-      about_btn_behance: 'Behance Portfolio',
+      about_btn_behance: 'Behance',
       about_card_role: 'Senior Instructional Designer & Training Expert',
       about_card_item1: 'Global-Scale Curriculum Architecture',
       about_card_item2: 'Learning Experience Design (LXD) & Andragogy',
@@ -2062,7 +2095,7 @@
       about_p1: 'A melhor aprendizagem corporativa é a que simplifica o que parece inacessível e gera valor imediato no dia a dia das equipes. Foi essa a abordagem que busquei implementar em todos os projetos que já assumi.',
       about_p2: 'No <strong style="color:var(--c-text-strong)">TikTok</strong>, isso significava desenhar ciclos rápidos para treinar mais de <strong style="color:var(--c-text-strong)">1.500 profissionais</strong> de moderação em cenários operacionais dinâmicos. Na <strong style="color:var(--c-text-strong)">99</strong>, isso se traduziu na estruturação do ecossistema de aprendizagem e acompanhamento do time de vendas. Na <strong style="color:var(--c-text-strong)">Avenue Code</strong> e na <strong style="color:var(--c-text-strong)">TTEC</strong>, busquei implementar rotinas escaláveis de desenvolvimento de treinamento e acompanhamento de indicadores-chave de aprendizado.',
       about_p3: 'Eu combino uma bagagem em comunicação e pesquisa com ferramentas modernas de <strong style="color:var(--c-accent2)">inteligência artificial</strong> para automatizar etapas operacionais e me dedicar ao que realmente importa: criar experiências de aprendizagem intuitivas, mensuráveis e escaláveis.',
-      about_btn_behance: 'Portfólio Behance',
+      about_btn_behance: 'Behance',
       about_card_role: 'Designer Instrucional e Especialista em Treinamento Sênior',
       about_card_item1: 'Arquitetura Curricular em Escala Global',
       about_card_item2: 'Learning Experience Design (LXD) & Andragogia',
