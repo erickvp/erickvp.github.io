@@ -887,6 +887,101 @@
       background: rgba(237, 106, 90, .08);
     }
 
+    /* Ferramentas & Métodos — Rise-style tabs */
+    .stack-tabs { max-width: 960px; margin: 0 auto; }
+    .stack-tablist {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 14px;
+      scroll-snap-type: x proximity;
+      scrollbar-width: thin;
+      scrollbar-color: var(--c-border) transparent;
+    }
+    .stack-tab {
+      flex: 1 0 auto;
+      min-width: 210px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      text-align: left;
+      cursor: pointer;
+      background: var(--c-bg2);
+      border: 1px solid var(--c-border);
+      border-radius: 14px;
+      color: var(--c-text-muted);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: .86rem;
+      line-height: 1.3;
+      scroll-snap-align: start;
+      transition: all .25s;
+    }
+    .stack-tab:hover {
+      border-color: rgba(237, 106, 90, .45);
+      color: var(--c-text-strong);
+      transform: translateY(-2px);
+    }
+    .stack-tab:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+    .stack-tab.active {
+      background: rgba(237, 106, 90, .1);
+      border-color: var(--c-accent);
+      color: var(--c-text-strong);
+      box-shadow: 0 10px 26px rgba(237, 106, 90, .14);
+    }
+    .stack-tab-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(237, 106, 90, .12);
+      border: 1px solid rgba(237, 106, 90, .25);
+    }
+    .stack-tab[aria-controls="stack-panel-3"] .stack-tab-icon,
+    .stack-tab[aria-controls="stack-panel-4"] .stack-tab-icon {
+      background: rgba(244, 128, 114, .12);
+      border-color: rgba(244, 128, 114, .25);
+    }
+    .stack-panel {
+      position: relative;
+      overflow: hidden;
+      background: var(--c-bg2);
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .stack-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at top left, rgba(237, 106, 90, .08), transparent 70%);
+    }
+    .stack-panel.pillar-purple::before,
+    .stack-panel.pillar-amber::before {
+      background: radial-gradient(circle at top left, rgba(244, 128, 114, .08), transparent 70%);
+    }
+    .stack-panel > * { position: relative; }
+    .stack-panel.active { animation: stackPanelIn .35s ease; }
+    .stack-panel-desc {
+      color: var(--c-text);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+      max-width: 760px;
+    }
+    @keyframes stackPanelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (min-width: 1024px) {
+      .stack-tab { flex: 1 1 0; min-width: 0; }
+    }
+    @media (max-width: 640px) {
+      .stack-panel { padding: 24px 20px; }
+    }
+
     /* Stats & Social */
     .stat-card {
       background: var(--c-bg2);
@@ -1085,7 +1180,7 @@
     <div class="hidden md:flex items-center gap-7">
       <a href="#sobre" class="nav-link" data-i18n="nav_about">About</a>
       <a href="#experiencia" class="nav-link" data-i18n="nav_experience">Experience</a>
-      <a href="#stack" class="nav-link" data-i18n="nav_stack">Stack &amp; AI</a>
+      <a href="#stack" class="nav-link" data-i18n="nav_stack">Tools &amp; Methods</a>
       <a href="#cases" class="nav-link" data-i18n="nav_cases">Cases</a>
       <a href="#contato" class="nav-link" data-i18n="nav_contact">Contact</a>
     </div>
@@ -1130,7 +1225,7 @@
     <div class="px-5 py-4 flex flex-col gap-1">
       <a href="#sobre" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_about">About</a>
       <a href="#experiencia" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_experience">Experience</a>
-      <a href="#stack" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_stack">Stack &amp; AI</a>
+      <a href="#stack" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_stack">Tools &amp; Methods</a>
       <a href="#cases" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_cases">Cases</a>
       <a href="#contato" class="nav-link mobile-nav-item py-3" data-i18n="nav_contact">Contact</a>
     </div>
@@ -1558,57 +1653,67 @@
 
 <div class="divider"></div>
 
-<!-- STACK & IA -->
+<!-- FERRAMENTAS & MÉTODOS -->
 <section id="stack" class="py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-5">
     <div class="reveal mb-14 text-center max-w-2xl mx-auto">
       <div class="section-eyebrow justify-center" data-i18n="stack_eyebrow">Skills &amp; Tools</div>
-      <h2 class="section-title" data-i18n-html="stack_title">Stack &amp; <span>AI</span></h2>
-      <p style="color:var(--c-text-muted)" class="mt-4" data-i18n="stack_subtitle">Four integrated pillars driving technical learning, governance, and AI-enabled scale.</p>
+      <h2 class="section-title" data-i18n-html="stack_title">Tools &amp; <span>Methods</span></h2>
+      <p style="color:var(--c-text-muted)" class="mt-4" data-i18n="stack_subtitle">Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation.</p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="skill-pillar pillar-teal reveal">
-        <div class="pillar-icon" style="background:rgba(237,106,90,.12);border:1px solid rgba(237,106,90,.25)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent)" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
-        </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar1_title">Pedagogical Design &amp; Andragogy</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar1_desc">Grounded instructional architecture focused on adult learner autonomy, measurable impact, and real workplace skill transfer.</p>
-        <div class="flex flex-wrap">
-          <span class="skill-tag">ADDIE</span><span class="skill-tag">Kirkpatrick L1–L4</span><span class="skill-tag" data-i18n="p1_needs">Knowledge Needs Assessment</span><span class="skill-tag" data-i18n="p1_curriculum">Curriculum Design</span><span class="skill-tag">Microlearning</span><span class="skill-tag" data-i18n="p1_andragogy">Andragogy</span>
-        </div>
+    <div class="stack-tabs reveal">
+      <div class="stack-tablist" role="tablist" aria-label="Ferramentas & Métodos">
+        <button type="button" role="tab" id="stack-tab-1" class="stack-tab active" aria-selected="true" aria-controls="stack-panel-1" tabindex="0">
+          <span class="stack-tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent)" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+          </span>
+          <span class="stack-tab-label" data-i18n="stack_tab1">Pedagogy &amp; Andragogy</span>
+        </button>
+        <button type="button" role="tab" id="stack-tab-2" class="stack-tab" aria-selected="false" aria-controls="stack-panel-2" tabindex="-1">
+          <span class="stack-tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </span>
+          <span class="stack-tab-label" data-i18n="stack_tab2">Platforms &amp; Authoring Technologies</span>
+        </button>
+        <button type="button" role="tab" id="stack-tab-3" class="stack-tab" aria-selected="false" aria-controls="stack-panel-3" tabindex="-1">
+          <span class="stack-tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent2)" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </span>
+          <span class="stack-tab-label" data-i18n="stack_tab3">Agentic AI &amp; Automation</span>
+        </button>
+        <button type="button" role="tab" id="stack-tab-4" class="stack-tab" aria-selected="false" aria-controls="stack-panel-4" tabindex="-1">
+          <span class="stack-tab-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent2)" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </span>
+          <span class="stack-tab-label" data-i18n="stack_tab4">Technical Communication &amp; UX</span>
+        </button>
       </div>
 
-      <div class="skill-pillar pillar-indigo reveal" style="transition-delay:.1s">
-        <div class="pillar-icon" style="background:rgba(237,106,90,.12);border:1px solid rgba(237,106,90,.25)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <div class="stack-panels">
+        <div role="tabpanel" id="stack-panel-1" class="stack-panel pillar-teal active" aria-labelledby="stack-tab-1">
+          <p class="stack-panel-desc" data-i18n="stack_desc1">Instructional architecture driven by learner autonomy, practical transfer to the workplace, and measurable business impact assessment.</p>
+          <div class="flex flex-wrap">
+            <span class="skill-tag">ADDIE</span><span class="skill-tag">Action Mapping</span><span class="skill-tag">Kirkpatrick L1–L4</span><span class="skill-tag" data-i18n="s1_tna">Training Needs Analysis (TNA)</span><span class="skill-tag" data-i18n="s1_curr">Curriculum Design</span><span class="skill-tag">Microlearning</span>
+          </div>
         </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar2_title">Authoring Technologies &amp; Platforms</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar2_desc">Advanced command of enterprise authoring tools, LMS governance, and interoperability standards at global scale.</p>
-        <div class="flex flex-wrap">
-          <span class="skill-tag" data-i18n="p2_storyline">Advanced Storyline 360</span><span class="skill-tag">Rise 360</span><span class="skill-tag">xAPI / SCORM</span><span class="skill-tag">Beedoo LMS</span><span class="skill-tag">Moodle</span><span class="skill-tag" data-i18n="p2_kms">KMS Architecture</span>
+        <div role="tabpanel" id="stack-panel-2" class="stack-panel pillar-indigo" aria-labelledby="stack-tab-2" hidden>
+          <p class="stack-panel-desc" data-i18n="stack_desc2">Enterprise administration of LMS/LXP ecosystems, catalog governance, and content development at global scale.</p>
+          <div class="flex flex-wrap">
+            <span class="skill-tag" data-i18n="s2_lms">LMS/LXP Administration</span><span class="skill-tag" data-i18n="s2_story">Advanced Storyline 360</span><span class="skill-tag">Rise 360</span><span class="skill-tag">xAPI / SCORM</span><span class="skill-tag">Knowledge Management</span>
+          </div>
         </div>
-      </div>
-
-      <div class="skill-pillar pillar-purple reveal" style="transition-delay:.2s">
-        <div class="pillar-icon" style="background:rgba(244,128,114,.12);border:1px solid rgba(244,128,114,.25)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent2)" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <div role="tabpanel" id="stack-panel-3" class="stack-panel pillar-purple" aria-labelledby="stack-tab-3" hidden>
+          <p class="stack-panel-desc" data-i18n="stack_desc3">Learning pipeline acceleration through agentic workflows, agent skills assignment, context engineering, and AI-assisted prototyping.</p>
+          <div class="flex flex-wrap">
+            <span class="skill-tag">Agent Skills &amp; Tool Calling</span><span class="skill-tag" data-i18n="s3_wf">Agentic Workflows (Agentic AI)</span><span class="skill-tag">Context Engineering &amp; RAG</span><span class="skill-tag" data-i18n="s3_parse">Regulatory Parsing with LLMs</span><span class="skill-tag" data-i18n="s3_lowcode">Low-Code / No-Code Platforms</span><span class="skill-tag" data-i18n="s3_ide">IDE Prototyping</span>
+          </div>
         </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar3_title">Generative AI &amp; Automation</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar3_desc">Instructional pipeline acceleration with advanced language models, semantic policy parsing, and code-assisted rapid prototyping.</p>
-        <div class="flex flex-wrap">
-          <span class="skill-tag" data-i18n="p3_llm">LLMs for Regulatory Parsing</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag" data-i18n="p3_ides">Modern IDEs (Cursor/Windsurf)</span><span class="skill-tag">ChatGPT / Claude</span><span class="skill-tag" data-i18n="p3_proto">Rapid Prototyping</span>
-        </div>
-      </div>
-
-      <div class="skill-pillar pillar-amber reveal" style="transition-delay:.3s">
-        <div class="pillar-icon" style="background:rgba(244,128,114,.12);border:1px solid rgba(244,128,114,.25)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent2)" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-        </div>
-        <h3 class="font-bold text-base mb-2" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="pillar4_title">Technical Communication &amp; UX</h3>
-        <p class="text-sm mb-5 leading-relaxed" style="color:var(--c-text-muted)" data-i18n="pillar4_desc">Convergence of analytical copywriting, interface design, and immersive scenarios for maximum retention and cognitive clarity.</p>
-        <div class="flex flex-wrap">
-          <span class="skill-tag" data-i18n="p4_scenario">Scenario-Based Storytelling</span><span class="skill-tag" data-i18n="p4_scripting">Multimedia Scriptwriting</span><span class="skill-tag">Figma</span><span class="skill-tag">Learning UX</span><span class="skill-tag">Storyboarding</span><span class="skill-tag" data-i18n="p4_video">Instructional Video</span>
+        <div role="tabpanel" id="stack-panel-4" class="stack-panel pillar-amber" aria-labelledby="stack-tab-4" hidden>
+          <p class="stack-panel-desc" data-i18n="stack_desc4">Translating dense technical ecosystems into intuitive learning experiences, analytical scriptwriting, and visual prototypes built for high cognitive retention.</p>
+          <div class="flex flex-wrap">
+            <span class="skill-tag" data-i18n="s4_branch">Branching Scenarios</span><span class="skill-tag">Learning UX</span><span class="skill-tag" data-i18n="s4_script">Multimedia Scriptwriting</span><span class="skill-tag" data-i18n="s4_figma">Figma Wireframes</span><span class="skill-tag" data-i18n="s4_story">Technical Storytelling</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1848,6 +1953,46 @@
 (function(){
   'use strict';
 
+  // Tools & Methods Tabs (Rise-style)
+  (function initStackTabs() {
+    const tabs = Array.from(document.querySelectorAll('.stack-tab'));
+    const panels = Array.from(document.querySelectorAll('.stack-panel'));
+    if (!tabs.length) return;
+
+    function activate(index, focus) {
+      tabs.forEach((tab, i) => {
+        const on = i === index;
+        tab.classList.toggle('active', on);
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        if (on) {
+          if (focus) tab.focus();
+          tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+        }
+      });
+      panels.forEach((panel, i) => {
+        const on = i === index;
+        panel.hidden = !on;
+        panel.classList.toggle('active', on);
+      });
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activate(i, false));
+      tab.addEventListener('keydown', e => {
+        let next = null;
+        if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        if (next !== null) {
+          e.preventDefault();
+          activate(next, true);
+        }
+      });
+    });
+  })();
+
   // Dynamic Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1921,7 +2066,7 @@
       nav_about: 'About',
       nav_cases: 'Cases',
       nav_experience: 'Experience',
-      nav_stack: 'Stack & AI',
+      nav_stack: 'Tools & Methods',
       nav_contact: 'Contact',
       nav_cv: 'Download CV',
 
@@ -2037,27 +2182,28 @@
       exp_ufpe_desc: 'Facilitation of theoretical and practical undergraduate lectures, active learning methodologies, syllabus design, and mentoring academic capstone projects.',
 
       stack_eyebrow: 'Skills & Tools',
-      stack_title: 'Stack & <span>AI</span>',
-      stack_subtitle: 'Four integrated pillars driving technical learning, governance, and AI-enabled scale.',
-      pillar1_title: 'Pedagogical Design & Andragogy',
-      pillar1_desc: 'Grounded instructional architecture focused on adult learner autonomy, measurable impact, and real workplace skill transfer.',
-      p1_needs: 'Knowledge Needs Assessment',
-      p1_curriculum: 'Curriculum Design',
-      p1_andragogy: 'Andragogy',
-      pillar2_title: 'Authoring Technologies & Platforms',
-      pillar2_desc: 'Advanced command of enterprise authoring tools, LMS governance, and interoperability standards at global scale.',
-      p2_storyline: 'Advanced Storyline 360',
-      p2_kms: 'KMS Architecture',
-      pillar3_title: 'Generative AI & Automation',
-      pillar3_desc: 'Instructional pipeline acceleration with advanced language models, semantic policy parsing, and code-assisted rapid prototyping.',
-      p3_llm: 'LLMs for Regulatory Parsing',
-      p3_ides: 'Modern IDEs (Cursor/Windsurf)',
-      p3_proto: 'Rapid Prototyping',
-      pillar4_title: 'Technical Communication & UX',
-      pillar4_desc: 'Convergence of analytical copywriting, interface design, and immersive scenarios for maximum retention and cognitive clarity.',
-      p4_scenario: 'Scenario-Based Storytelling',
-      p4_scripting: 'Multimedia Scriptwriting',
-      p4_video: 'Instructional Video',
+      stack_title: 'Tools & <span>Methods</span>',
+      stack_subtitle: 'Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation.',
+      stack_tab1: 'Pedagogy & Andragogy',
+      stack_desc1: 'Instructional architecture driven by learner autonomy, practical transfer to the workplace, and measurable business impact assessment.',
+      s1_tna: 'Training Needs Analysis (TNA)',
+      s1_curr: 'Curriculum Design',
+      stack_tab2: 'Platforms & Authoring Technologies',
+      stack_desc2: 'Enterprise administration of LMS/LXP ecosystems, catalog governance, and content development at global scale.',
+      s2_lms: 'LMS/LXP Administration',
+      s2_story: 'Advanced Storyline 360',
+      stack_tab3: 'Agentic AI & Automation',
+      stack_desc3: 'Learning pipeline acceleration through agentic workflows, agent skills assignment, context engineering, and AI-assisted prototyping.',
+      s3_wf: 'Agentic Workflows (Agentic AI)',
+      s3_parse: 'Regulatory Parsing with LLMs',
+      s3_lowcode: 'Low-Code / No-Code Platforms',
+      s3_ide: 'IDE Prototyping',
+      stack_tab4: 'Technical Communication & UX',
+      stack_desc4: 'Translating dense technical ecosystems into intuitive learning experiences, analytical scriptwriting, and visual prototypes built for high cognitive retention.',
+      s4_branch: 'Branching Scenarios',
+      s4_script: 'Multimedia Scriptwriting',
+      s4_figma: 'Figma Wireframes',
+      s4_story: 'Technical Storytelling',
 
       contact_eyebrow: "Let's Connect",
       contact_title: 'Ready to <span>collaborate</span>?',
@@ -2070,7 +2216,7 @@
       nav_about: 'Sobre',
       nav_cases: 'Cases',
       nav_experience: 'Experiência',
-      nav_stack: 'Stack & IA',
+      nav_stack: 'Ferramentas & Métodos',
       nav_contact: 'Contato',
       nav_cv: 'Baixar CV',
 
@@ -2186,27 +2332,28 @@
       exp_ufpe_desc: 'Facilitação de aulas teóricas e práticas para graduação, aplicação de metodologias ativas de aprendizagem, planejamento de planos de ensino e orientação de projetos experimentais acadêmicos.',
 
       stack_eyebrow: 'Competências & Ferramentas',
-      stack_title: 'Stack & <span>IA</span>',
-      stack_subtitle: 'Quatro pilares integrados que sustentam a entrega de aprendizagem técnica, governança e inovação.',
-      pillar1_title: 'Design Pedagógico & Andragogia',
-      pillar1_desc: 'Arquitetura instrucional sólida orientada à autonomia do aprendiz, mensuração de impacto e transferência prática de conhecimento.',
-      p1_needs: 'Análise de Necessidades de Conhecimento',
-      p1_curriculum: 'Design de Currículo',
-      p1_andragogy: 'Andragogia',
-      pillar2_title: 'Plataformas & Tecnologias de Autoria',
-      pillar2_desc: 'Domínio avançado de ferramentas de autoria, governança de LMS e padrões de interoperabilidade para ambientes corporativos complexos.',
-      p2_storyline: 'Storyline 360 Avançado',
-      p2_kms: 'Arquitetura KMS',
-      pillar3_title: 'IA Generativa & Automação',
-      pillar3_desc: 'Aceleração de esteiras instrucionais com modelos avançados de linguagem, parsing regulatório e prototipagem ágil em código.',
-      p3_llm: 'LLMs para Parsing Regulatório',
-      p3_ides: 'IDEs Modernas (Cursor/Windsurf)',
-      p3_proto: 'Prototipagem Rápida',
-      pillar4_title: 'Comunicação Técnica & UX',
-      pillar4_desc: 'Convergência entre redação analítica, design de interface e cenários imersivos para máxima retenção e clareza cognitiva.',
-      p4_scenario: 'Storytelling Baseado em Cenários',
-      p4_scripting: 'Roteirização Multimídia',
-      p4_video: 'Vídeo Instrucional',
+      stack_title: 'Ferramentas & <span>Métodos</span>',
+      stack_subtitle: 'Abaixo estão os quatro pilares integrados que sustentam as minhas entregas em aprendizagem técnica, governança e inovação.',
+      stack_tab1: 'Pedagogia & Andragogia',
+      stack_desc1: 'Arquitetura instrucional orientada à autonomia do aprendiz, transferência prática no ambiente de trabalho e avaliação de impacto mensurável no negócio.',
+      s1_tna: 'Levantamento de Necessidades (LNT)',
+      s1_curr: 'Design de Currículo',
+      stack_tab2: 'Plataformas & Tecnologias de Autoria',
+      stack_desc2: 'Administração corporativa de ecossistemas LMS/LXP, governança de catálogos e desenvolvimento de conteúdo em escala global.',
+      s2_lms: 'Administração de LMS/LXP',
+      s2_story: 'Storyline 360 Avançado',
+      stack_tab3: 'IA Agêntica & Automação',
+      stack_desc3: 'Aceleração da esteira de aprendizagem por meio de fluxos agênticos, atribuição de agent skills, engenharia de contexto e prototipagem assistida por IA.',
+      s3_wf: 'Workflows Agênticos (Agentic AI)',
+      s3_parse: 'Parsing Regulatório com LLMs',
+      s3_lowcode: 'Plataformas Low-Code / No-Code',
+      s3_ide: 'Prototipagem em IDE',
+      stack_tab4: 'Comunicação Técnica & UX',
+      stack_desc4: 'Tradução de ecossistemas técnicos densos em experiências de aprendizagem intuitivas, roteirização analítica e protótipos visuais de alta retenção cognitiva.',
+      s4_branch: 'Cenários Ramificados',
+      s4_script: 'Roteirização Multimídia',
+      s4_figma: 'Wireframes no Figma',
+      s4_story: 'Storytelling Técnico',
 
       contact_eyebrow: 'Vamos Conversar',
       contact_title: 'Pronto para <span>colaborar</span>?',
