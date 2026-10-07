@@ -510,7 +510,7 @@
       font-size: 13.5px;
       color: var(--c-text);
       line-height: 1.6;
-      text-align: justify;
+      text-align: left;
     }
 
     .skills-col {
@@ -569,6 +569,7 @@
       transition: width 0.4s ease;
     }
 
+    .behance-note-m { display: none; }
     @media (max-width: 960px) {
       .cases-layout { grid-template-columns: 1fr; }
       .case-content-grid { grid-template-columns: 1fr; }
@@ -578,6 +579,90 @@
         padding-left: 0;
         padding-top: 24px;
       }
+      /* Case tabs become a horizontal, swipeable strip (same pattern as Tools & Methods) */
+      .case-nav {
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        padding: 4px 2px 14px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: thin;
+        scrollbar-color: var(--c-border) transparent;
+        min-width: 0;
+        flex: 1;
+      }
+      .case-nav .tab-btn {
+        flex: 0 0 auto;
+        width: 230px;
+        scroll-snap-align: start;
+      }
+      .case-nav .tab-btn:hover { transform: translateY(-2px); }
+      .cases-tabs-col { min-width: 0; }
+      .behance-note-d { display: none; }
+      .behance-note-m { display: block; margin-top: 16px; }
+    }
+
+    /* Tab strip + arrow buttons (mobile only) */
+    .tab-strip { display: flex; align-items: center; gap: 8px; }
+    .tab-arrows { display: none; gap: 6px; flex-shrink: 0; margin-bottom: 10px; }
+    .tab-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--c-bg2);
+      border: 1px solid var(--c-border);
+      color: var(--c-text-strong);
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .tab-arrow:hover, .tab-arrow:active {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+      background: rgba(237, 106, 90, .08);
+    }
+    .tab-arrow:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+    .tab-hint-m { display: none; }
+    @media (max-width: 767px) {
+      .stack-strip .tab-arrows { display: flex; }
+      .stack-strip .stack-tablist { flex: 1; min-width: 0; }
+      .tab-hint-d.stack-hint { display: none; }
+      .tab-hint-m.stack-hint { display: inline; }
+    }
+    @media (max-width: 960px) {
+      .cases-strip .tab-arrows { display: flex; }
+      .tab-hint-d.cases-hint { display: none; }
+      .tab-hint-m.cases-hint { display: inline; }
+    }
+
+    /* Desktop-only header controls (mobile copies live in the hamburger menu) */
+    .theme-toggle-btn.nav-desktop-only,
+    .lang-toggle-btn.nav-desktop-only { display: none; }
+    @media (min-width: 768px) {
+      .theme-toggle-btn.nav-desktop-only,
+      .lang-toggle-btn.nav-desktop-only { display: inline-flex; }
+    }
+    @media (max-width: 767px) {
+      #nav-cv-btn { padding: 8px 12px; font-size: .72rem; gap: 6px; }
+    }
+
+    /* Case header: logo with company name beneath */
+    .case-company {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      min-width: 56px;
+    }
+    .case-company-name {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--c-text-muted);
+      text-align: center;
     }
     .tag-pill {
       display: inline-block;
@@ -1061,6 +1146,30 @@
     @media (max-width: 640px) {
       .stack-panel { padding: 24px 20px; }
     }
+    /* Illustrative banner: bleeds to the full width of the panel, compact height */
+    .stack-panel-img {
+      display: block;
+      width: calc(100% + 64px);
+      max-width: none;
+      margin: -32px -32px 22px;
+      height: 135px;
+      object-fit: cover;
+      object-position: center;
+      border-bottom: 1px solid var(--c-border);
+      background: var(--c-bg2);
+    }
+    .stack-img-dark { display: block; }
+    .stack-img-light { display: none; }
+    html.light .stack-img-dark { display: none !important; }
+    html.light .stack-img-light { display: block !important; }
+
+    @media (max-width: 640px) {
+      .stack-panel-img {
+        width: calc(100% + 40px);
+        margin: -24px -20px 18px;
+        height: 75px;
+      }
+    }
 
     /* Stats & Social */
     .stat-card {
@@ -1240,8 +1349,8 @@
 
 <!-- NAV -->
 <header id="main-nav" class="fixed top-0 left-0 right-0 z-50">
-  <nav class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
-    <a href="#hero" class="flex items-center gap-3" aria-label="Erick Vasconcelos Home">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-5 py-4 flex items-center justify-between gap-2">
+    <a href="#hero" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Erick Vasconcelos Home">
       <div class="w-9 h-9 rounded-lg flex items-center justify-center text-white shadow-lg" style="background:linear-gradient(135deg,var(--c-accent),var(--c-secondary))">
         <svg id="nav-brand-logo" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="stroke:#ffffff !important; color:#ffffff !important;">
           <!-- Meia engrenagem (lado esquerdo) -->
@@ -1255,7 +1364,7 @@
           <circle cx="16.75" cy="18" r="0.5" fill="#ffffff" stroke="none" style="fill:#ffffff !important;" />
         </svg>
       </div>
-      <span style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" class="text-sm font-semibold hidden sm:block">Erick Vasconcelos</span>
+      <span style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" class="text-[13px] sm:text-sm font-semibold whitespace-nowrap">Erick Vasconcelos</span>
     </a>
     <div class="hidden md:flex items-center gap-7">
       <a href="#sobre" class="nav-link" data-i18n="nav_about">About</a>
@@ -1264,16 +1373,16 @@
       <a href="#cases" class="nav-link" data-i18n="nav_cases">Cases</a>
       <a href="#contato" class="nav-link" data-i18n="nav_contact">Contact</a>
     </div>
-    <div class="flex items-center gap-3">
-      <!-- Language Toggle -->
-      <button id="lang-toggle" class="lang-toggle-btn" aria-label="Switch language / Alternar idioma" title="Switch language (EN / PT)">
-        <span class="lang-pill active" id="lang-en-badge">EN</span>
+    <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+      <!-- Language Toggle (desktop; mobile copy lives in the hamburger menu) -->
+      <button id="lang-toggle" class="lang-toggle-btn nav-desktop-only" aria-label="Switch language / Alternar idioma" title="Switch language (EN / PT)">
+        <span class="lang-pill active" id="lang-en-badge" data-lang-pill="en">EN</span>
         <span class="lang-divider">|</span>
-        <span class="lang-pill" id="lang-pt-badge">PT</span>
+        <span class="lang-pill" id="lang-pt-badge" data-lang-pill="pt">PT</span>
       </button>
 
       <!-- Dark/Light Mode Toggle -->
-      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar modo claro e escuro" title="Alternar entre modo claro e escuro">
+      <button id="theme-toggle" class="theme-toggle-btn nav-desktop-only" aria-label="Alternar modo claro e escuro" title="Alternar entre modo claro e escuro">
         <!-- Sun icon (shown in dark mode to switch to light) -->
         <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"></circle>
@@ -1294,7 +1403,7 @@
 
       <a href="cv/Erick%20Vasconcelos%20-%20Resume%20(EN).pdf" download="Erick Vasconcelos - Resume (EN).pdf" class="btn-pdf" id="nav-cv-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span class="hidden sm:inline" data-i18n="nav_cv">Download Resume</span>
+        <span class="whitespace-nowrap" data-i18n="nav_cv">Download Resume</span>
       </a>
       <button id="hamburger-btn" class="md:hidden p-2" style="color:var(--c-text-muted)" aria-label="Abrir menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -1308,6 +1417,17 @@
       <a href="#stack" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_stack">Tools &amp; Methods</a>
       <a href="#cases" class="nav-link mobile-nav-item py-3 border-b" style="border-color:var(--c-border)" data-i18n="nav_cases">Cases</a>
       <a href="#contato" class="nav-link mobile-nav-item py-3" data-i18n="nav_contact">Contact</a>
+      <div class="flex items-center gap-3 pt-4 mt-2 border-t" style="border-color:var(--c-border)">
+        <button id="lang-toggle-m" type="button" class="lang-toggle-btn" aria-label="Switch language / Alternar idioma">
+          <span class="lang-pill active" data-lang-pill="en">EN</span>
+          <span class="lang-divider">|</span>
+          <span class="lang-pill" data-lang-pill="pt">PT</span>
+        </button>
+        <button id="theme-toggle-m" type="button" class="theme-toggle-btn" aria-label="Alternar modo claro e escuro">
+          <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
     </div>
   </div>
 </header>
@@ -1326,7 +1446,7 @@
           <span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">scalable learning ecosystems</span>
         </h1>
         <p style="color:var(--c-text);animation:fadeUp .7s ease-out .35s both" class="text-lg lg:text-xl max-w-2xl leading-relaxed mb-6" data-i18n-html="hero_desc">
-          My name is Erick Vasconcelos. I am a Learning Experience Designer with over <strong style="color:var(--c-text-strong);font-weight:600">9 years</strong> of frontline experience at companies like <strong style="color:var(--c-text-strong);font-weight:600">TikTok</strong> and <strong style="color:var(--c-text-strong);font-weight:600">99</strong>. My specialty is decoding complex operations and business processes to build training journeys that drive real impact and operational traction.<br/><br/>All powered by proven instructional design methodologies, <span style="color:var(--c-accent2);font-weight:600">artificial intelligence automations</span>, and data-driven workflows.
+          My name is <strong style="color:var(--c-accent);font-weight:700">Erick Vasconcelos</strong>. I am a Brazil-based <strong style="color:var(--c-text-strong);font-weight:700">Learning Experience Designer</strong> with over <strong style="color:var(--c-text-strong);font-weight:600">9 years</strong> of frontline experience at companies like <strong style="color:var(--c-text-strong);font-weight:600">TikTok</strong> and <strong style="color:var(--c-text-strong);font-weight:600">99</strong>. My specialty is decoding complex operations and business processes to build training journeys that drive real impact and operational traction.<br/><br/>All powered by proven instructional design methodologies, <strong style="color:var(--c-text-strong);font-weight:600">artificial intelligence automations</strong>, and data-driven workflows.
         </p>
         <div class="flex flex-row items-center mt-6" style="animation:fadeUp .7s ease-out .45s both">
           <a href="https://www.linkedin.com/in/erick-vasconcelos" target="_blank" rel="noopener" class="btn-primary px-6 py-3 text-sm sm:text-base whitespace-nowrap" id="hero-linkedin-btn" data-i18n-html="hero_btn_linkedin">
@@ -1500,6 +1620,16 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Rise 360 Continue Divider Block -->
+  <div class="rise-divider-wrap mt-16">
+    <div class="rise-divider-line left"></div>
+    <a href="#experiencia" id="sobre-continue-btn" class="rise-continue-btn" aria-label="Continuar para Experiência Profissional">
+      <span data-i18n="hero_btn_continue">Continue</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </a>
+    <div class="rise-divider-line right"></div>
   </div>
 </section>
 
@@ -1741,6 +1871,16 @@
 
     </div>
   </div>
+
+  <!-- Rise 360 Continue Divider Block -->
+  <div class="rise-divider-wrap mt-16">
+    <div class="rise-divider-line left"></div>
+    <a href="#stack" id="exp-continue-btn" class="rise-continue-btn" aria-label="Continuar para Ferramentas e Métodos">
+      <span data-i18n="hero_btn_continue">Continue</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </a>
+    <div class="rise-divider-line right"></div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -1748,14 +1888,19 @@
 <!-- FERRAMENTAS & MÉTODOS -->
 <section id="stack" class="py-24 lg:py-32">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="reveal mb-14 text-center max-w-2xl mx-auto">
-      <div class="section-eyebrow justify-center" data-i18n="stack_eyebrow">Skills</div>
+    <div class="reveal mb-14 max-w-[960px] mx-auto text-left">
+      <div class="section-eyebrow" data-i18n="stack_eyebrow">Skills</div>
       <h2 class="section-title" data-i18n-html="stack_title">Tools &amp; <span>Methods</span></h2>
-      <p style="color:var(--c-text-muted)" class="mt-4" data-i18n="stack_subtitle">Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation. Click the tabs to switch between skill areas.</p>
+      <p style="color:var(--c-text-muted)" class="mt-4 max-w-2xl"><span class="tab-hint-d stack-hint" data-i18n="stack_subtitle">Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation. Click the tabs to switch between skill areas.</span><span class="tab-hint-m stack-hint" data-i18n="stack_subtitle_m">Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation. Click the tabs or the navigation arrows to switch between skill areas.</span></p>
     </div>
 
     <div class="stack-tabs reveal">
-      <div class="stack-tablist" role="tablist" aria-label="Ferramentas & Métodos">
+      <div class="tab-strip stack-strip">
+      <div class="tab-arrows">
+        <button type="button" class="tab-arrow" id="stack-prev-btn" aria-label="Aba anterior / Previous tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+        <button type="button" class="tab-arrow" id="stack-next-btn" aria-label="Próxima aba / Next tab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <div class="stack-tablist" role="tablist" aria-label="Ferramentas &amp; Métodos">
         <button type="button" role="tab" id="stack-tab-1" class="stack-tab active" aria-selected="true" aria-controls="stack-panel-1" tabindex="0">
           <span class="stack-tab-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="var(--c-accent)" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
@@ -1781,27 +1926,36 @@
           <span class="stack-tab-label" data-i18n="stack_tab4">Technical Communication &amp; UX</span>
         </button>
       </div>
+      </div>
 
       <div class="stack-panels">
         <div role="tabpanel" id="stack-panel-1" class="stack-panel active" aria-labelledby="stack-tab-1">
+          <img class="stack-panel-img stack-img-dark" src="assets/stack-pedagogy-dark.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
+          <img class="stack-panel-img stack-img-light" src="assets/stack-pedagogy-light.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
           <p class="stack-panel-desc" data-i18n="stack_desc1">Instructional architecture driven by learner autonomy, practical transfer to the workplace, and measurable business impact assessment.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag">ADDIE</span><span class="skill-tag">Action Mapping</span><span class="skill-tag">Kirkpatrick L1–L4</span><span class="skill-tag" data-i18n="s1_tna">Training Needs Analysis (TNA)</span><span class="skill-tag" data-i18n="s1_curr">Curriculum Design</span><span class="skill-tag">Microlearning</span>
           </div>
         </div>
         <div role="tabpanel" id="stack-panel-2" class="stack-panel" aria-labelledby="stack-tab-2" hidden>
+          <img class="stack-panel-img stack-img-dark" src="assets/stack-authoring-dark.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
+          <img class="stack-panel-img stack-img-light" src="assets/stack-authoring-light.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
           <p class="stack-panel-desc" data-i18n="stack_desc2">Enterprise administration of LMS/LXP ecosystems, catalog governance, and content development at global scale.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag" data-i18n="s2_lms">LMS/LXP Administration</span><span class="skill-tag" data-i18n="s2_story">Advanced Storyline 360</span><span class="skill-tag">Rise 360</span><span class="skill-tag">xAPI / SCORM</span><span class="skill-tag">Knowledge Management</span>
           </div>
         </div>
         <div role="tabpanel" id="stack-panel-3" class="stack-panel" aria-labelledby="stack-tab-3" hidden>
+          <img class="stack-panel-img stack-img-dark" src="assets/stack-ai-dark.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
+          <img class="stack-panel-img stack-img-light" src="assets/stack-ai-light.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
           <p class="stack-panel-desc" data-i18n="stack_desc3">Learning pipeline acceleration through agentic workflows, agent skills assignment, context engineering, and AI-assisted prototyping.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag">Agent Skills &amp; Tool Calling</span><span class="skill-tag" data-i18n="s3_wf">Agentic Workflows (Agentic AI)</span><span class="skill-tag">Context Engineering &amp; RAG</span><span class="skill-tag" data-i18n="s3_parse">Regulatory Parsing with LLMs</span><span class="skill-tag" data-i18n="s3_lowcode">Low-Code / No-Code Platforms</span><span class="skill-tag" data-i18n="s3_ide">IDE Prototyping</span>
           </div>
         </div>
         <div role="tabpanel" id="stack-panel-4" class="stack-panel" aria-labelledby="stack-tab-4" hidden>
+          <img class="stack-panel-img stack-img-dark" src="assets/stack-ux-dark.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
+          <img class="stack-panel-img stack-img-light" src="assets/stack-ux-light.jpg" alt="" aria-hidden="true" loading="lazy" width="1376" height="440">
           <p class="stack-panel-desc" data-i18n="stack_desc4">Translating dense technical ecosystems into intuitive learning experiences, analytical scriptwriting, and visual prototypes built for high cognitive retention.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag" data-i18n="s4_branch">Branching Scenarios</span><span class="skill-tag">Learning UX</span><span class="skill-tag" data-i18n="s4_script">Multimedia Scriptwriting</span><span class="skill-tag" data-i18n="s4_figma">Figma Wireframes</span><span class="skill-tag" data-i18n="s4_story">Technical Storytelling</span>
@@ -1834,17 +1988,21 @@
     <h2 class="text-3xl font-extrabold mb-3 tracking-tight" style="color:var(--c-text-strong)" data-i18n-html="cases_title">
       Impactful <span style="color:var(--c-accent)">Case Studies</span>
     </h2>
-    <p class="text-sm sm:text-base leading-relaxed mb-8 max-w-3xl" style="color:var(--c-text-muted)" data-i18n="cases_subtitle">
-      Explore below instructional design case studies delivering measurable business impact. Click the tabs on the left to navigate between cases.
-    </p>
+    <p class="text-sm sm:text-base leading-relaxed mb-8 max-w-3xl" style="color:var(--c-text-muted)"><span class="tab-hint-d cases-hint" data-i18n="cases_subtitle">Explore below instructional design case studies delivering measurable business impact. Click the tabs on the left to navigate between cases.</span><span class="tab-hint-m cases-hint" data-i18n="cases_subtitle_m">Explore below instructional design case studies delivering measurable business impact. Click the tabs or the navigation arrows to switch between cases.</span></p>
 
     <div class="cases-layout">
-      <!-- ABAS VERTICAIS À ESQUERDA -->
-      <div class="flex flex-col gap-4">
-        <nav class="case-nav" role="tablist" id="case-nav-list">
-          <!-- Renderizado dinamicamente via JS com botões .tab-btn -->
-        </nav>
-        <p class="text-xs leading-relaxed px-1" style="color:var(--c-text-muted)" data-i18n-html="cases_behance_note">
+      <!-- ABAS VERTICAIS À ESQUERDA (desktop) / FAIXA HORIZONTAL COM SETAS (mobile) -->
+      <div class="cases-tabs-col flex flex-col gap-4">
+        <div class="tab-strip cases-strip">
+          <div class="tab-arrows">
+            <button type="button" class="tab-arrow" id="cases-prev-btn" aria-label="Case anterior / Previous case"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+            <button type="button" class="tab-arrow" id="cases-next-btn" aria-label="Próximo case / Next case"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+          <nav class="case-nav flex-1 min-w-0" role="tablist" id="case-nav-list">
+            <!-- Renderizado dinamicamente via JS com botões .tab-btn -->
+          </nav>
+        </div>
+        <p class="behance-note-d text-xs leading-relaxed px-1" style="color:var(--c-text-muted)" data-i18n-html="cases_behance_note">
           For content development, eLearning, and other visual examples, visit <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="font-semibold underline hover:text-[var(--c-accent)] transition-colors" style="color:var(--c-accent)">Behance</a>.
         </p>
       </div>
@@ -1853,6 +2011,11 @@
       <div class="case-display" id="case-viewport">
         <!-- Renderizado dinamicamente via JS com base no case selecionado -->
       </div>
+
+      <!-- Nota do Behance: abaixo do case, somente no mobile -->
+      <p class="behance-note-m text-xs leading-relaxed px-1" style="color:var(--c-text-muted)" data-i18n-html="cases_behance_note">
+        For content development, eLearning, and other visual examples, visit <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="font-semibold underline hover:text-[var(--c-accent)] transition-colors" style="color:var(--c-accent)">Behance</a>.
+      </p>
     </div>
   </div>
 
@@ -1871,13 +2034,13 @@
 
 <!-- CONTATO -->
 <section id="contato" class="py-24 lg:py-32">
-  <div class="max-w-3xl mx-auto px-5 text-center">
+  <div class="max-w-3xl mx-auto px-5 text-left">
     <div class="reveal">
-      <div class="section-eyebrow justify-center" data-i18n="contact_eyebrow">Let's Connect</div>
+      <div class="section-eyebrow" data-i18n="contact_eyebrow">Let's Connect</div>
       <h2 class="section-title mb-5" data-i18n-html="contact_title">Ready to <span>collab</span>?</h2>
       <p class="text-lg leading-relaxed mb-12" style="color:var(--c-text)" data-i18n="contact_desc">I am available for strategic L&amp;D initiatives, LMS implementation, curriculum design, AI enablement, or senior roles in instructional design and corporate training.</p>
 
-      <div class="flex flex-wrap justify-center gap-4">
+      <div class="flex flex-wrap justify-start gap-4">
         <a href="mailto:contact@erickvasconcelos.com" class="btn-primary" id="contact-email-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           <span data-i18n="contact_btn_email">Send Email</span>
@@ -1952,6 +2115,16 @@
         }
       });
     });
+
+    // Mobile arrow buttons (< >) for the tab strip
+    function currentIndex() {
+      const i = tabs.findIndex(t => t.classList.contains('active'));
+      return i < 0 ? 0 : i;
+    }
+    const prevBtn = document.getElementById('stack-prev-btn');
+    const nextBtn = document.getElementById('stack-next-btn');
+    if (prevBtn) prevBtn.addEventListener('click', () => activate((currentIndex() - 1 + tabs.length) % tabs.length, false));
+    if (nextBtn) nextBtn.addEventListener('click', () => activate((currentIndex() + 1) % tabs.length, false));
   })();
 
   // Dynamic Year
@@ -1984,6 +2157,9 @@
     const isDark = document.documentElement.classList.contains('dark');
     applyTheme(isDark ? 'light' : 'dark');
   });
+  // Mobile menu copy of the theme toggle proxies to the main one
+  const themeToggleM = document.getElementById('theme-toggle-m');
+  if (themeToggleM) themeToggleM.addEventListener('click', () => themeToggle.click());
 
   // Nav Scroll Blur Effect
   const nav = document.getElementById('main-nav');
@@ -2026,7 +2202,7 @@
 
       hero_badge: '<span class="dot"></span> Available for projects &amp; senior opportunities',
       hero_title: 'Translating complex operations into<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">scalable learning ecosystems</span>',
-      hero_desc: 'My name is Erick Vasconcelos. I am a Learning Experience Designer with over <strong style="color:var(--c-text-strong);font-weight:600">9 years</strong> of frontline experience at companies like <strong style="color:var(--c-text-strong);font-weight:600">TikTok</strong> and <strong style="color:var(--c-text-strong);font-weight:600">99</strong>. My specialty is decoding complex operations and business processes to build training journeys that drive real impact and operational traction.<br/><br/>All powered by proven instructional design methodologies, <span style="color:var(--c-accent2);font-weight:600">artificial intelligence automations</span>, and data-driven workflows.',
+      hero_desc: 'My name is <strong style="color:var(--c-accent);font-weight:700">Erick Vasconcelos</strong>. I am a Brazil-based <strong style="color:var(--c-text-strong);font-weight:700">Learning Experience Designer</strong> with over <strong style="color:var(--c-text-strong);font-weight:600">9 years</strong> of frontline experience at companies like <strong style="color:var(--c-text-strong);font-weight:600">TikTok</strong> and <strong style="color:var(--c-text-strong);font-weight:600">99</strong>. My specialty is decoding complex operations and business processes to build training journeys that drive real impact and operational traction.<br/><br/>All powered by proven instructional design methodologies, <strong style="color:var(--c-text-strong);font-weight:600">artificial intelligence automations</strong>, and data-driven workflows.',
       hero_tag_master: "Master's UFPE",
       hero_btn_linkedin: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> Connect on LinkedIn',
       hero_btn_continue: 'Continue',
@@ -2057,6 +2233,7 @@
       cases_eyebrow: 'Project Portfolio',
       cases_title: 'Impactful <span>Case Studies</span>',
       cases_subtitle: 'Explore below instructional design case studies delivering measurable business impact. Click the tabs on the left to navigate between cases.',
+      cases_subtitle_m: 'Explore below instructional design case studies delivering measurable business impact. Click the tabs or the navigation arrows to switch between cases.',
       cases_behance_note: 'For content development, eLearning, and other visual examples, visit <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="font-semibold underline hover:text-[var(--c-accent)] transition-colors" style="color:var(--c-accent)">Behance</a>.',
       case1_badge: 'STORYLINE 360',
       case1_title: 'Clinical Compliance Triage Simulator (Storyline 360)',
@@ -2066,13 +2243,13 @@
       tag_scoring: 'Scoring Integrity',
 
       case2_badge: 'GENAI PIPELINE',
-      case2_title: 'Automation & Continuing Education with GenAI (TikTok LATAM)',
+      case2_title: 'Automation & Continuing Education with GenAI',
       case2_spec: 'LLM Parsing · 1.5K+ Moderators · Bi-weekly Sprints',
       case2_desc: 'Continuous learning pipeline integrating LLMs for automated semantic parsing of complex regulatory policies, enabling rapid knowledge delivery for 1,500+ moderators across bi-weekly agile sprints.',
       tag_sprints: 'Bi-weekly Sprints',
 
       case3_badge: 'LMS & GOVERNANCE',
-      case3_title: 'End-to-End LMS Rollout & Sales Enablement (99/Beedoo)',
+      case3_title: 'End-to-End LMS Rollout & Sales Enablement (Beedoo)',
       case3_spec: 'Beedoo LMS · Governance · Kirkpatrick L2',
       case3_desc: 'End-to-end LMS Beedoo implementation at 99, featuring catalog governance, full transition from in-person to digital training, and a Kirkpatrick Level 2 evaluation framework tied to commercial KPIs.',
       tag_governance: 'Platform Governance',
@@ -2153,6 +2330,7 @@
       stack_eyebrow: 'Skills',
       stack_title: 'Tools & <span>Methods</span>',
       stack_subtitle: 'Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation. Click the tabs to switch between skill areas.',
+      stack_subtitle_m: 'Below are the four integrated pillars that underpin my deliverables in technical learning, governance, and innovation. Click the tabs or the navigation arrows to switch between skill areas.',
       stack_tab1: 'Pedagogy & Andragogy',
       stack_desc1: 'Instructional architecture driven by learner autonomy, practical transfer to the workplace, and measurable business impact assessment.',
       s1_tna: 'Training Needs Analysis (TNA)',
@@ -2191,7 +2369,7 @@
 
       hero_badge: '<span class="dot"></span> Disponível para projetos e oportunidades sênior',
       hero_title: 'Traduzo operações complexas em<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ecossistemas de aprendizagem escaláveis</span>',
-      hero_desc: 'Meu nome é Erick Vasconcelos. Sou Designer de Experiências de Aprendizagem com mais de <strong style="color:var(--c-text-strong);font-weight:600">9 anos</strong> de atuação na linha de frente de empresas como <strong style="color:var(--c-text-strong);font-weight:600">TikTok</strong> e <strong style="color:var(--c-text-strong);font-weight:600">99</strong>. Minha especialidade é decodificar operações complexas e processos de negócio para estruturar jornadas de capacitação que geram impacto real e tração operacional.<br/><br/>Tudo isso potencializado por metodologias consolidadas de design instrucional, <span style="color:var(--c-accent2);font-weight:600">automações com inteligência artificial</span> e fluxos orientados a dados.',
+      hero_desc: 'Meu nome é <strong style="color:var(--c-accent);font-weight:700">Erick Vasconcelos</strong>. Sou <strong style="color:var(--c-text-strong);font-weight:700">Designer de Experiências de Aprendizagem</strong> com mais de <strong style="color:var(--c-text-strong);font-weight:600">9 anos</strong> de atuação na linha de frente de empresas como <strong style="color:var(--c-text-strong);font-weight:600">TikTok</strong> e <strong style="color:var(--c-text-strong);font-weight:600">99</strong>. Minha especialidade é decodificar operações complexas e processos de negócio para estruturar jornadas de capacitação que geram impacto real e tração operacional.<br/><br/>Tudo isso potencializado por metodologias consolidadas de design instrucional, <strong style="color:var(--c-text-strong);font-weight:600">automações com inteligência artificial</strong> e fluxos orientados a dados.',
       hero_tag_master: 'Mestre UFPE',
       hero_btn_linkedin: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> Conectar no LinkedIn',
       hero_btn_continue: 'Continuar',
@@ -2222,6 +2400,7 @@
       cases_eyebrow: 'Portfólio de Projetos',
       cases_title: 'Cases de <span>Impacto</span>',
       cases_subtitle: 'Confira abaixo alguns cases de design instrucional com ganhos claros para o negócio. Clique nas abas à esquerda para alternar entre os cases.',
+      cases_subtitle_m: 'Confira abaixo alguns cases de design instrucional com ganhos claros para o negócio. Clique nas abas ou nas setas de navegação para alternar entre os cases.',
       cases_behance_note: 'Para cases de desenvolvimento de conteúdo, eLearning e outros exemplos visuais, acesse o <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="font-semibold underline hover:text-[var(--c-accent)] transition-colors" style="color:var(--c-accent)">Behance</a>.',
       case1_badge: 'STORYLINE 360',
       case1_title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360)',
@@ -2231,13 +2410,13 @@
       tag_scoring: 'Integridade de Score',
 
       case2_badge: 'GENAI PIPELINE',
-      case2_title: 'Automação e Educação Contínua com GenAI (TikTok LATAM)',
+      case2_title: 'Automação e Educação Contínua com GenAI',
       case2_spec: 'Pipeline com LLMs · 1.500+ Moderadores · Sprints Quinzenais',
       case2_desc: 'Pipeline de educação contínua com integração de LLMs para parsing semântico automatizado de diretrizes regulatórias e criação ágil de conhecimento para mais de 1.500 moderadores em sprints quinzenais.',
       tag_sprints: 'Sprints Quinzenais',
 
       case3_badge: 'LMS & GOVERNANÇA',
-      case3_title: 'Implementação End-to-End de LMS e Capacitação Comercial (99/Beedoo)',
+      case3_title: 'Implementação End-to-End de LMS e Capacitação Comercial (Beedoo)',
       case3_spec: 'LMS Beedoo · Governança · Transição Digital · Kirkpatrick L2',
       case3_desc: 'Implementação end-to-end do LMS Beedoo na 99, contemplando governança de plataforma, arquitetura de catálogo, transição de treinamento presencial para digital e avaliação Kirkpatrick Nível 2 conectada a indicadores comerciais.',
       tag_governance: 'Governança de Plataforma',
@@ -2318,6 +2497,7 @@
       stack_eyebrow: 'Competências',
       stack_title: 'Ferramentas & <span>Métodos</span>',
       stack_subtitle: 'Abaixo estão os quatro pilares integrados que sustentam as minhas entregas em aprendizagem técnica, governança e inovação. Clique nas abas para alternar entre as competências.',
+      stack_subtitle_m: 'Abaixo estão os quatro pilares integrados que sustentam as minhas entregas em aprendizagem técnica, governança e inovação. Clique nas abas ou nas setas de navegação para alternar entre as competências.',
       stack_tab1: 'Pedagogia & Andragogia',
       stack_desc1: 'Arquitetura instrucional orientada à autonomia do aprendiz, transferência prática no ambiente de trabalho e avaliação de impacto mensurável no negócio.',
       s1_tna: 'Levantamento de Necessidades (LNT)',
@@ -2359,7 +2539,7 @@
         badge: "Case Study // 01 · AI & Global Scale",
         navTitle: "Automação & Continuing Education com GenAI",
         navMeta: "TikTok · Monetization Integrity",
-        title: "Automação & Continuing Education com GenAI (TikTok LATAM)",
+        title: "Automação & Continuing Education com GenAI",
         situation: "A operação de Monetization Integrity enfrentava rápidas mudanças regulatórias em diretrizes comerciais globais. A conversão manual de pareceres jurídicos de 50+ páginas em cursos instrucionais levava até 3 semanas, gerando defasagem operacional e risco de desvio de conformidade em uma equipe de mais de 1.500 moderadores distribuídos por hubs internos e BPOs.",
         task: "Acelerar radicalmente o ciclo de atualização instrucional sem comprometer o rigor pedagógico, garantindo alinhamento imediato e paridade de entrega em operações multilíngues (PT, EN, ES).",
         action: "Desenvolvimento de esteira assistida por IA Generativa com LLMs para parsing semântico automatizado de diretrizes, extração de deltas de conformidade e geração de storyboards modulares para o Rise 360. Implementação de cadência ágil em sprints quinzenais com microlearning de 5 a 7 minutos e cenários práticos de tomada de decisão.",
@@ -2377,7 +2557,7 @@
         badge: "Case Study // 02 · LMS Deployment & Enablement",
         navTitle: "Implantação de LMS Enterprise & Sales Enablement",
         navMeta: "99 · Força Comercial",
-        title: "Implantação de LMS Enterprise & Sales Enablement (99)",
+        title: "Implantação de LMS Enterprise & Sales Enablement",
         situation: "A organização necessitava modernizar sua infraestrutura de capacitação da força comercial e integração de parceiros em nível nacional, migrando de sessões síncronas manuais para um ambiente digital escalável, sem ferramentas centralizadas ou trilhas padronizadas de aprendizagem.",
         task: "Liderar a implantação end-to-end do primeiro LMS da companhia (Beedoo), desenhar a taxonomia do catálogo de cursos e criar uma esteira de capacitação comercial com mensuração objetiva de impacto.",
         action: "Gestão completa da implantação da plataforma com lideranças executivas e TI (integração SSO); arquitetura de jornadas assíncronas por função e produção de toolkits interativos de vendas. Estruturação de modelo de avaliação baseado em Kirkpatrick Nível 2 para auditar a retenção técnica antes da atuação em campo.",
@@ -2395,7 +2575,7 @@
         badge: "Case Study // 03 · Performance Consulting & Root Cause",
         navTitle: "Diagnóstico de Causa-Raiz: Falha Sistêmica vs. Treinamento",
         navMeta: "TikTok · Consultoria de Performance",
-        title: "Diagnóstico de Causa-Raiz: Falha Sistêmica vs. Treinamento (TikTok LATAM)",
+        title: "Diagnóstico de Causa-Raiz: Falha Sistêmica vs. Treinamento",
         situation: "Picos crônicos de erros de auditoria em casos de Financial Misrepresentation em Monetization Integrity desencadearam ciclos repetitivos e obrigatórios de reciclagem para as equipes de moderação, sob a premissa de que havia defasagem contínua de conhecimento técnico.",
         task: "Conduzir diagnóstico aprofundado de necessidades (LNT) e análise técnica de causa-raiz para identificar por que as sucessivas intervenções instrucionais não reduziam as reprovações apontadas pela auditoria de qualidade (QA).",
         action: "Auditoria analítica das contestações de QA, acompanhamento do fluxo operacional na bancada (shadowing) e investigação técnica da ferramenta interna. Identificou-se que a falha não era pedagógica, mas sistêmica: um bug no software impedia a anexação correta da documentação comprobatória inserida pelos moderadores, fazendo com que a auditoria reprovasse as ações por suposta falta de evidência. Suspensão imediata dos treinamentos redundantes, envio de relatório técnico embasado com evidências para Engenharia/Produto e alinhamento provisório com QA.",
@@ -2415,7 +2595,7 @@
         badge: "Case Study // 01 · AI & Global Scale",
         navTitle: "Automation & Continuing Education with GenAI",
         navMeta: "TikTok · Monetization Integrity",
-        title: "Automation & Continuing Education with GenAI (TikTok LATAM)",
+        title: "Automation & Continuing Education with GenAI",
         situation: "TikTok's Monetization Integrity operations faced rapid, frequent regulatory policy updates across global commercial guidelines. Converting dense 50+ page legal documents into instructional courses manually took up to 3 weeks, creating operational lag and compliance drift across 1,500+ moderators in internal hubs and BPOs.",
         task: "Dramatically accelerate the instructional lifecycle without compromising pedagogical rigor, ensuring immediate operational alignment and trilingual delivery parity (PT, EN, ES).",
         action: "Engineered an AI-assisted pipeline using LLMs for automated semantic parsing of policy deltas, modular storyboard generation for Rise 360, and agile bi-weekly sprints featuring targeted 5-7 minute microlearning paired with scenario-based decision-making simulations.",
@@ -2433,7 +2613,7 @@
         badge: "Case Study // 02 · LMS Deployment & Enablement",
         navTitle: "Enterprise LMS Rollout & Sales Enablement",
         navMeta: "99 · Commercial Force",
-        title: "Enterprise LMS Rollout & Sales Enablement (99)",
+        title: "Enterprise LMS Rollout & Sales Enablement",
         situation: "The company needed to scale national commercial workforce training and driver/restaurant partner onboarding by transitioning from manual synchronous sessions to an auditable, centralized digital platform without prior LMS infrastructure.",
         task: "Direct the end-to-end implementation of the enterprise's first LMS (Beedoo), design curriculum taxonomy, and build a commercial sales enablement ecosystem with measurable performance indicators.",
         action: "Led platform deployment with senior leadership and IT (SSO integration), structured role-based asynchronous journeys, and authored interactive sales enablement toolkits. Established a Kirkpatrick Level 2 evaluation framework to assess competency acquisition before live field deployment.",
@@ -2451,7 +2631,7 @@
         badge: "Case Study // 03 · Performance Consulting & Root Cause",
         navTitle: "Root Cause Analysis: Systemic Tooling vs. Training",
         navMeta: "TikTok · Performance Consulting",
-        title: "Root Cause Analysis: Systemic Tooling vs. Training (TikTok LATAM)",
+        title: "Root Cause Analysis: Systemic Tooling vs. Training",
         situation: "Chronic quality audit error spikes in Financial Misrepresentation cases triggered continuous, mandatory retraining cycles for Monetization Integrity moderation teams, assuming an ongoing knowledge gap.",
         task: "Execute deep-dive performance consulting and root-cause analysis to determine why repetitive instructional interventions failed to move the needle on audit compliance scores.",
         action: "Performed operational shadowing, reviewed disputed QA logs, and audited technical workflows within the internal moderation console. Discovered the defect was strictly systemic rather than instructional: a software bug failed to attach and persist evidentiary documentation provided by moderators, leading QA auditors to falsely flag compliant decisions. Halted redundant retraining, filed an evidence-backed bug report with Product/Engineering, and established an interim alignment protocol with QA.",
@@ -2476,6 +2656,7 @@
     if (!navContainer || !viewport) return;
 
     // 1. Renderiza as abas da esquerda
+    const prevScroll = navContainer.scrollLeft;
     navContainer.innerHTML = cases.map((c, i) => `
       <button class="tab-btn ${i === activeCaseIndex ? 'active' : ''}" onclick="selectCase(${i})" role="tab" type="button" aria-selected="${i === activeCaseIndex}">
         <div class="tab-number">Case Study // 0${i + 1}</div>
@@ -2483,6 +2664,7 @@
         <div class="tab-meta">${c.navMeta}</div>
       </button>
     `).join("");
+    navContainer.scrollLeft = prevScroll;
 
     // 2. Renderiza o conteúdo STAR e as Skills do case ativo à direita
     const c = cases[activeCaseIndex] || cases[0];
@@ -2504,7 +2686,10 @@
 
     viewport.innerHTML = `
       <div class="case-header">
-        <div class="case-header-logo">${c.logo}</div>
+        <div class="case-company">
+          <div class="case-header-logo">${c.logo}</div>
+          <span class="case-company-name">${c.company}</span>
+        </div>
         <div>
           <span class="case-badge">${c.badge}</span>
           <h3 class="text-xl sm:text-2xl font-extrabold" style="color:var(--c-text-strong)">${c.title}</h3>
@@ -2540,8 +2725,25 @@
   function selectCase(index) {
     activeCaseIndex = index;
     renderCaseStudies();
+    // Keep the selected tab visible inside the horizontal strip (mobile)
+    const nav = document.getElementById('case-nav-list');
+    const act = nav && nav.querySelector('.tab-btn.active');
+    if (act && nav.scrollWidth > nav.clientWidth) {
+      const cr = nav.getBoundingClientRect();
+      const er = act.getBoundingClientRect();
+      if (er.left < cr.left) nav.scrollBy({ left: er.left - cr.left - 4, behavior: 'smooth' });
+      else if (er.right > cr.right) nav.scrollBy({ left: er.right - cr.right + 4, behavior: 'smooth' });
+    }
   }
   window.selectCase = selectCase;
+
+  (function initCaseArrows() {
+    const prev = document.getElementById('cases-prev-btn');
+    const next = document.getElementById('cases-next-btn');
+    const total = () => (casesContent[currentLang] || casesContent.en).length;
+    if (prev) prev.addEventListener('click', () => selectCase((activeCaseIndex - 1 + total()) % total()));
+    if (next) next.addEventListener('click', () => selectCase((activeCaseIndex + 1) % total()));
+  })();
 
   let currentLang = 'en';
 
@@ -2549,18 +2751,10 @@
     currentLang = lang === 'pt' ? 'pt' : 'en';
     document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
 
-    // Update active badges in nav toggle button
-    const enBadge = document.getElementById('lang-en-badge');
-    const ptBadge = document.getElementById('lang-pt-badge');
-    if (enBadge && ptBadge) {
-      if (currentLang === 'pt') {
-        enBadge.classList.remove('active');
-        ptBadge.classList.add('active');
-      } else {
-        enBadge.classList.add('active');
-        ptBadge.classList.remove('active');
-      }
-    }
+    // Update active badges in every language toggle (header + mobile menu)
+    document.querySelectorAll('[data-lang-pill]').forEach(pill => {
+      pill.classList.toggle('active', pill.getAttribute('data-lang-pill') === currentLang);
+    });
 
     // Update elements with textContent
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -2623,6 +2817,13 @@
   const langToggleBtn = document.getElementById('lang-toggle');
   if (langToggleBtn) {
     langToggleBtn.addEventListener('click', () => {
+      applyLanguage(currentLang === 'en' ? 'pt' : 'en');
+    });
+  }
+
+  const langToggleBtnM = document.getElementById('lang-toggle-m');
+  if (langToggleBtnM) {
+    langToggleBtnM.addEventListener('click', () => {
       applyLanguage(currentLang === 'en' ? 'pt' : 'en');
     });
   }
