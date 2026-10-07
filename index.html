@@ -37,6 +37,7 @@
       --c-accent2: #f48072;
       --c-secondary: #9bc1bc;
       --c-highlight: #f4f1bb;
+      --c-card: #18191e;
       --c-nav-bg: rgba(16, 17, 20, 0.88);
     }
     html.light {
@@ -51,6 +52,7 @@
       --c-accent2: #ed6a5a;
       --c-secondary: #5d576b;
       --c-highlight: #f4f1bb;
+      --c-card: #f4f7f0;
       --c-nav-bg: rgba(230, 235, 224, 0.92);
     }
     body {
@@ -340,147 +342,242 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, .08), 0 0 20px rgba(217, 83, 67, .06);
     }
 
-    /* Cases Carousel */
-    .cases-track {
-      display: flex;
+    /* Cases Vertical Tabs & STAR Layout */
+    .cases-layout {
+      display: grid;
+      grid-template-columns: 350px 1fr;
       gap: 24px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 16px 4px 32px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--c-border) transparent;
+      align-items: start;
     }
-    .case-card {
-      flex: 0 0 340px;
-      scroll-snap-align: start;
-      cursor: pointer;
-      border-radius: 16px;
-      overflow: hidden;
-      background: var(--c-bg2);
-      border: 1px solid var(--c-border);
-      transition: all .3s;
-      position: relative;
-    }
-    html.light .case-card {
-      background: var(--c-bg2);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
-    }
-    .case-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(237, 106, 90, .35);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, .3);
-    }
-    html.light .case-card:hover {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
-    }
-    .case-cover {
-      width: 100%;
-      aspect-ratio: 16/9;
+
+    .case-nav {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .tab-btn {
+      background: var(--c-card);
+      border: 1px solid var(--c-border);
+      border-radius: 14px;
       padding: 18px 20px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
       position: relative;
-      overflow: hidden;
-      background: rgba(22, 21, 26, 0.85);
-      border-bottom: 1px solid var(--c-border);
-      transition: all .3s;
-    }
-    html.light .case-cover {
-      background: rgba(230, 235, 224, 0.9);
-      border-bottom-color: var(--c-border);
-    }
-    .case-card:hover .case-cover {
-      background: rgba(22, 21, 26, 0.95);
-    }
-    html.light .case-card:hover .case-cover {
-      background: rgba(230, 235, 224, 0.98);
-    }
-    .case-cover-top {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       width: 100%;
-      z-index: 1;
     }
-    .case-cover-dots {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+
+    .tab-btn:hover {
+      border-color: rgba(237, 106, 90, 0.4);
+      transform: translateX(4px);
     }
-    .case-cover-dots span {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(155, 160, 157, 0.35);
+
+    .tab-btn.active {
+      border-color: var(--c-accent);
+      background: var(--c-card);
+      box-shadow: 0 8px 24px rgba(237, 106, 90, 0.08);
     }
-    .case-cover-badge {
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: rgba(237, 106, 90, 0.12);
-      border: 1px solid rgba(237, 106, 90, 0.25);
-      color: var(--c-accent2);
-    }
-    html.light .case-cover-badge {
-      color: var(--c-accent);
-      background: rgba(217, 83, 67, 0.1);
-    }
-    .case-cover-center {
-      margin: auto 0;
-      z-index: 1;
-    }
-    .case-cover-kicker {
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--c-text-muted);
-      margin-bottom: 4px;
-      font-family: 'Plus Jakarta Sans', monospace;
-    }
-    .case-cover-preview-title {
-      font-size: .88rem;
-      font-weight: 800;
-      line-height: 1.3;
-      color: var(--c-text-strong);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    .case-cover-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: .7rem;
-      color: var(--c-text-muted);
-      z-index: 1;
-      padding-top: 6px;
-      border-top: 1px dashed rgba(155, 160, 157, 0.2);
-    }
-    .case-cover-grid {
+
+    .tab-btn.active::before {
+      content: "";
       position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(155, 160, 157, 0.04) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(155, 160, 157, 0.04) 1px, transparent 1px);
-      background-size: 24px 24px;
-      pointer-events: none;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 4px;
+      background: var(--c-accent);
+      border-radius: 0 4px 4px 0;
     }
-    #modal-header-banner {
+
+    .case-header-logo img {
+      max-width: 32px;
+      max-height: 32px;
+      object-fit: contain;
+    }
+    .case-header-logo .logo-dark {
+      display: block;
+    }
+    .case-header-logo .logo-light {
+      display: none;
+    }
+    html.light .case-header-logo .logo-light {
+      display: block !important;
+    }
+    html.light .case-header-logo .logo-dark {
+      display: none !important;
+    }
+
+    .tab-number {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--c-accent);
+      margin-bottom: 2px;
+    }
+
+    .tab-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--c-text-strong);
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+
+    .tab-meta {
+      font-size: 12px;
+      color: var(--c-text-muted);
+    }
+
+    .case-display {
+      background: var(--c-card);
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      padding: 36px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .case-header {
+      border-bottom: 1px solid var(--c-border);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .case-header-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--c-border);
-      background: rgba(22, 21, 26, 0.7);
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      justify-content: center;
+      flex-shrink: 0;
     }
-    html.light #modal-header-banner {
-      background: rgba(244, 247, 240, 0.95);
-      border-bottom-color: var(--c-border);
+
+    .case-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--c-accent);
+      background: rgba(237, 106, 90, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .case-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 270px;
+      gap: 32px;
+    }
+
+    .star-block {
+      margin-bottom: 20px;
+    }
+    .star-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .star-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .letter-s { color: #3b82f6; }
+    .letter-t { color: #8b5cf6; }
+    .letter-a { color: #f59e0b; }
+    .letter-r { color: var(--c-accent); }
+
+    .star-text {
+      font-size: 13.5px;
+      color: var(--c-text);
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .skills-col {
+      border-left: 1px solid var(--c-border);
+      padding-left: 28px;
+    }
+
+    .skills-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--c-text-strong);
+      margin-bottom: 18px;
+    }
+
+    .skill-bar-item {
+      margin-bottom: 16px;
+    }
+    .skill-bar-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+      gap: 8px;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      color: var(--c-text-strong);
+    }
+
+    .skill-pct {
+      font-weight: 700;
+      color: var(--c-accent);
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 7px;
+      background: var(--c-bg);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--c-border);
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--c-accent);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    @media (max-width: 960px) {
+      .cases-layout { grid-template-columns: 1fr; }
+      .case-content-grid { grid-template-columns: 1fr; }
+      .skills-col {
+        border-left: none;
+        border-top: 1px solid var(--c-border);
+        padding-left: 0;
+        padding-top: 24px;
+      }
     }
     .tag-pill {
       display: inline-block;
@@ -615,44 +712,7 @@
       color: var(--c-accent);
     }
 
-    /* Modal */
-    #case-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    #case-modal.open { display: flex; }
-    #modal-backdrop { position: fixed; inset: 0; background: rgba(14, 13, 17, .85); backdrop-filter: blur(8px); }
-    html.light #modal-backdrop { background: rgba(44, 40, 52, .5); }
-    #modal-content {
-      position: relative;
-      z-index: 1001;
-      background: linear-gradient(145deg, var(--c-bg2), var(--c-bg));
-      border: 1px solid var(--c-border);
-      border-radius: 20px;
-      max-width: 680px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, .5);
-      animation: fadeUp .35s ease-out;
-    }
-    html.light #modal-content {
-      background: var(--c-bg2);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, .18);
-    }
-    .modal-section-label {
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--c-accent);
-      margin-bottom: 8px;
-    }
+
 
     /* Timeline & Experience */
     .timeline-item { position: relative; padding-left: 28px; }
@@ -986,18 +1046,6 @@
       border-radius: 16px;
       padding: 32px;
     }
-    .stack-panel::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(circle at top left, rgba(237, 106, 90, .08), transparent 70%);
-    }
-    .stack-panel.pillar-purple::before,
-    .stack-panel.pillar-amber::before {
-      background: radial-gradient(circle at top left, rgba(244, 128, 114, .08), transparent 70%);
-    }
-    .stack-panel > * { position: relative; }
     .stack-panel.active { animation: stackPanelIn .35s ease; }
     .stack-panel-desc {
       color: var(--c-text);
@@ -1244,9 +1292,9 @@
         </svg>
       </button>
 
-      <a href="Erick_Vasconcelos_CV.pdf" download class="btn-pdf" id="nav-cv-btn">
+      <a href="cv/Erick%20Vasconcelos%20-%20Resume%20(EN).pdf" download="Erick Vasconcelos - Resume (EN).pdf" class="btn-pdf" id="nav-cv-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span class="hidden sm:inline" data-i18n="nav_cv">Download CV</span>
+        <span class="hidden sm:inline" data-i18n="nav_cv">Download Resume</span>
       </a>
       <button id="hamburger-btn" class="md:hidden p-2" style="color:var(--c-text-muted)" aria-label="Abrir menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -1378,11 +1426,11 @@
         </div>
       </div>
       <div class="flex flex-wrap gap-3">
-        <a href="mailto:erickvascp@gmail.com" class="social-btn social-btn-email group" id="about-email-btn" title="Enviar e-mail para Erick Vasconcelos">
+        <a href="mailto:contact@erickvasconcelos.com" class="social-btn social-btn-email group" id="about-email-btn" title="Send email to Erick Vasconcelos">
           <div class="social-icon-box">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           </div>
-          <span class="font-medium text-xs sm:text-sm">erickvascp@gmail.com</span>
+          <span class="font-medium text-xs sm:text-sm" data-i18n="about_email_addr">contact@erickvasconcelos.com</span>
         </a>
         <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="social-btn social-btn-behance group" id="about-behance-btn" title="Acessar portfólio no Behance">
           <div class="social-icon-box behance">
@@ -1436,7 +1484,7 @@
                 <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                 <path d="M6 12v5c3 3 9 3 12 0v-5"/>
               </svg>
-              <span class="text-xs uppercase tracking-wide font-semibold" style="color:var(--c-text-muted)" data-i18n="about_edu_title">Academic Education</span>
+              <span class="text-xs uppercase tracking-wide font-semibold" style="color:var(--c-text-muted)" data-i18n="about_edu_title">Education</span>
             </div>
             <div class="space-y-2">
               <div>
@@ -1527,18 +1575,18 @@
             <div class="exp-chevron mt-1 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
           </button>
           <ul class="pl-0 sm:pl-13 mt-3 space-y-1.5 text-xs sm:text-sm text-slate-300 exp-bullets" style="color:var(--c-text)">
-            <li data-i18n-html="exp_tiktok_b1">• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.</li>
+            <li data-i18n-html="exp_tiktok_b1">• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ in-house and BPO moderators across global Monetization Integrity operations.</li>
             <li data-i18n-html="exp_tiktok_b2">• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.</li>
           </ul>
       <div class="exp-detail" id="exp-detail-tiktok">
         <div class="exp-detail-inner pl-0 sm:pl-13 mt-5 pt-5 space-y-3 text-sm leading-relaxed" style="border-top:1px solid var(--c-border);color:var(--c-text)">
-          <p data-i18n-html="exp_tiktok_p1">Liderança técnica do pod de T&amp;D LATAM em Trust &amp; Safety, sendo responsável pela arquitetura curricular, governança pedagógica e capacitação crítica para mais de 1.500 moderadores em um ambiente global hiper-regulado.</p>
+          <p data-i18n-html="exp_tiktok_p1">Liderança técnica do pod de T&amp;D LATAM em Monetization Integrity, sendo responsável pela arquitetura curricular, governança pedagógica e capacitação crítica para mais de 1.500 moderadores internos e de BPO em um ambiente global hiper-regulado.</p>
           <p data-i18n-html="exp_tiktok_p2">Concepção de esteiras com IA Generativa (LLMs) para parsing semântico automatizado de políticas corporativas, reduzindo o ciclo de produção em ~70% e garantindo alinhamento em sprints quinzenais com paridade multilíngue (PT/EN/ES).</p>
           <div class="flex flex-wrap gap-2 pt-2">
             <span class="tag-pill tag-orange" data-i18n="exp_tiktok_tag1">Pipelines de GenAI</span>
             <span class="tag-pill tag-orange" data-i18n="exp_tiktok_tag2">Parsing Semântico</span>
             <span class="tag-pill tag-orange" data-i18n="exp_tiktok_tag3">Storyline 360</span>
-            <span class="tag-pill tag-orange" data-i18n="exp_tiktok_tag4">Trust &amp; Safety</span>
+            <span class="tag-pill tag-orange" data-i18n="exp_tiktok_tag4">Monetization Integrity</span>
             <span class="tag-pill tag-orange" data-i18n="exp_tiktok_tag5">Sprints Ágeis</span>
           </div>
         </div>
@@ -1735,25 +1783,25 @@
       </div>
 
       <div class="stack-panels">
-        <div role="tabpanel" id="stack-panel-1" class="stack-panel pillar-teal active" aria-labelledby="stack-tab-1">
+        <div role="tabpanel" id="stack-panel-1" class="stack-panel active" aria-labelledby="stack-tab-1">
           <p class="stack-panel-desc" data-i18n="stack_desc1">Instructional architecture driven by learner autonomy, practical transfer to the workplace, and measurable business impact assessment.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag">ADDIE</span><span class="skill-tag">Action Mapping</span><span class="skill-tag">Kirkpatrick L1–L4</span><span class="skill-tag" data-i18n="s1_tna">Training Needs Analysis (TNA)</span><span class="skill-tag" data-i18n="s1_curr">Curriculum Design</span><span class="skill-tag">Microlearning</span>
           </div>
         </div>
-        <div role="tabpanel" id="stack-panel-2" class="stack-panel pillar-indigo" aria-labelledby="stack-tab-2" hidden>
+        <div role="tabpanel" id="stack-panel-2" class="stack-panel" aria-labelledby="stack-tab-2" hidden>
           <p class="stack-panel-desc" data-i18n="stack_desc2">Enterprise administration of LMS/LXP ecosystems, catalog governance, and content development at global scale.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag" data-i18n="s2_lms">LMS/LXP Administration</span><span class="skill-tag" data-i18n="s2_story">Advanced Storyline 360</span><span class="skill-tag">Rise 360</span><span class="skill-tag">xAPI / SCORM</span><span class="skill-tag">Knowledge Management</span>
           </div>
         </div>
-        <div role="tabpanel" id="stack-panel-3" class="stack-panel pillar-purple" aria-labelledby="stack-tab-3" hidden>
+        <div role="tabpanel" id="stack-panel-3" class="stack-panel" aria-labelledby="stack-tab-3" hidden>
           <p class="stack-panel-desc" data-i18n="stack_desc3">Learning pipeline acceleration through agentic workflows, agent skills assignment, context engineering, and AI-assisted prototyping.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag">Agent Skills &amp; Tool Calling</span><span class="skill-tag" data-i18n="s3_wf">Agentic Workflows (Agentic AI)</span><span class="skill-tag">Context Engineering &amp; RAG</span><span class="skill-tag" data-i18n="s3_parse">Regulatory Parsing with LLMs</span><span class="skill-tag" data-i18n="s3_lowcode">Low-Code / No-Code Platforms</span><span class="skill-tag" data-i18n="s3_ide">IDE Prototyping</span>
           </div>
         </div>
-        <div role="tabpanel" id="stack-panel-4" class="stack-panel pillar-amber" aria-labelledby="stack-tab-4" hidden>
+        <div role="tabpanel" id="stack-panel-4" class="stack-panel" aria-labelledby="stack-tab-4" hidden>
           <p class="stack-panel-desc" data-i18n="stack_desc4">Translating dense technical ecosystems into intuitive learning experiences, analytical scriptwriting, and visual prototypes built for high cognitive retention.</p>
           <div class="flex flex-wrap">
             <span class="skill-tag" data-i18n="s4_branch">Branching Scenarios</span><span class="skill-tag">Learning UX</span><span class="skill-tag" data-i18n="s4_script">Multimedia Scriptwriting</span><span class="skill-tag" data-i18n="s4_figma">Figma Wireframes</span><span class="skill-tag" data-i18n="s4_story">Technical Storytelling</span>
@@ -1777,113 +1825,35 @@
 <div class="divider"></div>
 
 <!-- CASES -->
-<section id="cases" class="py-24 lg:py-32">
-  <div class="max-w-7xl mx-auto px-5">
-    <div class="reveal mb-3">
-      <div class="section-eyebrow" data-i18n="cases_eyebrow">Project Portfolio</div>
-      <div class="flex flex-wrap items-end justify-between gap-6">
-        <h2 class="section-title" data-i18n-html="cases_title">Impactful <span>Case Studies</span></h2>
-        <div class="flex gap-2">
-          <button id="scroll-left-btn" class="scroll-btn" aria-label="Scroll left"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <button id="scroll-right-btn" class="scroll-btn" aria-label="Scroll right"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-        </div>
+<section id="cases" class="py-20" style="background:var(--c-bg)">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="w-5 h-0.5" style="background:var(--c-accent)"></span>
+      <span class="text-xs font-extrabold uppercase tracking-widest" style="color:var(--c-accent)" data-i18n="cases_eyebrow">Project Portfolio</span>
+    </div>
+    <h2 class="text-3xl font-extrabold mb-3 tracking-tight" style="color:var(--c-text-strong)" data-i18n-html="cases_title">
+      Impactful <span style="color:var(--c-accent)">Case Studies</span>
+    </h2>
+    <p class="text-sm sm:text-base leading-relaxed mb-8 max-w-3xl" style="color:var(--c-text-muted)" data-i18n="cases_subtitle">
+      Explore below instructional design case studies delivering measurable business impact. Click the tabs on the left to navigate between cases.
+    </p>
+
+    <div class="cases-layout">
+      <!-- ABAS VERTICAIS À ESQUERDA -->
+      <div class="flex flex-col gap-4">
+        <nav class="case-nav" role="tablist" id="case-nav-list">
+          <!-- Renderizado dinamicamente via JS com botões .tab-btn -->
+        </nav>
+        <p class="text-xs leading-relaxed px-1" style="color:var(--c-text-muted)" data-i18n-html="cases_behance_note">
+          For content development, eLearning, and other visual examples, visit <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="font-semibold underline hover:text-[var(--c-accent)] transition-colors" style="color:var(--c-accent)">Behance</a>.
+        </p>
+      </div>
+
+      <!-- PAINEL DO CASE SELECIONADO À DIREITA -->
+      <div class="case-display" id="case-viewport">
+        <!-- Renderizado dinamicamente via JS com base no case selecionado -->
       </div>
     </div>
-    <div id="cases-track" class="cases-track reveal">
-      <!-- Case 1 -->
-      <article class="case-card" id="case-card-1" tabindex="0" role="button" data-case="1">
-        <div class="case-cover">
-          <div class="case-cover-grid"></div>
-          <div class="case-cover-top">
-            <div class="case-cover-dots"><span></span><span></span><span></span></div>
-            <span class="case-cover-badge" data-i18n="case1_badge">STORYLINE 360</span>
-          </div>
-          <div class="case-cover-center">
-            <div class="case-cover-kicker">CASE STUDY // 01</div>
-            <div class="case-cover-preview-title" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</div>
-          </div>
-          <div class="case-cover-footer">
-            <span data-i18n="case1_spec">Branching Logic · Modular Layers · Scoring Variables</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3">
-            <span class="tag-pill tag-teal">Storyline 360</span>
-            <span class="tag-pill tag-indigo" data-i18n="tag_branching">Conditional Branching</span>
-            <span class="tag-pill tag-amber" data-i18n="tag_scoring">Scoring Integrity</span>
-          </div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case1_title">Clinical Compliance Triage Simulator (Storyline 360)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case1_desc">Branching scenario simulator engineered in Storyline 360 with a modular layer architecture, conditional logic, and boolean/numeric variable tracking to ensure zero slide bloat and auditable scoring.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent2)">
-            <span data-i18n="case_view_details">View details</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-      </article>
-
-      <!-- Case 2 -->
-      <article class="case-card" id="case-card-2" tabindex="0" role="button" data-case="2">
-        <div class="case-cover">
-          <div class="case-cover-grid"></div>
-          <div class="case-cover-top">
-            <div class="case-cover-dots"><span></span><span></span><span></span></div>
-            <span class="case-cover-badge" data-i18n="case2_badge">GENAI PIPELINE</span>
-          </div>
-          <div class="case-cover-center">
-            <div class="case-cover-kicker">CASE STUDY // 02</div>
-            <div class="case-cover-preview-title" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</div>
-          </div>
-          <div class="case-cover-footer">
-            <span data-i18n="case2_spec">LLM Parsing · 1.5K+ Moderators · Bi-weekly Sprints</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3">
-            <span class="tag-pill tag-emerald">GenAI Pipelines</span>
-            <span class="tag-pill tag-purple">LLM Parsing</span>
-            <span class="tag-pill tag-indigo" data-i18n="tag_sprints">Bi-weekly Sprints</span>
-          </div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case2_title">Automation &amp; Continuing Education with GenAI (TikTok LATAM)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case2_desc">Continuous learning pipeline integrating LLMs for automated semantic parsing of complex regulatory policies, enabling rapid knowledge delivery for 1,500+ moderators across bi-weekly agile sprints.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-secondary)">
-            <span data-i18n="case_view_details">View details</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-      </article>
-
-      <!-- Case 3 -->
-      <article class="case-card" id="case-card-3" tabindex="0" role="button" data-case="3">
-        <div class="case-cover">
-          <div class="case-cover-grid"></div>
-          <div class="case-cover-top">
-            <div class="case-cover-dots"><span></span><span></span><span></span></div>
-            <span class="case-cover-badge" data-i18n="case3_badge">LMS &amp; GOVERNANCE</span>
-          </div>
-          <div class="case-cover-center">
-            <div class="case-cover-kicker">CASE STUDY // 03</div>
-            <div class="case-cover-preview-title" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</div>
-          </div>
-          <div class="case-cover-footer">
-            <span data-i18n="case3_spec">Beedoo LMS · Governance · Kirkpatrick L2</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <div class="flex flex-wrap gap-2 mb-3">
-            <span class="tag-pill tag-indigo">LMS Deployment</span>
-            <span class="tag-pill tag-teal" data-i18n="tag_governance">Platform Governance</span>
-            <span class="tag-pill tag-amber">Kirkpatrick L2</span>
-          </div>
-          <h3 class="font-bold text-base mb-2 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif" data-i18n="case3_title">End-to-End LMS Rollout &amp; Sales Enablement (99/Beedoo)</h3>
-          <p style="color:var(--c-text-muted)" class="text-sm leading-relaxed" data-i18n="case3_desc">End-to-end LMS Beedoo implementation at 99, featuring catalog governance, full transition from in-person to digital training, and a Kirkpatrick Level 2 evaluation framework tied to commercial KPIs.</p>
-          <div class="mt-4 flex items-center gap-2 text-sm font-semibold" style="color:var(--c-accent)">
-            <span data-i18n="case_view_details">View details</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-      </article>
-    </div>
-    <p class="text-sm text-center mt-1 reveal" style="color:var(--c-text-muted)" data-i18n="cases_scroll_hint">← Swipe to explore cases →</p>
   </div>
 
   <!-- Rise 360 Continue Divider Block -->
@@ -1897,49 +1867,6 @@
   </div>
 </section>
 
-<!-- MODAL -->
-<div id="case-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div id="modal-backdrop"></div>
-  <div id="modal-content" class="p-0">
-    <div id="modal-header-banner">
-      <div class="flex items-center gap-3">
-        <span class="w-2.5 h-2.5 rounded-full" style="background: var(--c-accent)"></span>
-        <span id="modal-category" class="text-xs font-bold uppercase tracking-wider" style="color: var(--c-accent2); font-family: 'Plus Jakarta Sans', sans-serif">CASE STUDY // 01</span>
-      </div>
-      <button id="modal-close-btn" class="p-2 rounded-lg transition-colors" style="color:var(--c-text-muted);background:rgba(255,255,255,.05)" aria-label="Close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="p-7">
-      <div id="modal-tags" class="flex flex-wrap gap-2 mb-4"></div>
-      <h2 id="modal-title" class="font-bold text-xl mb-6 leading-snug" style="color:var(--c-text-strong);font-family:'Plus Jakarta Sans',sans-serif"></h2>
-      <div class="space-y-6">
-        <div>
-          <div class="modal-section-label" data-i18n="modal_lbl_problem">Operational Problem / Business Risk</div>
-          <p id="modal-challenge" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
-        </div>
-        <div class="divider"></div>
-        <div>
-          <div class="modal-section-label" data-i18n="modal_lbl_approach">Pedagogical &amp; Andragogical Approach</div>
-          <p id="modal-strategy" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
-        </div>
-        <div class="divider"></div>
-        <div>
-          <div class="modal-section-label" data-i18n="modal_lbl_architecture">Technical Architecture &amp; Tools</div>
-          <p id="modal-solution" class="text-sm leading-relaxed" style="color:var(--c-text)"></p>
-        </div>
-      </div>
-      <div class="flex flex-wrap gap-3 mt-8 pt-6" style="border-top:1px solid var(--c-border)">
-        <a id="modal-demo-btn" href="#" target="_blank" rel="noopener" class="btn-primary text-sm py-3 px-5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          <span data-i18n="modal_btn_demo">Launch Interactive Demo</span>
-        </a>
-        <a id="modal-behance-btn" href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="btn-outline text-sm py-3 px-5" data-i18n="modal_btn_behance">View on Behance</a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="divider"></div>
 
 <!-- CONTATO -->
@@ -1947,11 +1874,11 @@
   <div class="max-w-3xl mx-auto px-5 text-center">
     <div class="reveal">
       <div class="section-eyebrow justify-center" data-i18n="contact_eyebrow">Let's Connect</div>
-      <h2 class="section-title mb-5" data-i18n-html="contact_title">Ready to <span>collaborate</span>?</h2>
-      <p class="text-lg leading-relaxed mb-12" style="color:var(--c-text)" data-i18n="contact_desc">Whether for strategic L&amp;D initiatives, LMS implementations, AI-assisted curriculum design, or new senior roles — let's talk.</p>
+      <h2 class="section-title mb-5" data-i18n-html="contact_title">Ready to <span>collab</span>?</h2>
+      <p class="text-lg leading-relaxed mb-12" style="color:var(--c-text)" data-i18n="contact_desc">I am available for strategic L&amp;D initiatives, LMS implementation, curriculum design, AI enablement, or senior roles in instructional design and corporate training.</p>
 
-      <div class="flex flex-wrap justify-center gap-4 mb-16">
-        <a href="mailto:erickvascp@gmail.com" class="btn-primary" id="contact-email-btn">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="mailto:contact@erickvasconcelos.com" class="btn-primary" id="contact-email-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           <span data-i18n="contact_btn_email">Send Email</span>
         </a>
@@ -1959,26 +1886,15 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
-        <a href="Erick_Vasconcelos_CV.pdf" download class="btn-pdf" id="contact-cv-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-i18n="contact_btn_cv">Download CV (PDF)</span>
-        </a>
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-3">
-        <a href="https://www.linkedin.com/in/erick-vasconcelos" target="_blank" rel="noopener" class="social-link" id="footer-linkedin">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="social-link" id="footer-behance">
+        <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="btn-outline" id="contact-behance-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M16.969 16.927a2.561 2.561 0 0 0 1.901.677 2.501 2.501 0 0 0 1.531-.475c.362-.235.636-.584.779-.99h2.585a5.091 5.091 0 0 1-1.9 2.896 5.292 5.292 0 0 1-3.091.88 5.839 5.839 0 0 1-2.284-.433 4.871 4.871 0 0 1-1.723-1.211 5.657 5.657 0 0 1-1.08-1.874 7.057 7.057 0 0 1-.383-2.393c-.005-.8.129-1.595.396-2.349a5.313 5.313 0 0 1 5.088-3.604 4.87 4.87 0 0 1 2.376.563c.661.362 1.231.87 1.668 1.485a6.2 6.2 0 0 1 .943 2.133c.194.821.263 1.666.205 2.508h-7.699c-.063.79.184 1.574.688 2.187ZM6.947 4.084a8.065 8.065 0 0 1 1.928.198 4.29 4.29 0 0 1 1.49.638c.418.303.748.711.958 1.182.241.579.357 1.203.341 1.83a3.506 3.506 0 0 1-.506 1.961 3.726 3.726 0 0 1-1.503 1.287 3.588 3.588 0 0 1 2.027 1.437c.464.747.697 1.615.67 2.494a4.593 4.593 0 0 1-.423 2.032 3.945 3.945 0 0 1-1.163 1.413 5.114 5.114 0 0 1-1.683.807 7.135 7.135 0 0 1-1.928.259H0V4.084h6.947Zm-.235 12.9c.308.004.616-.029.916-.099a2.18 2.18 0 0 0 .766-.332c.228-.158.411-.371.534-.619.142-.317.208-.663.191-1.009a2.08 2.08 0 0 0-.642-1.715 2.618 2.618 0 0 0-1.696-.505h-3.54v4.279h3.471Zm13.635-5.967a2.13 2.13 0 0 0-1.654-.619 2.336 2.336 0 0 0-1.163.259 2.474 2.474 0 0 0-.738.62 2.359 2.359 0 0 0-.396.792c-.074.239-.12.485-.137.734h4.769a3.239 3.239 0 0 0-.679-1.785l-.002-.001Zm-13.813-.648a2.254 2.254 0 0 0 1.423-.433c.399-.355.607-.88.56-1.413a1.916 1.916 0 0 0-.178-.891 1.298 1.298 0 0 0-.495-.533 1.851 1.851 0 0 0-.711-.274 3.966 3.966 0 0 0-.835-.073H3.241v3.631h3.293v-.014ZM21.62 5.122h-5.976v1.527h5.976V5.122Z"/>
           </svg>
           Behance
         </a>
-        <a href="mailto:erickvascp@gmail.com" class="social-link" id="footer-email">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          E-mail
+        <a href="cv/Erick%20Vasconcelos%20-%20Resume%20(EN).pdf" download="Erick Vasconcelos - Resume (EN).pdf" class="btn-pdf" id="contact-cv-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-i18n="contact_btn_cv">Download Resume (PDF)</span>
         </a>
       </div>
     </div>
@@ -1987,7 +1903,8 @@
 
 <!-- FOOTER -->
 <footer style="background:linear-gradient(180deg,var(--c-bg),#0e0d11);border-top:1px solid var(--c-border)" class="py-8">
-  <div class="max-w-7xl mx-auto px-5 flex justify-end">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between gap-4 flex-wrap">
+    <a href="https://erickvasconcelos.com" style="color:var(--c-text-muted)" class="text-xs hover:text-[var(--c-accent)] transition-colors">erickvasconcelos.com</a>
     <div style="color:var(--c-text-muted)" class="text-xs">© <span id="year"></span> Erick Vasconcelos</div>
   </div>
 </footer>
@@ -2093,14 +2010,7 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Cases Carousel
-  const track = document.getElementById('cases-track');
-  document.getElementById('scroll-left-btn').addEventListener('click', () => {
-    track.scrollBy({ left: -370, behavior: 'smooth' });
-  });
-  document.getElementById('scroll-right-btn').addEventListener('click', () => {
-    track.scrollBy({ left: 370, behavior: 'smooth' });
-  });
+
 
   // -------------------------------------------------------------
   // Internationalization (i18n) Data & Logic
@@ -2112,7 +2022,7 @@
       nav_experience: 'Experience',
       nav_stack: 'Tools & Methods',
       nav_contact: 'Contact',
-      nav_cv: 'Download CV',
+      nav_cv: 'Download Resume',
 
       hero_badge: '<span class="dot"></span> Available for projects &amp; senior opportunities',
       hero_title: 'Translating complex operations into<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">scalable learning ecosystems</span>',
@@ -2132,12 +2042,13 @@
       about_p2: 'At <strong style="color:var(--c-text-strong)">TikTok</strong>, this meant designing rapid cycles to train over <strong style="color:var(--c-text-strong)">1,500 moderation professionals</strong> in dynamic operational scenarios. At <strong style="color:var(--c-text-strong)">99</strong>, it translated into architecting the learning ecosystem and sales enablement tracking. At <strong style="color:var(--c-text-strong)">Avenue Code</strong> and <strong style="color:var(--c-text-strong)">TTEC</strong>, I implemented scalable training development routines and key learning indicator dashboards.',
       about_p3: 'I combine a foundation in communication and research with modern <strong style="color:var(--c-accent2)">artificial intelligence</strong> tools to automate operational steps and focus on what truly matters: creating intuitive, measurable, and scalable learning experiences.',
       about_btn_behance: 'Behance',
+      about_email_addr: 'contact@erickvasconcelos.com',
       about_card_role: 'Senior Instructional Designer & Training Expert',
       about_card_item1: 'Global-Scale Curriculum Architecture',
       about_card_item2: 'Learning Experience Design (LXD) & Andragogy',
       about_card_item3: 'Generative AI Workflows & Automation',
       about_card_item4: 'Complex Communication & Technical Storytelling',
-      about_edu_title: 'Academic Education',
+      about_edu_title: 'Education',
       about_edu_msc: "Master's Degree in Communication",
       about_edu_school1: 'Federal University of Pernambuco · UFPE',
       about_edu_ba: "Bachelor's Degree in Journalism",
@@ -2145,6 +2056,8 @@
 
       cases_eyebrow: 'Project Portfolio',
       cases_title: 'Impactful <span>Case Studies</span>',
+      cases_subtitle: 'Explore below instructional design case studies delivering measurable business impact. Click the tabs on the left to navigate between cases.',
+      cases_behance_note: 'For content development, eLearning, and other visual examples, visit <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="font-semibold underline hover:text-[var(--c-accent)] transition-colors" style="color:var(--c-accent)">Behance</a>.',
       case1_badge: 'STORYLINE 360',
       case1_title: 'Clinical Compliance Triage Simulator (Storyline 360)',
       case1_spec: 'Branching Logic · Modular Layers · Scoring Variables',
@@ -2185,7 +2098,7 @@
       exp_tiktok_role: 'Senior Instructional Designer',
       exp_tiktok_loc: 'TikTok',
       exp_tiktok_date: 'Apr 2022 – Aug 2025',
-      exp_tiktok_b1: '• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ moderators across global Trust &amp; Safety operations.',
+      exp_tiktok_b1: '• Led the <strong style="color:var(--c-text-strong)">LATAM L&amp;D pod</strong> for 1,500+ in-house and BPO moderators across global Monetization Integrity operations.',
       exp_tiktok_b2: '• Engineered <strong style="color:var(--c-text-strong)">Generative AI workflows</strong> for automated parsing of complex corporate policies.',
 
       exp_ac_role: 'Senior Instructional Designer',
@@ -2205,12 +2118,12 @@
       exp_99_tag2: 'Kirkpatrick L2',
       exp_99_tag3: 'Sales Enablement',
       exp_99_tag4: 'Curriculum Governance',
-      exp_tiktok_p1: 'Technical lead for TikTok\'s LATAM Trust & Safety L&D pod, driving curriculum governance, pedagogical architecture, and critical training delivery for 1,500+ moderators across a high-velocity global operation.',
+      exp_tiktok_p1: 'Technical lead for TikTok\'s LATAM Monetization Integrity L&D pod, driving curriculum governance, pedagogical architecture, and critical training delivery for 1,500+ in-house and BPO moderators across a high-velocity global operation.',
       exp_tiktok_p2: 'Engineered Generative AI pipelines utilizing LLMs for automated semantic parsing of complex policies, cutting turnaround time by ~70% and ensuring rapid alignment through bi-weekly agile sprints with trilingual parity (PT/EN/ES).',
       exp_tiktok_tag1: 'GenAI Pipelines',
       exp_tiktok_tag2: 'Semantic Parsing',
       exp_tiktok_tag3: 'Storyline 360',
-      exp_tiktok_tag4: 'Trust & Safety',
+      exp_tiktok_tag4: 'Monetization Integrity',
       exp_tiktok_tag5: 'Agile Sprints',
       exp_ac_p1: 'Senior learning consultant driving digital transformation and enterprise upskilling engagements for multinational accounts, conducting training needs assessments (TNA) and technical capability mapping.',
       exp_ac_p2: 'Architected the enterprise Agile & Scrum upskilling curriculum for <strong style="color:var(--c-text-strong)">Braskem</strong> in Articulate Rise 360, applying Action Mapping and scenario-based decision-making dynamics tied to live business challenges.',
@@ -2262,10 +2175,10 @@
       s4_story: 'Technical Storytelling',
 
       contact_eyebrow: "Let's Connect",
-      contact_title: 'Ready to <span>collaborate</span>?',
-      contact_desc: "Whether for strategic L&D initiatives, LMS implementations, AI-assisted curriculum design, or new senior roles — let's talk.",
+      contact_title: 'Ready to <span>collab</span>?',
+      contact_desc: 'I am available for strategic L&D initiatives, LMS implementation, curriculum design, AI enablement, or senior roles in instructional design and corporate training.',
       contact_btn_email: 'Send Email',
-      contact_btn_cv: 'Download CV (PDF)',
+      contact_btn_cv: 'Download Resume (PDF)',
       footer_role: 'Senior Instructional Designer & Training Expert'
     },
     pt: {
@@ -2274,7 +2187,7 @@
       nav_experience: 'Experiência',
       nav_stack: 'Ferramentas & Métodos',
       nav_contact: 'Contato',
-      nav_cv: 'Baixar CV',
+      nav_cv: 'Baixar Currículo',
 
       hero_badge: '<span class="dot"></span> Disponível para projetos e oportunidades sênior',
       hero_title: 'Traduzo operações complexas em<br/><span style="background:linear-gradient(90deg,var(--c-accent),var(--c-accent2),var(--c-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ecossistemas de aprendizagem escaláveis</span>',
@@ -2294,6 +2207,7 @@
       about_p2: 'No <strong style="color:var(--c-text-strong)">TikTok</strong>, isso significava desenhar ciclos rápidos para treinar mais de <strong style="color:var(--c-text-strong)">1.500 profissionais</strong> de moderação em cenários operacionais dinâmicos. Na <strong style="color:var(--c-text-strong)">99</strong>, isso se traduziu na estruturação do ecossistema de aprendizagem e acompanhamento do time de vendas. Na <strong style="color:var(--c-text-strong)">Avenue Code</strong> e na <strong style="color:var(--c-text-strong)">TTEC</strong>, busquei implementar rotinas escaláveis de desenvolvimento de treinamento e acompanhamento de indicadores-chave de aprendizado.',
       about_p3: 'Eu combino uma bagagem em comunicação e pesquisa com ferramentas modernas de <strong style="color:var(--c-accent2)">inteligência artificial</strong> para automatizar etapas operacionais e me dedicar ao que realmente importa: criar experiências de aprendizagem intuitivas, mensuráveis e escaláveis.',
       about_btn_behance: 'Behance',
+      about_email_addr: 'contato@erickvasconcelos.com',
       about_card_role: 'Designer Instrucional e Especialista em Treinamento Sênior',
       about_card_item1: 'Arquitetura Curricular em Escala Global',
       about_card_item2: 'Learning Experience Design (LXD) & Andragogia',
@@ -2307,6 +2221,8 @@
 
       cases_eyebrow: 'Portfólio de Projetos',
       cases_title: 'Cases de <span>Impacto</span>',
+      cases_subtitle: 'Confira abaixo alguns cases de design instrucional com ganhos claros para o negócio. Clique nas abas à esquerda para alternar entre os cases.',
+      cases_behance_note: 'Para cases de desenvolvimento de conteúdo, eLearning e outros exemplos visuais, acesse o <a href="https://www.behance.net/erickvp" target="_blank" rel="noopener" class="font-semibold underline hover:text-[var(--c-accent)] transition-colors" style="color:var(--c-accent)">Behance</a>.',
       case1_badge: 'STORYLINE 360',
       case1_title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360)',
       case1_spec: 'Ramificação Condicional · Camadas Modulares · Variáveis de Score',
@@ -2347,7 +2263,7 @@
       exp_tiktok_role: 'Designer instrucional sênior',
       exp_tiktok_loc: 'TikTok',
       exp_tiktok_date: 'Abr 2022 – Ago 2025',
-      exp_tiktok_b1: '• Liderança do <strong style="color:var(--c-text-strong)">pod T&amp;D LATAM</strong> para 1.500+ moderadores em Trust &amp; Safety global.',
+      exp_tiktok_b1: '• Liderança do <strong style="color:var(--c-text-strong)">pod T&amp;D LATAM</strong> para 1.500+ moderadores internos e de BPO em Monetization Integrity global.',
       exp_tiktok_b2: '• Fluxos de <strong style="color:var(--c-text-strong)">IA Generativa</strong> para parsing automatizado de políticas corporativas complexas.',
 
       exp_ac_role: 'Designer instrucional sênior',
@@ -2367,12 +2283,12 @@
       exp_99_tag2: 'Kirkpatrick L2',
       exp_99_tag3: 'Sales Enablement',
       exp_99_tag4: 'Governança de Currículo',
-      exp_tiktok_p1: 'Liderança técnica do pod de T&D LATAM em Trust & Safety, sendo responsável pela arquitetura curricular, governança pedagógica e capacitação crítica para mais de 1.500 moderadores em um ambiente global hiper-regulado.',
+      exp_tiktok_p1: 'Liderança técnica do pod de T&D LATAM em Monetization Integrity, sendo responsável pela arquitetura curricular, governança pedagógica e capacitação crítica para mais de 1.500 moderadores internos e de BPO em um ambiente global hiper-regulado.',
       exp_tiktok_p2: 'Concepção de esteiras com IA Generativa (LLMs) para parsing semântico automatizado de políticas corporativas, reduzindo o ciclo de produção em ~70% e garantindo alinhamento em sprints quinzenais com paridade multilíngue (PT/EN/ES).',
       exp_tiktok_tag1: 'Pipelines de GenAI',
       exp_tiktok_tag2: 'Parsing Semântico',
       exp_tiktok_tag3: 'Storyline 360',
-      exp_tiktok_tag4: 'Trust & Safety',
+      exp_tiktok_tag4: 'Monetization Integrity',
       exp_tiktok_tag5: 'Sprints Ágeis',
       exp_ac_p1: 'Consultoria estratégica de aprendizagem voltada à transformação digital e upskilling corporativo para contas multinacionais, conduzindo diagnóstico de necessidades (LNT) e desenho de competências técnicas.',
       exp_ac_p2: 'Concepção da trilha corporativa de capacitação em Scrum para a <strong style="color:var(--c-text-strong)">Braskem</strong> no Articulate Rise 360, aplicando Action Mapping e dinâmicas de tomada de decisão baseadas em desafios reais de negócio.',
@@ -2425,110 +2341,207 @@
 
       contact_eyebrow: 'Vamos Conversar',
       contact_title: 'Pronto para <span>colaborar</span>?',
-      contact_desc: 'Seja para projetos estratégicos de L&D, implantação de LMS, desenho de currículos com IA ou novas posições sênior — estou à disposição.',
+      contact_desc: 'Estou disponível para projetos estratégicos de L&D, implementação de LMS, desenho de currículos, capacitação com IA ou posições sênior em design instrucional e treinamento corporativo.',
       contact_btn_email: 'Enviar E-mail',
-      contact_btn_cv: 'Baixar CV em PDF',
+      contact_btn_cv: 'Baixar Currículo (PDF)',
       footer_role: 'Designer Instrucional e Especialista em Treinamento Sênior'
     }
   };
 
-  // Bilingual Modal Cases Data
-  const casesData = {
-    en: {
-      1: {
-        category: 'CASE STUDY // 01 · TECHNICAL & INTERACTIVE',
-        demoUrl: 'https://www.behance.net/erickvp',
-        behanceUrl: 'https://www.behance.net/erickvp',
-        tags: [
-          { l: 'Storyline 360', c: 'tag-teal' },
-          { l: 'Conditional Branching', c: 'tag-indigo' },
-          { l: 'Modular Layers', c: 'tag-purple' },
-          { l: 'Scoring Variables', c: 'tag-amber' }
-        ],
-        title: 'Clinical Compliance Triage Simulator (Storyline 360)',
-        problem: 'In clinical BPO operations handling high-risk healthcare triage, protocol non-compliance introduced severe regulatory risk (HIPAA) and compromised patient safety. The legacy onboarding process relied on static SOP PDFs and passive slide lectures, which failed to train agents in dynamic decision-making, escalation pathways, and high-stress clinical judgment.',
-        approach: 'Engineered a Scenario-Based Learning framework rooted in Knowles\' andragogical principles (relevance, active autonomy, and immediate consequences). Learners navigate complex diagnostic interviews where clinical decisions branch dynamically. Diagnostic errors produce realistic complications and corrective feedback loops rather than arbitrary failure screens.',
-        architecture: 'Authored in Articulate Storyline 360 using an advanced modular layer architecture that consolidated multiple scenarios into unified slide masters, cutting total slide count by over 65% and eliminating slide bloat. Scored via 14 numeric and boolean variables tracking diagnostic accuracy, decision speed, and protocol adherence. Fully instrumented for SCORM 2004 4th Edition and xAPI statement tracking for auditable LMS reporting.'
+  const LOGO_TIKTOK_SVG = `<img src="assets/logos/logo-tiktok.png" class="logo-light" alt="TikTok" width="32" height="32" loading="lazy"><img src="assets/logos/logo-tiktok-dark.png" class="logo-dark" alt="TikTok" width="32" height="32" loading="lazy">`;
+  const LOGO_99_SVG = `<img src="assets/logos/logo-99.png" alt="99" width="32" height="32" loading="lazy">`;
+
+  const casesContent = {
+    pt: [
+      {
+        company: "TikTok",
+        logo: LOGO_TIKTOK_SVG,
+        badge: "Case Study // 01 · AI & Global Scale",
+        navTitle: "Automação & Continuing Education com GenAI",
+        navMeta: "TikTok · Monetization Integrity",
+        title: "Automação & Continuing Education com GenAI (TikTok LATAM)",
+        situation: "A operação de Monetization Integrity enfrentava rápidas mudanças regulatórias em diretrizes comerciais globais. A conversão manual de pareceres jurídicos de 50+ páginas em cursos instrucionais levava até 3 semanas, gerando defasagem operacional e risco de desvio de conformidade em uma equipe de mais de 1.500 moderadores distribuídos por hubs internos e BPOs.",
+        task: "Acelerar radicalmente o ciclo de atualização instrucional sem comprometer o rigor pedagógico, garantindo alinhamento imediato e paridade de entrega em operações multilíngues (PT, EN, ES).",
+        action: "Desenvolvimento de esteira assistida por IA Generativa com LLMs para parsing semântico automatizado de diretrizes, extração de deltas de conformidade e geração de storyboards modulares para o Rise 360. Implementação de cadência ágil em sprints quinzenais com microlearning de 5 a 7 minutos e cenários práticos de tomada de decisão.",
+        result: "Redução do ciclo de produção de 3 semanas para apenas 4 dias (~70% de ganho de eficiência), assegurando cobertura integral para mais de 1.500 moderadores e erradicando o delay na assimilação de novas políticas de monetização.",
+        skills: [
+          { name: "Pipelines de GenAI & LLM Parsing", pct: 100 },
+          { name: "Sprints Ágeis de Aprendizagem", pct: 95 },
+          { name: "Governança de Currículo", pct: 85 },
+          { name: "Capacitação Multilíngue (PT/EN/ES)", pct: 80 }
+        ]
       },
-      2: {
-        category: 'CASE STUDY // 02 · AI & GLOBAL SCALE',
-        demoUrl: 'https://www.behance.net/erickvp',
-        behanceUrl: 'https://www.behance.net/erickvp',
-        tags: [
-          { l: 'GenAI Pipelines', c: 'tag-emerald' },
-          { l: 'LLM Semantic Parsing', c: 'tag-purple' },
-          { l: 'Prompt Engineering', c: 'tag-teal' },
-          { l: '1,500+ Moderators', c: 'tag-indigo' }
-        ],
-        title: 'Automation & Continuing Education with GenAI (TikTok LATAM)',
-        problem: 'TikTok\'s LATAM Trust & Safety team faced continuous, rapid shifts in global regulatory policies and platform community guidelines. Converting dense legal documents of 50+ pages into instructional assets manually required weeks, creating operational lag and leaving 1,500+ moderators vulnerable to policy drift and inconsistent enforcement.',
-        approach: 'Established an agile continuing education pipeline operating in bi-weekly instructional sprints. Instead of monolithic compliance courses, content was deconstructed into targeted 5-to-7-minute microlearning modules paired with Situational Judgment Tests (SJTs) based on current real-world content moderation edge cases.',
-        architecture: 'Engineered an AI-assisted pipeline combining LLMs (GPT-4/Claude) with structured few-shot prompt templates to: (1) semantically parse policy diffs; (2) extract critical operational shifts; (3) auto-generate modular storyboards for Articulate Rise 360; (4) craft calibrated scenario question banks. Reduced instructional production turnaround from 3 weeks to 4 days (~70% reduction) with trilingual parity across PT, EN, and ES.'
+      {
+        company: "99",
+        logo: LOGO_99_SVG,
+        badge: "Case Study // 02 · LMS Deployment & Enablement",
+        navTitle: "Implantação de LMS Enterprise & Sales Enablement",
+        navMeta: "99 · Força Comercial",
+        title: "Implantação de LMS Enterprise & Sales Enablement (99)",
+        situation: "A organização necessitava modernizar sua infraestrutura de capacitação da força comercial e integração de parceiros em nível nacional, migrando de sessões síncronas manuais para um ambiente digital escalável, sem ferramentas centralizadas ou trilhas padronizadas de aprendizagem.",
+        task: "Liderar a implantação end-to-end do primeiro LMS da companhia (Beedoo), desenhar a taxonomia do catálogo de cursos e criar uma esteira de capacitação comercial com mensuração objetiva de impacto.",
+        action: "Gestão completa da implantação da plataforma com lideranças executivas e TI (integração SSO); arquitetura de jornadas assíncronas por função e produção de toolkits interativos de vendas. Estruturação de modelo de avaliação baseado em Kirkpatrick Nível 2 para auditar a retenção técnica antes da atuação em campo.",
+        result: "Transição completa de 100% dos treinamentos presenciais para o ecossistema digital, estabelecimento de governança corporativa de catálogo e aceleração mensurável na produtividade e ramp-up dos consultores de vendas.",
+        skills: [
+          { name: "LMS Deployment & Arquitetura", pct: 100 },
+          { name: "Governança de Plataformas & SSO", pct: 90 },
+          { name: "Sales Enablement", pct: 85 },
+          { name: "Kirkpatrick Model (L2)", pct: 80 }
+        ]
       },
-      3: {
-        category: 'CASE STUDY // 03 · INFRASTRUCTURE & BUSINESS',
-        demoUrl: 'https://www.behance.net/erickvp',
-        behanceUrl: 'https://www.behance.net/erickvp',
-        tags: [
-          { l: 'LMS Rollout (Beedoo)', c: 'tag-indigo' },
-          { l: 'Platform Governance', c: 'tag-teal' },
-          { l: 'Digital Transition', c: 'tag-purple' },
-          { l: 'Kirkpatrick Level 2', c: 'tag-amber' }
-        ],
-        title: 'End-to-End LMS Rollout & Sales Enablement (99/Beedoo)',
-        problem: '99 operated without a centralized enterprise training platform for its commercial sales teams. Onboarding and enablement sessions were fragmented across ad-hoc in-person meetings, sales playbooks were poorly standardized, and the business had zero auditable data on training completion or impact on revenue generation.',
-        approach: 'Engineered a full transition from in-person delivery to structured asynchronous digital journeys paired with applied role-play sessions. Structured the curriculum around Donald Kirkpatrick\'s evaluation model, establishing a rigorous Level 2 (Knowledge Acquisition) baseline to verify sales competencies prior to field prospect interactions.',
-        architecture: 'End-to-end rollout and governance of LMS Beedoo: tenant provisioning, role-based catalog taxonomy, automated sales onboarding tracks, and HRIS user synchronization. Authored modular interactive content in Articulate Rise 360 and Storyline 360. Deployed Kirkpatrick L2 assessment analytics dashboards correlating module completion and retention scores with field sales velocity.'
+      {
+        company: "TikTok",
+        logo: LOGO_TIKTOK_SVG,
+        badge: "Case Study // 03 · Performance Consulting & Root Cause",
+        navTitle: "Diagnóstico de Causa-Raiz: Falha Sistêmica vs. Treinamento",
+        navMeta: "TikTok · Consultoria de Performance",
+        title: "Diagnóstico de Causa-Raiz: Falha Sistêmica vs. Treinamento (TikTok LATAM)",
+        situation: "Picos crônicos de erros de auditoria em casos de Financial Misrepresentation em Monetization Integrity desencadearam ciclos repetitivos e obrigatórios de reciclagem para as equipes de moderação, sob a premissa de que havia defasagem contínua de conhecimento técnico.",
+        task: "Conduzir diagnóstico aprofundado de necessidades (LNT) e análise técnica de causa-raiz para identificar por que as sucessivas intervenções instrucionais não reduziam as reprovações apontadas pela auditoria de qualidade (QA).",
+        action: "Auditoria analítica das contestações de QA, acompanhamento do fluxo operacional na bancada (shadowing) e investigação técnica da ferramenta interna. Identificou-se que a falha não era pedagógica, mas sistêmica: um bug no software impedia a anexação correta da documentação comprobatória inserida pelos moderadores, fazendo com que a auditoria reprovasse as ações por suposta falta de evidência. Suspensão imediata dos treinamentos redundantes, envio de relatório técnico embasado com evidências para Engenharia/Produto e alinhamento provisório com QA.",
+        result: "Eliminação imediata de treinamentos desnecessários, economia de centenas de horas operacionais de moderação, saneamento dos índices reais de qualidade da operação e correção definitiva da falha de persistência de dados no backend da ferramenta.",
+        skills: [
+          { name: "Diagnóstico de Causa-Raiz (Root Cause)", pct: 100 },
+          { name: "Consultoria de Performance (HPT)", pct: 95 },
+          { name: "Auditoria de Processos & Dados", pct: 85 },
+          { name: "Ponte entre Operações e Produto", pct: 80 }
+        ]
       }
-    },
-    pt: {
-      1: {
-        category: 'CASE STUDY // 01 · TÉCNICO & INTERATIVO',
-        demoUrl: 'https://www.behance.net/erickvp',
-        behanceUrl: 'https://www.behance.net/erickvp',
-        tags: [
-          { l: 'Storyline 360', c: 'tag-teal' },
-          { l: 'Ramificação Condicional', c: 'tag-indigo' },
-          { l: 'Camadas Modulares', c: 'tag-purple' },
-          { l: 'Integridade de Score', c: 'tag-amber' }
-        ],
-        title: 'Simulador de Triagem de Conformidade Clínica (Storyline 360)',
-        problem: 'Em operações de BPO de saúde com rigor regulatório HIPAA, desvios nos protocolos de triagem clínica geravam multas severas, perda de conformidade e risco direto à segurança dos pacientes. O treinamento anterior dependia de PDFs estáticos e apresentações lineares, incapazes de preparar os analistas para a tomada de decisão sob pressão em chamadas críticas ao vivo.',
-        approach: 'Desenho instrucional baseado em Aprendizagem Baseada em Cenários (Scenario-Based Learning) e andragogia de Knowles: relevância situacional imediata, autonomia decisória e feedback corretivo orientado por consequências reais. O aprendiz assume o papel de analista de triagem e cada escolha clínica desencadeia ramificações autênticas no estado de saúde do paciente.',
-        architecture: 'Desenvolvido em Articulate Storyline 360 com arquitetura modular de camadas (slide layers) que condensou múltiplos fluxos em mestres integrados, reduzindo o volume de slides em mais de 65% e eliminando inchaço no projeto. Integridade de pontuação garantida por 14 variáveis booleanas e numéricas que auditam precisão diagnóstica, tempo de decisão e conformidade de protocolo. Telemetria via SCORM 2004 4th Ed e xAPI para LMS/LRS.'
+    ],
+    en: [
+      {
+        company: "TikTok",
+        logo: LOGO_TIKTOK_SVG,
+        badge: "Case Study // 01 · AI & Global Scale",
+        navTitle: "Automation & Continuing Education with GenAI",
+        navMeta: "TikTok · Monetization Integrity",
+        title: "Automation & Continuing Education with GenAI (TikTok LATAM)",
+        situation: "TikTok's Monetization Integrity operations faced rapid, frequent regulatory policy updates across global commercial guidelines. Converting dense 50+ page legal documents into instructional courses manually took up to 3 weeks, creating operational lag and compliance drift across 1,500+ moderators in internal hubs and BPOs.",
+        task: "Dramatically accelerate the instructional lifecycle without compromising pedagogical rigor, ensuring immediate operational alignment and trilingual delivery parity (PT, EN, ES).",
+        action: "Engineered an AI-assisted pipeline using LLMs for automated semantic parsing of policy deltas, modular storyboard generation for Rise 360, and agile bi-weekly sprints featuring targeted 5-7 minute microlearning paired with scenario-based decision-making simulations.",
+        result: "Reduced instructional turnaround time from 3 weeks to 4 days (~70% efficiency gain), ensuring 100% policy comprehension coverage for 1,500+ moderators and eliminating knowledge transfer lag.",
+        skills: [
+          { name: "GenAI Pipelines & LLM Parsing", pct: 100 },
+          { name: "Agile Learning Sprints", pct: 95 },
+          { name: "Curriculum Governance", pct: 85 },
+          { name: "Trilingual Enablement (PT/EN/ES)", pct: 80 }
+        ]
       },
-      2: {
-        category: 'CASE STUDY // 02 · IA & ESCALA GLOBAL',
-        demoUrl: 'https://www.behance.net/erickvp',
-        behanceUrl: 'https://www.behance.net/erickvp',
-        tags: [
-          { l: 'Pipelines de GenAI', c: 'tag-emerald' },
-          { l: 'Parsing Semântico com LLM', c: 'tag-purple' },
-          { l: 'Engenharia de Prompt', c: 'tag-teal' },
-          { l: '1.500+ Moderadores', c: 'tag-indigo' }
-        ],
-        title: 'Automação e Educação Contínua com GenAI (TikTok LATAM)',
-        problem: 'Na operação de Trust & Safety LATAM do TikTok, atualizações de diretrizes globais e políticas de moderação aconteciam em ritmo acelerado, gerando documentos regulatórios de dezenas de páginas. O processo tradicional de design instrucional levava semanas para converter essas regras em treinamento, expondo mais de 1.500 moderadores a desvios de interpretação e inconsistência operacional.',
-        approach: 'Implantação de um ecossistema ágil de microlearning contínuo com sprints quinzenais de capacitação. Em vez de longos cursos anuais, o conteúdo foi fragmentado em micromódulos de 5 a 7 minutos com testes de julgamento situacional (SJTs) focados nos casos de borda e discrepâncias detectadas nas auditorias de qualidade.',
-        architecture: 'Pipeline automatizado com LLMs (GPT-4/Claude) e engenharia de prompt estruturada com ancoragem semântica para: (1) parsing semântico automatizado das diretrizes; (2) síntese de pontos críticos de aprendizagem; (3) geração de roteiros padronizados para o Articulate Rise 360; (4) criação de bancos de questões calibrados com distratores realistas. Redução de 70% no ciclo de entrega (de 3 semanas para 4 dias) com cobertura simultânea em PT, ES e EN.'
+      {
+        company: "99",
+        logo: LOGO_99_SVG,
+        badge: "Case Study // 02 · LMS Deployment & Enablement",
+        navTitle: "Enterprise LMS Rollout & Sales Enablement",
+        navMeta: "99 · Commercial Force",
+        title: "Enterprise LMS Rollout & Sales Enablement (99)",
+        situation: "The company needed to scale national commercial workforce training and driver/restaurant partner onboarding by transitioning from manual synchronous sessions to an auditable, centralized digital platform without prior LMS infrastructure.",
+        task: "Direct the end-to-end implementation of the enterprise's first LMS (Beedoo), design curriculum taxonomy, and build a commercial sales enablement ecosystem with measurable performance indicators.",
+        action: "Led platform deployment with senior leadership and IT (SSO integration), structured role-based asynchronous journeys, and authored interactive sales enablement toolkits. Established a Kirkpatrick Level 2 evaluation framework to assess competency acquisition before live field deployment.",
+        result: "Transited 100% of onboarding training into self-paced digital journeys, established centralized catalog governance, and measurably accelerated commercial consultant ramp-up productivity.",
+        skills: [
+          { name: "LMS Deployment & Architecture", pct: 100 },
+          { name: "Platform Governance & SSO", pct: 90 },
+          { name: "Sales Enablement", pct: 85 },
+          { name: "Kirkpatrick Model (L2)", pct: 80 }
+        ]
       },
-      3: {
-        category: 'CASE STUDY // 03 · INFRAESTRUTURA & NEGÓCIO',
-        demoUrl: 'https://www.behance.net/erickvp',
-        behanceUrl: 'https://www.behance.net/erickvp',
-        tags: [
-          { l: 'Implantação de LMS (Beedoo)', c: 'tag-indigo' },
-          { l: 'Governança de Plataforma', c: 'tag-teal' },
-          { l: 'Transição Digital', c: 'tag-purple' },
-          { l: 'Kirkpatrick Nível 2', c: 'tag-amber' }
-        ],
-        title: 'Implementação End-to-End de LMS e Capacitação Comercial (99/Beedoo)',
-        problem: 'A 99 não contava com uma plataforma centralizada de treinamento para sua força comercial. A capacitação ocorria em encontros presenciais dispersos com alto custo de logística, discursos de vendas inconsistentes e total ausência de métricas auditáveis sobre retenção de conhecimento ou impacto na receita.',
-        approach: 'Transição do modelo presencial para jornadas digitais autoinstrucionais assíncronas no LMS, complementadas por dinâmicas práticas de role-playing e certificações. Implementação da metodologia de avaliação Kirkpatrick em 4 níveis, com foco prioritário no Nível 2 (avaliação pré e pós-teste de retenção e domínio técnico antes do contato com o cliente).',
-        architecture: 'Implementação e governança completa do LMS Beedoo: provisionamento do ambiente, arquitetura de catálogo, taxonomia por função comercial, trilhas automatizadas de onboarding e sincronização com sistemas de RH. Desenvolvimento de módulos em Storyline 360 e Rise 360. Painéis de métricas Kirkpatrick L2 mapeando retenção e correlacionando o aprendizado com o time-to-productivity dos consultores.'
+      {
+        company: "TikTok",
+        logo: LOGO_TIKTOK_SVG,
+        badge: "Case Study // 03 · Performance Consulting & Root Cause",
+        navTitle: "Root Cause Analysis: Systemic Tooling vs. Training",
+        navMeta: "TikTok · Performance Consulting",
+        title: "Root Cause Analysis: Systemic Tooling vs. Training (TikTok LATAM)",
+        situation: "Chronic quality audit error spikes in Financial Misrepresentation cases triggered continuous, mandatory retraining cycles for Monetization Integrity moderation teams, assuming an ongoing knowledge gap.",
+        task: "Execute deep-dive performance consulting and root-cause analysis to determine why repetitive instructional interventions failed to move the needle on audit compliance scores.",
+        action: "Performed operational shadowing, reviewed disputed QA logs, and audited technical workflows within the internal moderation console. Discovered the defect was strictly systemic rather than instructional: a software bug failed to attach and persist evidentiary documentation provided by moderators, leading QA auditors to falsely flag compliant decisions. Halted redundant retraining, filed an evidence-backed bug report with Product/Engineering, and established an interim alignment protocol with QA.",
+        result: "Eliminated unnecessary training cycles, reclaimed hundreds of productive moderation hours, restored true quality metrics, and drove the permanent engineering fix in the internal tool's backend.",
+        skills: [
+          { name: "Root Cause Analysis", pct: 100 },
+          { name: "Human Performance Technology (HPT)", pct: 95 },
+          { name: "Operational QA & Process Auditing", pct: 85 },
+          { name: "Cross-Functional Product Alignment", pct: 80 }
+        ]
       }
-    }
+    ]
   };
+
+  let activeCaseIndex = 0;
+
+  function renderCaseStudies() {
+    const lang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
+    const cases = casesContent[lang] || casesContent['en'];
+    const navContainer = document.getElementById("case-nav-list");
+    const viewport = document.getElementById("case-viewport");
+    if (!navContainer || !viewport) return;
+
+    // 1. Renderiza as abas da esquerda
+    navContainer.innerHTML = cases.map((c, i) => `
+      <button class="tab-btn ${i === activeCaseIndex ? 'active' : ''}" onclick="selectCase(${i})" role="tab" type="button" aria-selected="${i === activeCaseIndex}">
+        <div class="tab-number">Case Study // 0${i + 1}</div>
+        <div class="tab-title">${c.navTitle}</div>
+        <div class="tab-meta">${c.navMeta}</div>
+      </button>
+    `).join("");
+
+    // 2. Renderiza o conteúdo STAR e as Skills do case ativo à direita
+    const c = cases[activeCaseIndex] || cases[0];
+    const skillsHTML = c.skills.map(s => `
+      <div class="skill-bar-item">
+        <div class="skill-info">
+          <span class="skill-name">${s.name}</span>
+          <span class="skill-pct">${s.pct}%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: ${s.pct}%;"></div>
+        </div>
+      </div>
+    `).join("");
+
+    const starLabels = lang === 'pt'
+      ? { s: 'Situação', t: 'Tarefa', a: 'Ação', r: 'Resultado' }
+      : { s: 'Situation', t: 'Task', a: 'Action', r: 'Result' };
+
+    viewport.innerHTML = `
+      <div class="case-header">
+        <div class="case-header-logo">${c.logo}</div>
+        <div>
+          <span class="case-badge">${c.badge}</span>
+          <h3 class="text-xl sm:text-2xl font-extrabold" style="color:var(--c-text-strong)">${c.title}</h3>
+        </div>
+      </div>
+      <div class="case-content-grid">
+        <div class="star-col">
+          <div class="star-block">
+            <div class="star-label"><span class="letter-s">S</span> ${starLabels.s}</div>
+            <p class="star-text">${c.situation}</p>
+          </div>
+          <div class="star-block">
+            <div class="star-label"><span class="letter-t">T</span> ${starLabels.t}</div>
+            <p class="star-text">${c.task}</p>
+          </div>
+          <div class="star-block">
+            <div class="star-label"><span class="letter-a">A</span> ${starLabels.a}</div>
+            <p class="star-text">${c.action}</p>
+          </div>
+          <div class="star-block">
+            <div class="star-label"><span class="letter-r">R</span> ${starLabels.r}</div>
+            <p class="star-text">${c.result}</p>
+          </div>
+        </div>
+        <div class="skills-col">
+          <h4>${lang === 'pt' ? 'Habilidades Aplicadas' : 'Applied Skills'}</h4>
+          ${skillsHTML}
+        </div>
+      </div>
+    `;
+  }
+
+  function selectCase(index) {
+    activeCaseIndex = index;
+    renderCaseStudies();
+  }
+  window.selectCase = selectCase;
 
   let currentLang = 'en';
 
@@ -2565,6 +2578,43 @@
       }
     });
 
+    // Update CV download links and filenames based on language
+    const cvHref = currentLang === 'pt'
+      ? 'cv/Erick%20Vasconcelos%20-%20Curr%C3%ADculo%20(PT).pdf'
+      : 'cv/Erick%20Vasconcelos%20-%20Resume%20(EN).pdf';
+    const cvDownload = currentLang === 'pt'
+      ? 'Erick Vasconcelos - Currículo (PT).pdf'
+      : 'Erick Vasconcelos - Resume (EN).pdf';
+
+    const navCvBtn = document.getElementById('nav-cv-btn');
+    if (navCvBtn) {
+      navCvBtn.setAttribute('href', cvHref);
+      navCvBtn.setAttribute('download', cvDownload);
+    }
+    const contactCvBtn = document.getElementById('contact-cv-btn');
+    if (contactCvBtn) {
+      contactCvBtn.setAttribute('href', cvHref);
+      contactCvBtn.setAttribute('download', cvDownload);
+    }
+
+    // Update email links and titles based on language
+    const emailAddr = currentLang === 'pt' ? 'contato@erickvasconcelos.com' : 'contact@erickvasconcelos.com';
+    const emailMailto = 'mailto:' + emailAddr;
+    const emailTitle = currentLang === 'pt' ? 'Enviar e-mail para Erick Vasconcelos' : 'Send email to Erick Vasconcelos';
+
+    const aboutEmailBtn = document.getElementById('about-email-btn');
+    if (aboutEmailBtn) {
+      aboutEmailBtn.setAttribute('href', emailMailto);
+      aboutEmailBtn.setAttribute('title', emailTitle);
+    }
+    const contactEmailBtn = document.getElementById('contact-email-btn');
+    if (contactEmailBtn) {
+      contactEmailBtn.setAttribute('href', emailMailto);
+    }
+
+    // Render case studies in active language
+    renderCaseStudies();
+
     // Persist choice
     localStorage.setItem('ev_lang_pref', currentLang);
   }
@@ -2580,73 +2630,6 @@
   // Initialize language (Default: English)
   const savedLang = localStorage.getItem('ev_lang_pref') || 'en';
   applyLanguage(savedLang);
-
-  // Modal handlers
-  const modal = document.getElementById('case-modal');
-  const backdrop = document.getElementById('modal-backdrop');
-  const closeBtn = document.getElementById('modal-close-btn');
-
-  function openModal(id) {
-    const dataset = casesData[currentLang] || casesData.en;
-    const d = dataset[id];
-    if (!d) return;
-
-    const catEl = document.getElementById('modal-category');
-    if (catEl) catEl.textContent = d.category || `CASE STUDY // 0${id}`;
-
-    const titleEl = document.getElementById('modal-title');
-    if (titleEl) titleEl.textContent = d.title;
-
-    const challengeEl = document.getElementById('modal-challenge');
-    if (challengeEl) challengeEl.textContent = d.problem || d.challenge || '';
-
-    const strategyEl = document.getElementById('modal-strategy');
-    if (strategyEl) strategyEl.textContent = d.approach || d.strategy || '';
-
-    const solutionEl = document.getElementById('modal-solution');
-    if (solutionEl) solutionEl.textContent = d.architecture || d.solution || '';
-
-    const tagsEl = document.getElementById('modal-tags');
-    if (tagsEl && d.tags) {
-      tagsEl.innerHTML = d.tags.map(t => `<span class="tag-pill ${t.c}">${t.l}</span>`).join('');
-    }
-
-    const demoBtn = document.getElementById('modal-demo-btn');
-    if (demoBtn) {
-      demoBtn.href = d.demoUrl || 'https://www.behance.net/erickvp';
-    }
-
-    const behanceBtn = document.getElementById('modal-behance-btn');
-    if (behanceBtn) {
-      behanceBtn.href = d.behanceUrl || 'https://www.behance.net/erickvp';
-    }
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
-  }
-
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  closeBtn.addEventListener('click', closeModal);
-  backdrop.addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
-  });
-
-  document.querySelectorAll('.case-card').forEach(card => {
-    const handleCard = () => openModal(Number(card.dataset.case));
-    card.addEventListener('click', handleCard);
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleCard();
-      }
-    });
-  });
 
   // Accordion Controller (Handles 99, TikTok, Avenue Code, TTEC & Outras Experiências)
   const toggles = [
